@@ -36,3 +36,4 @@ Route::get('/profile', function () {
 Route::get('/keranjang', function () {
     return view('/keranjang/keranjang');
 });
+
