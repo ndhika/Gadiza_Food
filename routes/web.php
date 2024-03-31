@@ -42,3 +42,4 @@ Route::get('/keranjang', function () {
     return view('/keranjang/keranjang');
 });
 
+
