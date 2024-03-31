@@ -1,21 +1,120 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('profile.app')
 
-        <title>Gadiza Food</title>
+@section('content')
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card-header"> {{ __('Profile') }}</div>
 
-        <!-- Fonts -->
+      <div class="card-body">
 
-        <!-- Styles -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    </head>
-    <body>
+      @if(session('status'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{session('status') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
+      </div>
+      @endif
 
+      <div class="row">
+        <div class="col-md-4">
+          @if($user->photo)
+            <img src="{{ asset('storage/photos/'.$user->photo) }}" class="img-thumbnail rounded mx-auto d-block">
+          @else
+            <img src="{{ asset('img/profile.png') }}" class="img-thumbnail rounded mx-auto d-block">
+          @endif
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
-</html>
+        </div>
+        <div class="col-md-8">
+          <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
+            @method('PATCH')
+            @csrf
+
+            <div class="row mb-3">
+              <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+
+              <div class="col-md-6">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name">
+          
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+                <div class="col-md-6">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="old_password" class="col-md-4 col-form-label text-md-end">{{ __('Old Password') }}</label>
+
+                <div class="col-md-6">
+                    <input id="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" autocomplete="old-password">
+
+                    @error('old_password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('New Password') }}</label>
+
+                <div class="col-md-6">
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+
+                  @error('password')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                  </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                <div class="col-md-6">
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Change Profile Photo') }}</label>
+
+                <div class="col-md-6">
+                    <input id="photo" type="file" class="form-control" name="photo">
+                </div>
+            </div>
+            <div class="row mb-0">
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Update Profile') }}
+                    </button>
+                </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+@endsection

@@ -35,6 +35,7 @@ Route::get('/menu', function () {
 
 Route::get('/profile', function () {
     return view('/profile/profile');
+
 });
 
 Route::get('/keranjang', function () {
