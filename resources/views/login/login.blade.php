@@ -24,13 +24,35 @@
 </head>
 <body>
     <main>
-        <div class="main z-2 w-50 bg-white position-absolute top-50 start-50 translate-middle rounded h-75 ms-2 p-3 text-black">
-            <center><img src="assets/img/logo.png" alt="logo" style="width: 90px;"></center>
+        <div class="main z-2 w-50 bg-white position-absolute top-50 start-50 translate-middle rounded h-auto ms-2 p-3 text-black">
+            <center><img src="assets/img/logo.png" class="img-fluid " alt="logo" style="width: 90px;"></center>
+            <CEnter><h4 class="mt-2">Buat Akun</h4></CEnter>
             <form>
-            <div class="mb-3">
-                <label for="nama_user" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama_user" placeholder="nama">
+            <div class="mb-3 mt-2 mx-5">
+                <label for="nama_user" class="form-label ">Nama Lengkap</label>
+                <input type="text" class="form-control mx-auto" id="nama_user" placeholder="nama">
             </div>
+            <div class="mb-3 mt-2 mx-5">
+                <label for="nama_user" class="form-label ">Username</label>
+                <input type="text" class="form-control mx-auto" id="nama_user" placeholder="Username">
+            </div>
+            <div class="mb-3 mt-2 mx-5">
+                <label for="nama_user" class="form-label ">No. Telepon</label>
+                <input type="number" class="form-control mx-auto" id="nama_user" placeholder="No. Telepon">
+            </div>
+            <div class="mb-3 mt-2 mx-5">
+                <label for="nama_user" class="form-label ">Email</label>
+                <input type="text" class="form-control mx-auto" id="nama_user" placeholder="Email">
+            </div>
+            <div class="mb-3 mt-2 mx-5">
+                <label for="nama_user" class="form-label ">Buat Password</label>
+                <input type="password" class="form-control mx-auto" id="nama_user" placeholder="password">
+            </div>
+            <div class="mb-3 mt-2 mx-5">
+                <label for="nama_user" class="form-label ">Alamat Lengkap</label>
+                <input type="text" class="form-control mx-auto " id="nama_user" placeholder="Alamat Lengkap">
+            </div>
+            <center><button type="submit" class="btn btn-primary w-100">Kirim</button></center>
         </div>
     </main>
 
