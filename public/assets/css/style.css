@@ -1,0 +1,21 @@
+body{
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    overflow-y: hidden;
+}
+.form-control:focus {
+    outline: none !important;
+    border-color: blue !important;
+    box-shadow: none !important;
+}
+.tombol button{
+    background-color: #A77E58;
+    color: white;
+}
+.tombol button:hover{
+    background-color: #FF4428;
+    color: white;
+}
+a{
+    color: #A77E58;
+}
