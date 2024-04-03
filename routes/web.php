@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,5 +42,7 @@ Route::get('/profile', function () {
 Route::get('/keranjang', function () {
     return view('/keranjang/keranjang');
 });
+
+// route::get('/login', [LoginController::class 'index'])
 
 
