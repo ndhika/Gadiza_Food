@@ -22,7 +22,7 @@
     <main>
         <div class="main w-50 bg-white position-absolute top-50 start-50 translate-middle rounded h-auto my-auto p-2 px-3 text-black">
             <center><img src="assets/img/logo.png" class="img-fluid " alt="logo" style="width: 90px;"></center>
-            <p class="text-center mt-2 fs-4">Buat Akun</p>
+            <p class="text-center mt-1 fs-4">Buat Akun</p>
             <form>
             <div class="mb-2 mt-2 mx-3">
                 <label for="nama_lengkap" class="form-label fs-6 mb-1">Nama Lengkap</label>
