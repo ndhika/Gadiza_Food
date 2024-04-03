@@ -37,7 +37,7 @@
                     </button>
                 </div>
             </div>
-            <div class="text-end mt-2 me-3">
+            <div class="text-end mt-3 me-3">
                 <a href="#">Lupa password?</a>
             </div>
             <div class="tombol d-grid col-11 mx-auto mt-4">

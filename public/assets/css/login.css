@@ -2,6 +2,7 @@ body{
     background-image: url("../img/background.jpg");
     background-size: cover;
     overflow-y: hidden;
+    font-family: Lusitana;
 }
 .form-control:focus {
     outline: none !important;
