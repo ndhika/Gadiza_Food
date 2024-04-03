@@ -20,3 +20,41 @@ body{
 a{
     color: #A77E58;
 }
+
+/* HP */
+@media (max-width: 575.98px) { 
+    .main{
+        width: 65%;
+    }
+}
+
+/* hp */
+@media (max-width: 767.98px) { 
+    .main{
+        width: 55%;
+    }
+    .second{
+        width: 35%;
+    }
+
+}
+
+/* laptop -> tablet */
+@media (min-width: 992px) {  
+    .main{
+        width: 40%;
+    }
+    .second{
+        width: 40%;
+    }
+}
+
+/* laptop L */
+@media (min-width: 1200px) { 
+    .main{
+        width: 35%;
+    }
+    .second{
+        width: 50%;
+    }
+}

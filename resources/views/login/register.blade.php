@@ -1,8 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
-    <main>
-        <div class="main w-50 bg-white position-absolute top-50 start-50 translate-middle rounded h-auto my-auto p-2 px-3 text-black">
+        <div class="second bg-white position-absolute top-50 start-50 translate-middle rounded h-auto my-auto p-2 px-3 text-black">
             <center><img src="assets/img/logo.png" class="img-fluid " alt="logo" style="width: 90px;"></center>
             <p class="text-center mt-1 fs-4">Buat Akun</p>
             <form>
@@ -43,7 +42,6 @@
                 <p>Sudah punya akun? <a href="/login">Login</a></p>
             </div>
         </div>
-    </main>
     
     <script src="{{ asset('assets/js/register.js') }}"></script> 
 @endsection
