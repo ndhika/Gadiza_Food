@@ -44,7 +44,7 @@
                 <button type="submit" class="btn mt-2">Login</button>
             </div>
             <div class="text-center mt-3">
-                <p>Belum punya akun? <a href="#">Daftar</a></p>
+                <p>Belum punya akun? <a href="">Daftar</a></p>
             </div>
             </form>
 
