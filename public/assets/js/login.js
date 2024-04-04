@@ -7,3 +7,10 @@ togglePassword.addEventListener('click', function () {
     this.querySelector('i').classList.toggle('bi-eye-fill');
     this.querySelector('i').classList.toggle('bi-eye-slash-fill');
 });
+
+setTimeout(function () {
+    var notification = document.getElementById('notification');
+    if (notification) {
+        notification.style.display = 'none';
+    }
+}, 3000); 

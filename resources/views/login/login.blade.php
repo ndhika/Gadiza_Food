@@ -1,7 +1,14 @@
 @extends('layouts.login')
 
 @section('content')
-    <div class="main bg-white position-absolute top-50 start-50 translate-middle rounded h-auto my-auto p-3 px-2 text-black">
+
+@if (session('success'))
+    <div id="notification" class="alert alert-success" role="alert">
+    <strong>Register Berhasil!</strong> Silakan Login Terlebih Dahulu.
+</div>
+@endif
+
+    <div class="main overflow-y-hidden bg-white position-absolute top-50 start-50 translate-middle rounded h-auto my-auto p-3 px-2 text-black">
             <center><img src="assets/img/logo.png" class="img-fluid " alt="logo" style="width: 90px;"></center>
             <p class="text-center mt-1 fs-4">Login</p>
             <form>
