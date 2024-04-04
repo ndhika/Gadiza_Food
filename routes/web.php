@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +19,9 @@ Route::get('/', function () {
     // dashboard
 });
 
-Route::get('/login', function () {
-    return view('/login/login');
-});
-
-Route::get('/register', function () {
-    return view('/login/register');
-});
+// Route::get('/register', function () {
+//     return view('/login/register');
+// });
 
 Route::get('/about', function () {
     return view('/about/about');
@@ -43,6 +40,8 @@ Route::get('/keranjang', function () {
     return view('/keranjang/keranjang');
 });
 
-// route::get('/login', [LoginController::class 'index'])
+Route::get('/login', [LoginController::class, 'login']);
 
+Route::get('/register', [RegisterController::class, 'create']);
 
+Route::post('/register', [RegisterController::class, 'dataRegist']);

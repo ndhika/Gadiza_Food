@@ -20,8 +20,18 @@ body{
 a{
     color: #A77E58;
 }
+.border_awal{
+    border-color: #FF4428 !important;
+}
+.notification {
+    position: fixed;
+    top: -100px; 
+    left: 0;
+    width: 100%;
+    transition: top 0.5s ease; 
+}
 
-/* HP */
+/* HP kecil */
 @media (max-width: 575.98px) { 
     .main{
         width: 65%;
@@ -55,6 +65,6 @@ a{
         width: 35%;
     }
     .second{
-        width: 50%;
+        width: 45%;
     }
 }
