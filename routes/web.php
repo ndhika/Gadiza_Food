@@ -19,10 +19,6 @@ Route::get('/', function () {
     // dashboard
 });
 
-// Route::get('/register', function () {
-//     return view('/login/register');
-// });
-
 Route::get('/about', function () {
     return view('/about/about');
 });
@@ -41,7 +37,7 @@ Route::get('/keranjang', function () {
 });
 
 Route::get('/login', [LoginController::class, 'login']);
-Route::get('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 
 Route::get('/register', [RegisterController::class, 'create']);

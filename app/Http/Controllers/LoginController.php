@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $message =[
-            'email.required' => 'Kolom email wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
         ];
 
@@ -28,8 +28,8 @@ class LoginController extends Controller
         if(Auth::attempt($userlogin)){
             $request->Session()->regenerate();
             return redirect()->intended('/dashboard');
-        }
+        };
 
-        return back()->with('loginError','Login Gagal!') 
+        return back()->with('loginError','Login Gagal!');
     }
 }
