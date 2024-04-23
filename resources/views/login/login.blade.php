@@ -7,19 +7,25 @@
     <strong>Register Berhasil!</strong> Silakan Login Terlebih Dahulu.
 </div>
 @endif
-
     <div class="main overflow-y-hidden bg-white position-absolute top-50 start-50 translate-middle rounded h-auto my-auto p-3 px-2 text-black">
             <center><img src="assets/img/logo.png" class="img-fluid " alt="logo" style="width: 90px;"></center>
             <p class="text-center mt-1 fs-4">Login</p>
-            <form>
+            <form action="/login" method="post">
+            @csrf
             <div class="mb-2 mt-2 mx-3">
-                <label for="email_user" class="form-label fs-6 mb-1">Email</label>
-                <input type="text" class="form-control mx-auto border border-black" id="email_user" placeholder="Email">
+                <label for="email" class="form-label fs-6 mb-1">Email</label>
+                <input type="text" name="email" class="form-control mx-auto border border-black @error('email') 
+                is-invalid border_awal @enderror" id="email" placeholder="Email" value="{{ old('email')}}">
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-2 mt-2 mx-3">
-                <label for="password_user" class="form-label fs-6 mb-1">Password</label>
+                <label for="password" class="form-label fs-6 mb-1">Password</label>
                 <div class="input-group">
-                    <input type="password" class="form-control border border-black border-end-0" id="password_user" placeholder="Password">
+                    <input type="password" name="password" class="form-control border border-black border-end-0" id="password" placeholder="Password">
                     <button class="btn border-top border border-black border-bottom border-end border-start-0" type="button" id="togglePassword">
                     <i class="bi bi-eye-fill"></i>
                     </button>

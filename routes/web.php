@@ -41,7 +41,8 @@ Route::get('/keranjang', function () {
 });
 
 Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'authenticate']);
+
 
 Route::get('/register', [RegisterController::class, 'create']);
-
 Route::post('/register', [RegisterController::class, 'dataRegist']);
