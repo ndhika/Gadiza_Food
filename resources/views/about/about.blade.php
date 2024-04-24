@@ -163,6 +163,7 @@
 </style>
     </head>
     <body>
+        @include('layouts.navbar')
     <div>
   <div>
     <div>

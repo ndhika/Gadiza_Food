@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   column-gap: 80px;
-  width: 1140px;
+  width: 100%;
   box-sizing: border-box;
 }
 .desktop-menu {
