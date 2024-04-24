@@ -32,13 +32,12 @@ Route::middleware(['auth'])->group(function () {
             "title" => "Tentang"
         ]);
     });
-});
 
-
-Route::get('/dashboard', function () {
+    Route::get('/dashboard', function () {
     return view('/dashboard/dashboard');
-});
+    });
 
+});
 
 Route::get('/profile', function () {
     return view('/profile/profile');
@@ -51,6 +50,8 @@ Route::get('/keranjang', function () {
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
 
 
 Route::get('/register', [RegisterController::class, 'create']);
