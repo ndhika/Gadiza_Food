@@ -1003,6 +1003,7 @@
     <title>Document</title>
 </head>
 <body>
+  @include('layouts.navbar')
 <div class="desktop-menu">
   <div class="food">
   </div>

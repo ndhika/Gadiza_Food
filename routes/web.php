@@ -20,18 +20,20 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('/about/about', [
-        "title" => "Tentang"
-    ]);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/menu', function () {
+        return view('/menu/menu', [
+            "title" => 'Menu'
+        ]);
+    });
+
+    Route::get('/about', function () {
+        return view('/about/about', [
+            "title" => "Tentang"
+        ]);
+    });
 });
 
-
-Route::get('/menu', function () {
-    return view('/menu/menu', [
-        "title" => 'Menu'
-    ]);
-});
 
 Route::get('/dashboard', function () {
     return view('/dashboard/dashboard');
@@ -40,7 +42,6 @@ Route::get('/dashboard', function () {
 
 Route::get('/profile', function () {
     return view('/profile/profile');
-
 });
 
 Route::get('/keranjang', function () {
@@ -48,7 +49,7 @@ Route::get('/keranjang', function () {
 });
 
 
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 
