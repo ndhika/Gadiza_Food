@@ -52,12 +52,22 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+            @auth
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="/keranjang"><i class="bi bi-cart3"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-4" href="/about"><i class="bi bi-person-circle"> {{ auth()->user()->nama }}</i></a>
+                </li>
+            @endauth
+            @guest
                 <li class="nav-item">
                     <a class="nav-link " href="/login"><i class="bi bi-box-arrow-in-right"> </i>Log in</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link daftarnav px-4 rounded-pill" href="/register"></i>Daftar</a>
                 </li>
+            @endguest
             </ul>
         </div>
     </div>

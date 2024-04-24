@@ -9,7 +9,7 @@ togglePassword.addEventListener('click', function () {
 });
 
 setTimeout(function () {
-    var notification = document.getElementById('notification');
+    let notification = document.getElementById('notification');
     if (notification) {
         notification.style.display = 'none';
     }
