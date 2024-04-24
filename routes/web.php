@@ -15,17 +15,28 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-    return view('/login/login');
-    // dashboard
+    return view('/beranda/homepage', [
+        "title" => "Beranda"
+    ]);
 });
 
 Route::get('/about', function () {
-    return view('/about/about');
+    return view('/about/about', [
+        "title" => "Tentang"
+    ]);
 });
 
+
 Route::get('/menu', function () {
-    return view('/menu/menu');
+    return view('/menu/menu', [
+        "title" => 'Menu'
+    ]);
 });
+
+Route::get('/dashboard', function () {
+    return view('/dashboard/dashboard');
+});
+
 
 Route::get('/profile', function () {
     return view('/profile/profile');
@@ -35,6 +46,7 @@ Route::get('/profile', function () {
 Route::get('/keranjang', function () {
     return view('/keranjang/keranjang');
 });
+
 
 Route::get('/login', [LoginController::class, 'login']);
 Route::post('/login', [LoginController::class, 'authenticate']);
