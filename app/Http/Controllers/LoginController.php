@@ -28,6 +28,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($userlogin)){
             $request->Session()->regenerate();
+            
             return redirect()->intended('/');
         };
 

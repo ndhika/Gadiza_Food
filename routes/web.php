@@ -37,14 +37,13 @@ Route::middleware(['auth'])->group(function () {
     return view('/dashboard/dashboard');
     });
 
+    Route::get('/keranjang', function () {
+    return view('/keranjang/keranjang');
+    });
 });
 
 Route::get('/profile', function () {
     return view('/profile/profile');
-});
-
-Route::get('/keranjang', function () {
-    return view('/keranjang/keranjang');
 });
 
 
