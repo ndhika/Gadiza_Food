@@ -3,14 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Di sini adalah tempat di mana kamu bisa mendaftarkan rute web untuk aplikasi mu.
+| Rute-rute ini dimuat oleh RouteServiceProvider dan semua akan ditugaskan ke grup middleware "web".
+| Buat sesuatu yang hebat!
 |
 */
 
@@ -34,11 +35,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/dashboard', function () {
-    return view('/dashboard/dashboard');
+        return view('/dashboard/dashboard');
     });
 
     Route::get('/keranjang', function () {
-    return view('/keranjang/keranjang');
+        return view('/keranjang/keranjang');
     });
 });
 
@@ -46,12 +47,13 @@ Route::get('/profile', function () {
     return view('/profile/profile');
 });
 
+Route::get('/LaporanPemesanan', function () {
+    return view('/admin/LaporanPemesanan');
+});
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-
-
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
