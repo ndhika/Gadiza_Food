@@ -18,11 +18,7 @@
     button{
         width: 102%;
     }
-    .btn:hover{
-        background-color:burlywood;
-        color: white;
-    }
-    
+
 @media (min-width: 992px) {
     .card-registration-2 .bg-grey {
     border-top-right-radius: 5px;

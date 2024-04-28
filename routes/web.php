@@ -40,8 +40,13 @@ Route::get('/keranjang', function () {
     return view('/keranjang/keranjang');
 });
 
+Route::get('/LaporanPemesanan', function () {
+    return view('/admin/LaporanPemesanan');
+});
+
 Route::get('/login', [LoginController::class, 'login']);
 
 Route::get('/register', [RegisterController::class, 'create']);
 
 Route::post('/register', [RegisterController::class, 'dataRegist']);
+

@@ -11,7 +11,7 @@
                                     <div class="col-lg-7">
                                         <div class="p-5">
                                             <div class="d-flex justify-content-between align-items-center mb-5">
-                                                <h3 class=" mb-0 text-black"><i class="bi bi-arrow-left-circle"></i> Konfirmasi Orderan</h3>
+                                                <h3 class=" mb-0 text-black"><i class="bi bi-arrow-left-circle"></i> Checkout</h3>
                                                 <h6 class="mb-0 text-muted">3 items</h6>
                                             </div>
 
