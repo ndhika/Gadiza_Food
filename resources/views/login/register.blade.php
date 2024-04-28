@@ -30,7 +30,7 @@
                 <label for="no_telepon" class="form-label fs-6 mb-1">No. Telepon</label>
                 <input type="text" name="no_telepon" class="form-control mx-auto border border-black @error('no_telepon') 
                 is-invalid border_awal @enderror" id="no_telepon" placeholder="No. Telepon" inputmode="numeric" value="{{ old('no_telepon')}}">
-                @error('No_telepon')
+                @error('no_telepon')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

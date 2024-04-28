@@ -50,7 +50,7 @@ class RegisterController extends Controller
         } 
         catch (\Exception $e) {
             Session::flash('error', 'Registrasi gagal!');
-            return redirect()->route('register');
+            return redirect()->route('/register');
         }
     }
 }
