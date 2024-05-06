@@ -96,6 +96,13 @@
     <nav class="navbar justify-content-center" style="background: white;">
     <img src="assets/img/logo.png" alt="logo" margin-left: 25%; style="width: 90px;" margin-left: 50%;>
     <div class="gadiza-food">
+        @include('layouts.navbar')
+    <div>
+  <div>
+    <div>
+      <div>
+      </div>
+      <div>
         Gadiza Food
     </div>
     <div class="nav justify-content-center">

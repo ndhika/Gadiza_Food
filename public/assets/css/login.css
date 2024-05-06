@@ -1,0 +1,70 @@
+body{
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    overflow-y: hidden;
+    font-family: Lusitana;
+}
+.form-control:focus {
+    outline: none !important;
+    border-color: blue !important;
+    box-shadow: none !important;
+}
+.tombol button{
+    background-color: #A77E58;
+    color: white;
+}
+.tombol button:hover{
+    background-color: #FF4428;
+    color: white;
+}
+a{
+    color: #A77E58;
+}
+.border_awal{
+    border-color: #FF4428 !important;
+}
+.notification {
+    position: fixed;
+    top: -100px; 
+    left: 0;
+    width: 100%;
+    transition: top 0.5s ease; 
+}
+
+/* HP kecil */
+@media (max-width: 575.98px) { 
+    .main{
+        width: 65%;
+    }
+}
+
+/* hp */
+@media (max-width: 767.98px) { 
+    .main{
+        width: 55%;
+    }
+    .second{
+        width: 35%;
+    }
+
+}
+
+/* laptop -> tablet */
+@media (min-width: 992px) {  
+    .main{
+        width: 40%;
+    }
+    .second{
+        width: 40%;
+    }
+}
+
+/* laptop L */
+@media (min-width: 1200px) { 
+    .main{
+        width: 35%;
+    }
+    .second{
+        width: 45%;
+    }
+}
