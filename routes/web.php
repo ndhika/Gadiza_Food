@@ -47,6 +47,10 @@ Route::get('/profile', function () {
     return view('/profile/profile');
 });
 
+Route::get('profile/{id}', 'ProfileController@show')->name('profile.show');
+Route::get('profile/{id}/edit', 'ProfileController@edit')->name('profile.edit');
+Route::get('profile/{id}', 'ProfileController@update')->name('profile.show');
+
 Route::get('/LaporanPemesanan', function () {
     return view('/admin/LaporanPemesanan');
 });
