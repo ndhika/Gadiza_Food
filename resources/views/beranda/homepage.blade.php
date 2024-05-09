@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.homepage')
 
-        <title>Gadiza Food</title>
+@section('content')
+    @include('layouts.navbar')
+    <div class="homepage position-relative">
+        <img src="{{ asset('assets/img/bg-homepage.jpg') }}" class="z-0 img-fluid blur-warm" alt="Background Image">
+        <div class="content z-1 position-absolute  translate-middle text-start">
+            <p class="text-black fs-1 fw-normal">Laper tapi mager? <br> Pesen makan lewat <strong>Gadiza Food</strong> aja!</p>
+        <br>
+            <p class="fs-5 fw-normal">Makan Siang Kantoran? Bosen? Cus Coba yang Ini, Dijamin <br> Kantor Jadi Rame! Mau Diet? Lupain Dulu Deh, Makanan Ini <br> Nggak Bisa Ditahan!</p>
+            <a class="btn btn-primary mt-5 rounded-pill py-2 px-4" href="/menu" role="button">Explore Menu <i class="bi bi-caret-right-fill"></i></a>
+        </div>
+    </div>
+    <div class="nextpage position-relative">
+        <div class="overlay">
+            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus blanditiis quasi, saepe et quia voluptates possimus placeat nisi aliquam impedit consequatur optio sint repellendus. Necessitatibus cumque quas sunt fugit porro.</h1>
+        </div>
+    </div>
+@endsection
 
-        <!-- Fonts -->
 
-        <!-- Styles -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    </head>
-    <body>
-        @include('layouts.navbar')
-    </ul>
-</div>
 
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    </body>
-</html>
+
+

@@ -12,6 +12,10 @@
 
     <!-- Styles -->
     <style>
+        .navbar{
+        z-index: 1000; 
+        /* background-color: rgba(255, 255, 255, 0.75);> */
+        }
         .nav-link.active {
             border-bottom: 3.5px solid black;
             margin-bottom: 0; 
@@ -34,7 +38,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary-opacity-75 mt-4 z-1 py-2">
+<nav class="navbar navbar-expand-lg mt-4 py-3">
     <div class="container-fluid">
         <a class="navbar-brand fs-4 p-1" style="font-family: Lobster;" href="/">
             <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="45" height="45" class="d-inline-block align-text-mid">

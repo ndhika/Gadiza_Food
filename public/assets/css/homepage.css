@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: Lusitana;
+}
+
+.navbar {
+    position: relative;
+    z-index: 1000;
+}
+
+.homepage {
+    position: relative;
+    z-index: 1;
+    background-color: #D9CFC1;
+}
+
+.blur-warm {
+    filter: blur(4px) sepia(20%);
+}
+
+.homepage img {
+    margin-top: -110px;
+    width: 100%;
+    height: 100vh;
+}
+
+.homepage a {
+    background-color: #C4715A;
+    border: none;
+}
+
+.homepage a:hover {
+    background-color: #FF4428;
+    border: none;
+}
+
+.content {
+    top: 45%;
+    left: 30%;
+}
+
+.nextpage {
+    position: relative;
+    background-color: #D9CFC1;
+    z-index: 0;
+}
+
+.nextpage .overlay {
+    background-color: rgba(217, 207, 193, 0.8);
+
+}
