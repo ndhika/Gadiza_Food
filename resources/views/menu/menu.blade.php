@@ -28,6 +28,11 @@
         .daftarnav a:hover {
             color: white;
         }
+
+        .img-1 {
+            height: 181px;
+            width: 322.4px;
+        }
     </style>  
   </head>
   <body>
@@ -94,7 +99,7 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <h3>Column 1</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" width="350px" heigt="350px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
                 <p>Some text below the image for description or other content.</p>
             </div>
@@ -104,20 +109,19 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <h3>Column 2</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <img src="assets/img/pastel.jpg" alt="mie ayam" width="350px" height="290px" style="border-radius:2px;">
                 <p>Additional text for this column.</p>
             </div>
         </div>
 
-        <!-- Third column with border radius -->
-        <div class="col-md-4">
+         <!-- Second column with border radius -->
+         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 3</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text to accompany the image.</p>
+                <h3>Column 2</h3>
+                <img src="assets/img/pizza.jpg" alt="mie ayam" width="350px" height="290px" style="border-radius:2px;">
+                <p>Additional text for this column.</p>
             </div>
+        </div>
         </div>
     </div>
 </div>
