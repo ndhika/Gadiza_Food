@@ -35,8 +35,7 @@
         }
     </style>  
   </head>
-  <body>
-    
+  <body>  
 <nav class="navbar navbar-expand-lg bg-body-tertiary-opacity-75 mt-4 z-1 py-2">
     <div class="container-fluid">
         <a class="navbar-brand fs-4 p-1" style="font-family: Lobster;" href="/">
