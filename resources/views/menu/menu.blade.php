@@ -98,28 +98,28 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 1</h3>
                 <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" width="350px" heigt="350px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Some text below the image for description or other content.</p>
+                <h3>MIE AYAM</h3>
+                <p>Rp 10.00</p>
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 2</h3>
-                <img src="assets/img/pastel.jpg" alt="mie ayam" width="350px" height="290px" style="border-radius:2px;">
-                <p>Additional text for this column.</p>
+                <img src="assets/img/pastel.jpg" alt="pastel" width="350px" height="290px" style="border-radius:2px;">
+                <h3>PASTEL</h3>
+                <p>Rp 7.000</p>
             </div>
         </div>
 
          <!-- Second column with border radius -->
          <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 2</h3>
-                <img src="assets/img/pizza.jpg" alt="mie ayam" width="350px" height="290px" style="border-radius:2px;">
-                <p>Additional text for this column.</p>
+                <img src="assets/img/pizza.jpg" alt="pizza" width="350px" height="290px" style="border-radius:2px;">
+                <h3>PIZZA</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
         </div>
@@ -133,30 +133,30 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 1</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/dimsum.jpeg" alt="dimsum" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Some text below the image for description or other content.</p>
+                <h3>DIMSUM</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 2</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/pistuban.jpg" alt="pistuban" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text for this column.</p>
+                <h3>PISTUBAN</h3>
+                <p>Rp 20.000</p>
             </div>
         </div>
 
         <!-- Third column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 3</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/makaroni-schotel.jpg" alt="makaroni schotel" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text to accompany the image.</p>
+                <h3>MACARONI SCHOTEL</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
     </div>
@@ -169,30 +169,30 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 1</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/pie.png" alt="pie" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Some text below the image for description or other content.</p>
+                <h3>PIE</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 2</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/ximilu.jpeg" alt="ximilu" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text for this column.</p>
+                <h3>XIMILU</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
 
         <!-- Third column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 3</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/puding-marie-regal.jpeg" alt="puding marie regal" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text to accompany the image.</p>
+                <h3>PUDING MARIE REGAL</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
     </div>
@@ -205,30 +205,30 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 1</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/melon-milky-cheese.jpg" alt="melon milky cheese" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Some text below the image for description or other content.</p>
+                <h3>MELON MILKY CHEESE</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 2</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/bakpao.jpeg" alt="bakpao" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text for this column.</p>
+                <h3>BAKPAO</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
 
         <!-- Third column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <h3>Column 3</h3>
-                <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Placeholder Image">
+                <img src="assets/img/banana-nugget.jpeg" alt="banana nugget" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <p>Additional text to accompany the image.</p>
+                <h3>BANANA NUGGET</h3>
+                <p>Rp 15.000</p>
             </div>
         </div>
     </div>
