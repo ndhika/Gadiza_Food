@@ -36,7 +36,7 @@
                                                                         <p class="m-b-10 f-w-600">Alamat</p>
                                                                         <h6 class="text-muted f-w-400">Jl. Pandanaran</h6>
                                                                         
-                                                                        <button type="button" class="btn btn-dark">Edit</button>
+                                                                        <a href="/edit" type="button" class="btn btn-dark">Edit</a>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <p class="m-b-10 f-w-600">Email</p>
