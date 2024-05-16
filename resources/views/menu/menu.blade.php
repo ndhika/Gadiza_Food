@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
    <style>
         .rounded-column {
-            border-radius: 50px; /* Smooth rounded corners */
-            border: 1px solid #ddd; /* Light border for visualization */
+            border-radius: 50px;
+            border: 1px solid #ddd;
         }
         .nav-link.active {
             border-bottom: 3.5px solid black;

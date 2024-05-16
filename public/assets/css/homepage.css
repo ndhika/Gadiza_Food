@@ -20,10 +20,10 @@ body {
 }
 
 .blur-warm {
-    filter: blur(4px) sepia(20%);
+    filter: blur(5px);
 }
 
-.homepage img {
+.homepage .carousel {
     margin-top: -110px;
     width: 100%;
     height: 100vh;

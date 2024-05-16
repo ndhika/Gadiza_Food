@@ -21,7 +21,7 @@
             margin-bottom: 0; 
         }
         .daftarnav {
-            background-color: #B8ADA1;
+            background-color: #ff8409;
         }
         .daftarnav:hover {
             background-color: #FF4428;
