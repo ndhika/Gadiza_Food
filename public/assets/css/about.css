@@ -1,0 +1,25 @@
+h2{
+    font-family: "Fontdiner Swanky", serif;
+    font-size: 40px;
+    margin-left: 10%;
+    margin-top: 5%;
+    color: #555555;
+}
+
+p{
+    font-family: "Cardo", serif;
+    font-size: 35px;
+    margin-left: 10%;
+    color: #555555;
+
+}
+
+p.find{
+    font-size: 30;
+}
+
+.bi-instagram{
+    margin-left: 10%;
+    width: 64px;
+    height: 64px;
+}
