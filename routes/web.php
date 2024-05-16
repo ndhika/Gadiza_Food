@@ -34,16 +34,17 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
 
-    Route::get('/dashboard', function () {
-        return view('/dashboard/dashboard');
-    });
-
     Route::get('/keranjang', function () {
         return view('/keranjang/keranjang');
     });
 
-    Route::get('/LaporanPemesanan', function () {
-        return view('/admin/LaporanPemesanan');
+    Route::get('/userAdmin', function () {
+        return view('/admin/userAdmin/user');
+    });
+
+
+    Route::get('/pemesananAdmin', function () {
+        return view('/admin/userAdmin/LaporanPemesanan');
     });
 
     Route::get('/profile', function () {

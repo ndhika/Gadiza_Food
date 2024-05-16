@@ -14,7 +14,7 @@
     <style>
         .navbar{
         z-index: 1000; 
-        /* background-color: rgba(255, 255, 255, 0.75);> */
+        background-color: rgba(255, 255, 255, 0.75);>
         }
         .nav-link.active {
             border-bottom: 3.5px solid black;
