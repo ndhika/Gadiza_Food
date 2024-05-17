@@ -11,7 +11,9 @@
                                     <div class="col-lg-7">
                                         <div class="p-5">
                                             <div class="d-flex justify-content-between align-items-center mb-5">
-                                                <h3 class=" mb-0 text-black"><i class="bi bi-arrow-left-circle"></i> Checkout</h3>
+                                                <h3 class=" mb-0 text-black">
+                                                    <a href="/menu" class="back"><i class="bi bi-arrow-left-circle"></i></a> Checkout
+                                                </h3>
                                                 <h6 class="mb-0 text-muted">3 items</h6>
                                             </div>
 
@@ -19,7 +21,7 @@
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" width="100%;" style="border-radius:2px;">
+                                                    <img src="{{ asset('assets/img/mie-ayam.jpeg') }}" alt="mie ayam" width="100%;" style="border-radius:2px;">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                                     <h5 class="text-black mb-0">Mie Ayam</h5>
@@ -39,7 +41,7 @@
                                                     <h6 class="mb-0">Rp. 15.000</h6>
                                                 </div>
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <a href="#" class="btn"><i class="bi bi-trash"></i></a>
+                                                    <a href="#" class="btn"><i class="bi bi-trash3"></i></a>
                                                 </div>
                                             </div>
 
@@ -47,7 +49,7 @@
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img src="assets/img/makaroni-schotel.jpg" alt="makaroni" width="100%;" style="border-radius:2px;">
+                                                    <img src="{{ asset('assets/img/makaroni-schotel.jpg') }}" alt="makaroni" width="100%;" style="border-radius:2px;">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                                     <h5 class="text-black mb-0">Macaroni Schotel</h5>
@@ -67,7 +69,7 @@
                                                     <h6 class="mb-0">Rp. 30.000</h6>
                                                 </div>
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <a href="#" class="btn"><i class="bi bi-trash"></i></a>
+                                                    <a href="#" class="btn"><i class="bi bi-trash3"></i></a>
                                                 </div>
                                             </div>
 
@@ -75,7 +77,7 @@
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img src="assets/img/es-cendol.jpeg" alt="cendol" width="100%;" style="border-radius:2px;">
+                                                    <img src="{{ asset('assets/img/es-cendol.jpeg') }}" alt="cendol" width="100%;" style="border-radius:2px;">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                                     <h5 class="text-black mb-0">Es Cendol</h5>
@@ -95,9 +97,11 @@
                                                     <h6 class="mb-0">Rp. 10.000</h6>
                                                 </div>
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <a href="#" class="btn"><i class="bi bi-trash"></i></a>
+                                                    <a href="#" class="btn"><i class="bi bi-trash3"></i></a>
                                                 </div>
                                             </div>
+                                            <br>
+                                            <a href="/menu" class="tambah">Mau tambah pesanan?</a>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 bg-grey">
@@ -130,16 +134,15 @@
                                                 <h4 class="text-end">Rp. 75.000</h4>
                                             </div>
                                             
-                                            <select class="form-select form-select-xl mb-3" aria-label="Large select example">
-                                                <option selected>Pilih Metode Pembayaran</option>
-                                                <option value="bank_bca">Bank BCA - 1234567890 </option>
-                                                <option value="bank_mandiri">Bank Mandiri - 0987654321</option>
+                                            <select class="form-select form-select-xl mb-3" aria-label="Large select example" id="payment-method">
+                                                <option value="">Pilih Metode Pembayaran</option>
                                                 <option value="shopeepay">ShopeePay (0812345678)</option>
                                                 <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                                             </select>
 
-                                            <button type="submit" class="btn btn-dark btn-block btn-lg fw-bold">ORDER <i class="bi bi-arrow-right"></i></button>
+                                            <a href="/process" class="btn btn-secondary w-100" id="order-btn">ORDER</a>
                                             
+                                        </div>
                                         </div>
                                     </div>
                                 </div>

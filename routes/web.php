@@ -40,13 +40,24 @@ Route::middleware(['auth'])->group(function () {
         return view('/keranjang/keranjang');
     });
 
+    Route::get('/process', function () {
+        return view('/keranjang/process');
+    });
+    
+    Route::get('/ship', function () {
+        return view('/keranjang/ship');
+    });
+    
+    Route::get('/success', function () {
+        return view('/keranjang/success');
+    });
+
     Route::get('/userAdmin', function () {
         return view('/admin/userAdmin/user');
     });
 
-
-    Route::get('/pemesananAdmin', function () {
-        return view('/admin/userAdmin/LaporanPemesanan');
+    Route::get('/orderan', function () {
+        return view('/admin/pemesananAdmin/Orderan');
     });
 
     Route::get('/profile', function () {
@@ -58,6 +69,9 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::get('/tes', function () {
+    return view('/layouts/sidebarAdmin');
+});
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);

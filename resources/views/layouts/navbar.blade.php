@@ -69,7 +69,7 @@
                             <i class="bi bi-person-circle"></i> {{ auth()->user()->nama }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item p-2" href="/dashboard"><i class="bi bi-layout-text-window-reverse"></i> Dashboard</a></li>
+                            <li><a class="dropdown-item p-2" href="/profile"><i class="bi bi-person-circle"></i> Lihat Akun</a></li>
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf

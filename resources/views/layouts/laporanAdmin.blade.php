@@ -29,26 +29,6 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark shadow" style="width:150px;">
-        <ul class="nav flex-column">
-            <h6 class="fw-bold">Gadiza Food</h6>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Menu</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Tentang</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Laporan Pemesanan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Transaksi</a>
-            </li>
-        </ul>
-    </nav>
     @yield('content')
 </body>
 </html>
