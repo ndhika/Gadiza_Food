@@ -34,6 +34,9 @@
             width: 322.4px;
         }
     </style>  
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- icon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   </head>
   <body>  
 <nav class="navbar navbar-expand-lg bg-body-tertiary-opacity-75 mt-4 z-1 py-2">
@@ -168,9 +171,9 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/pie.png" alt="pie" width="350px" height="290px" style="border-radius:2px;">
+                <img src="assets/img/zuppa-soup.jpeg" alt="zuppa_soup" width="350px" height="290px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <h3>PIE</h3>
+                <h3>ZUPPA SOUP</h3>
                 <p>Rp 15.000</p>
             </div>
         </div>
