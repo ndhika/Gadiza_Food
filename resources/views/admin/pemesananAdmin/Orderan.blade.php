@@ -16,14 +16,14 @@
   </thead>
   <tbody>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>1</td>
+      <td>naja</td>
+      <td>mie ayam</td>
+      <td>2</td>
+      <td>30.000</td>
+      <td>rumah</td>
+      <td>cod</td>
+      <td>sedang dibuat</td>
     </tr>
     
   </tbody>

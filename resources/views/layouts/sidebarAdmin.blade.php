@@ -84,6 +84,12 @@
                     </a>
                 </div>
             </aside>
+
+            <div class="main p-3">
+                <div class="text-center">
+                    @yield('content')
+                </div>
+            </div>
         </div>
     </div>
 
