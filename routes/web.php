@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserAdminController;
 
 
 /*
@@ -68,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit', function () {
         return view('/profile/edit');
     });
+    
 });
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -77,8 +79,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
 
-Route::resource('users', UserAdminController::class);
-
 Route::delete('/keranjang/{id}', [CartController::class, 'removeItem']);
 Route::get('/keranjang/{userId}', [CartController::class, 'getCartItems']);
+
+
 
