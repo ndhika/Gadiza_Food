@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -75,3 +76,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
+
+Route::delete('/keranjang/{id}', [CartController::class, 'removeItem']);
+Route::get('/keranjang/{userId}', [CartController::class, 'getCartItems']);
