@@ -100,28 +100,37 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" width="350px" heigt="350px" style="border-radius:2px;">
+                <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" class="rounded mx-auto d-block" width="350px" heigt="350px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <h3>MIE AYAM</h3>
+                <div class="text-center">
+                    <h3>MIE AYAM</h3>
                 <p>Rp 10.00</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/pastel.jpg" alt="pastel" width="350px" height="290px" style="border-radius:2px;">
+                <div class="text-center">
+                <img src="assets/img/pastel.jpg" alt="pastel" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>PASTEL</h3>
                 <p>Rp 7.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
          <!-- Second column with border radius -->
          <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/pizza.jpg" alt="pizza" width="350px" height="290px" style="border-radius:2px;">
+                <div class="text-center">
+                <img src="assets/img/pizza.jpg" alt="pizza" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>PIZZA</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
         </div>
@@ -135,30 +144,36 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/dimsum.jpeg" alt="dimsum" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/dimsum.jpeg" alt="dimsum" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>DIMSUM</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/pistuban.jpg" alt="pistuban" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/pistuban.jpg" alt="pistuban" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>PISTUBAN</h3>
-                <p>Rp 20.000</p>
+                <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
         <!-- Third column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/makaroni-schotel.jpg" alt="makaroni schotel" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
-                <h3>MACARONI SCHOTEL</h3>
+                <div class="text-center">
+                <img src="assets/img/makaroni-schotel.jpg" alt="makaroni_schotel" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                <h3>MAKARONI SCHOTEL</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
     </div>
@@ -169,32 +184,37 @@
     <!-- Bootstrap row for column layout -->
     <div class="row">
         <!-- First column with border radius -->
-        <div class="col-md-4">
+               <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/zuppa-soup.jpeg" alt="zuppa_soup" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/zuppa-soup.jpeg" alt="zuppa_soup" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>ZUPPA SOUP</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/ximilu.jpeg" alt="ximilu" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/ximilu.jpeg" alt="ximilu" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>XIMILU</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
-
         <!-- Third column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/puding-marie-regal.jpeg" alt="puding marie regal" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/puding-marie-regal.jpeg" alt="puding_marie_regal" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>PUDING MARIE REGAL</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
     </div>
@@ -207,30 +227,36 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/melon-milky-cheese.jpg" alt="melon milky cheese" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/melon-milky-cheese.jpg" alt="melon_milky_cheese" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>MELON MILKY CHEESE</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
         <!-- Second column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/bakpao.jpeg" alt="bakpao" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/bakpao.jpeg" alt="bakpao" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>BAKPAO</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
         <!-- Third column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/banana-nugget.jpeg" alt="banana nugget" width="350px" height="290px" style="border-radius:2px;">
-                <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
+                <div class="text-center">
+                <img src="assets/img/banana-nugget.jpeg" alt="banana_nugget" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
                 <h3>BANANA NUGGET</h3>
                 <p>Rp 15.000</p>
+                </div>
+                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
     </div>
