@@ -2,63 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+
 
 class UserAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(User $user)
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'username' => 'required|unique:users,username,' . $user->id,
+            'no_telepon' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'alamat_lengkap' => 'required',
+        ]);
+
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'no_telepon' => $request->no_telepon,
+            'email' => $request->email,
+            'alamat_lengkap' => $request->alamat_lengkap,
+        ]);
+
+        if ($request->password) {
+            $user->update(['password' => Hash::make($request->password)]);
+        }
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(User $user)
     {
-        //
-    }
+        $user->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
 }

@@ -75,3 +75,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
+
+Route::resource('users', UserAdminController::class);
+
