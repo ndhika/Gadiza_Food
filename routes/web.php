@@ -69,6 +69,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit', function () {
         return view('/profile/edit');
     });
+    Route::middleware('auth')->group(function () {
+        Route::get('/profileAdmin', [profileController::class, 'index'])->name('profileAdmin.index');
+        Route::get('/profileAdmin', [profileController::class, 'edit'])->name('profileAdmin.index');
+        Route::get('/edit', [profileController::class, 'edit']);
+        Route::post('/update', [profileController::class, 'store'])->name('profiles.store');
+    });
     
 });
 
@@ -81,6 +87,9 @@ Route::post('/register', [RegisterController::class, 'dataRegist']);
 
 Route::delete('/keranjang/{id}', [CartController::class, 'removeItem']);
 Route::get('/keranjang/{userId}', [CartController::class, 'getCartItems']);
+
+
+
 
 
 
