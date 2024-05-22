@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
@@ -9,22 +9,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-   <style>
+    <style>
         .rounded-column {
             border-radius: 50px;
             border: 1px solid #ddd;
+            transition: transform 0.3s ease-in-out;
         }
+
+        .rounded-column:hover {
+            transform: translateY(-5px);
+        }
+
         .nav-link.active {
             border-bottom: 3.5px solid black;
-            margin-bottom: 0; 
+            margin-bottom: 0;
         }
+
         .daftarnav {
             background-color: #B8ADA1;
         }
+
         .daftarnav:hover {
             background-color: #FF4428;
             color: white;
         }
+
         .daftarnav a:hover {
             color: white;
         }
@@ -33,12 +42,20 @@
             height: 181px;
             width: 322.4px;
         }
-    </style>  
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        .product-card {
+            cursor: pointer;
+        }
+
+        .product-card.selected {
+            border: 2px solid #007bff;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- icon -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  </head>
-  <body>  
+</head>
+<body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary-opacity-75 mt-4 z-1 py-2">
     <div class="container-fluid">
         <a class="navbar-brand fs-4 p-1" style="font-family: Lobster;" href="/">
@@ -100,13 +117,21 @@
         <!-- First column with border radius -->
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
-                <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" class="rounded mx-auto d-block" width="350px" heigt="350px" style="border-radius:2px;">
+                <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" class="rounded mx-auto d-block" width="350px" height="350px" style="border-radius:2px;">
                 <!-- Placeholder image with fluid class for responsiveness and rounded corners -->
                 <div class="text-center">
                     <h3>MIE AYAM</h3>
-                <p>Rp 10.00</p>
+                    <p>Rp 10.000</p>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="1">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="1">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -114,54 +139,19 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <div class="text-center">
-                <img src="assets/img/pastel.jpg" alt="pastel" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>PASTEL</h3>
-                <p>Rp 7.000</p>
+                    <img src="assets/img/pastel.jpg" alt="pastel" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>PASTEL</h3>
+                    <p>Rp 7.000</p>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
-            </div>
-        </div>
-
-         <!-- Second column with border radius -->
-         <div class="col-md-4">
-            <div class="p-3 bg-light rounded-column">
-                <div class="text-center">
-                <img src="assets/img/pizza.jpg" alt="pizza" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>PIZZA</h3>
-                <p>Rp 15.000</p>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="2">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="2">
+                        <i class="bi bi-plus"></i>
+                    </button>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
-
-<!-- Main container for layout -->
-<div class="container mt-4">
-    <!-- Bootstrap row for column layout -->
-    <div class="row">
-        <!-- First column with border radius -->
-        <div class="col-md-4">
-            <div class="p-3 bg-light rounded-column">
-                <div class="text-center">
-                <img src="assets/img/dimsum.jpeg" alt="dimsum" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>DIMSUM</h3>
-                <p>Rp 15.000</p>
-                </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
-            </div>
-        </div>
-
-        <!-- Second column with border radius -->
-        <div class="col-md-4">
-            <div class="p-3 bg-light rounded-column">
-                <div class="text-center">
-                <img src="assets/img/pistuban.jpg" alt="pistuban" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>PISTUBAN</h3>
-                <p>Rp 15.000</p>
-                </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
 
@@ -169,52 +159,19 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <div class="text-center">
-                <img src="assets/img/makaroni-schotel.jpg" alt="makaroni_schotel" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>MAKARONI SCHOTEL</h3>
-                <p>Rp 15.000</p>
+                    <img src="assets/img/pizza.jpg" alt="pizza" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>PIZZA</h3>
+                    <p>Rp 15.000</p>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Main container for layout -->
-<div class="container mt-4">
-    <!-- Bootstrap row for column layout -->
-    <div class="row">
-        <!-- First column with border radius -->
-               <div class="col-md-4">
-            <div class="p-3 bg-light rounded-column">
-                <div class="text-center">
-                <img src="assets/img/zuppa-soup.jpeg" alt="zuppa_soup" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>ZUPPA SOUP</h3>
-                <p>Rp 15.000</p>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="3">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="3">
+                        <i class="bi bi-plus"></i>
+                    </button>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
-            </div>
-        </div>
-
-        <!-- Second column with border radius -->
-        <div class="col-md-4">
-            <div class="p-3 bg-light rounded-column">
-                <div class="text-center">
-                <img src="assets/img/ximilu.jpeg" alt="ximilu" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>XIMILU</h3>
-                <p>Rp 15.000</p>
-                </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
-            </div>
-        </div>
-        <!-- Third column with border radius -->
-        <div class="col-md-4">
-            <div class="p-3 bg-light rounded-column">
-                <div class="text-center">
-                <img src="assets/img/puding-marie-regal.jpeg" alt="puding_marie_regal" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>PUDING MARIE REGAL</h3>
-                <p>Rp 15.000</p>
-                </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
             </div>
         </div>
     </div>
@@ -228,11 +185,19 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <div class="text-center">
-                <img src="assets/img/melon-milky-cheese.jpg" alt="melon_milky_cheese" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>MELON MILKY CHEESE</h3>
-                <p>Rp 15.000</p>
+                    <img src="assets/img/dimsum.jpeg" alt="dimsum" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>DIMSUM</h3>
+                    <p>Rp 15.000</p>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="4">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="4">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -240,11 +205,19 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <div class="text-center">
-                <img src="assets/img/bakpao.jpeg" alt="bakpao" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>BAKPAO</h3>
-                <p>Rp 15.000</p>
+                    <img src="assets/img/pistuban.jpg" alt="pistuban" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>PISTUBAN</h3>
+                    <p>Rp 15.000</p>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="5">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="5">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -252,14 +225,184 @@
         <div class="col-md-4">
             <div class="p-3 bg-light rounded-column">
                 <div class="text-center">
-                <img src="assets/img/banana-nugget.jpeg" alt="banana_nugget" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
-                <h3>BANANA NUGGET</h3>
-                <p>Rp 15.000</p>
+                    <img src="assets/img/makaroni-schotel.jpg" alt="makaroni_schotel" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>MAKARONI SCHOTEL</h3>
+                    <p>Rp 15.000</p>
                 </div>
-                <img src="assets/img/keranjang.png" alt=""class="rounded mx-auto d-block" style="">
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="6">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="6">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main container for layout -->
+<div class="container mt-4">
+    <!-- Bootstrap row for column layout -->
+    <div class="row">
+        <!-- First column with border radius -->
+        <div class="col-md-4">
+            <div class="p-3 bg-light rounded-column">
+                <div class="text-center">
+                    <img src="assets/img/zuppa-soup.jpeg" alt="zuppa_soup" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>ZUPPA SOUP</h3>
+                    <p>Rp 15.000</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="7">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="7">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second column with border radius -->
+        <div class="col-md-4">
+            <div class="p-3 bg-light rounded-column">
+                <div class="text-center">
+                    <img src="assets/img/ximilu.jpeg" alt="ximilu" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>XIMILU</h3>
+                    <p>Rp 15.000</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="8">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="8">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third column with border radius -->
+        <div class="col-md-4">
+            <div class="p-3 bg-light rounded-column">
+                <div class="text-center">
+                    <img src="assets/img/puding-marie-regal.jpeg" alt="puding_marie_regal" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>PUDING MARIE REGAL</h3>
+                    <p>Rp 15.000</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="9">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="9">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main container for layout -->
+<div class="container mt-4">
+    <!-- Bootstrap row for column layout -->
+    <div class="row">
+        <!-- First column with border radius -->
+        <div class="col-md-4">
+            <div class="p-3 bg-light rounded-column">
+                <div class="text-center">
+                    <img src="assets/img/melon-milky-cheese.jpg" alt="melon_milky_cheese" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>MELON MILKY CHEESE</h3>
+                    <p>Rp 15.000</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="10">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="10">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second column with border radius -->
+        <div class="col-md-4">
+            <div class="p-3 bg-light rounded-column">
+                <div class="text-center">
+                    <img src="assets/img/bakpao.jpeg" alt="bakpao" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>BAKPAO</h3>
+                    <p>Rp 15.000</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="11">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="11">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third column with border radius -->
+        <div class="col-md-4">
+            <div class="p-3 bg-light rounded-column">
+                <div class="text-center">
+                    <img src="assets/img/banana-nugget.jpeg" alt="banana_nugget" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+                    <h3>BANANA NUGGET</h3>
+                    <p>Rp 15.000</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-danger me-2 cart-decrease" data-product-id="12">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span class="badge bg-secondary cart-count">0</span>
+                    <button class="btn btn-primary ms-2 cart-increase" data-product-id="12">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>  
-  </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const increaseButtons = document.querySelectorAll('.cart-increase');
+        const decreaseButtons = document.querySelectorAll('.cart-decrease');
+
+        increaseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-product-id');
+                const badge = button.parentElement.querySelector('.cart-count');
+                let count = parseInt(badge.textContent);
+                count += 1;
+                badge.textContent = count;
+            });
+        });
+
+        decreaseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-product-id');
+                const badge = button.parentElement.querySelector('.cart-count');
+                let count = parseInt(badge.textContent);
+                if (count > 0) {
+                    count -= 1;
+                    badge.textContent = count;
+                }
+            });
+        });
+    });
+</script>
+</body>
 </html>
