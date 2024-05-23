@@ -84,7 +84,6 @@
                     </a>
                 </div>
             </aside>
-
             <div class="main p-3">
                 <div>
                     @yield('content')

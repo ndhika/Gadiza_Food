@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserAdminController;
 
 
 /*
@@ -65,6 +66,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit', function () {
         return view('/profile/edit');
     });
+    Route::middleware('auth')->group(function () {
+        Route::get('/profileAdmin', [profileController::class, 'index'])->name('profileAdmin.index');
+        Route::get('/profileAdmin', [profileController::class, 'edit'])->name('profileAdmin.index');
+        Route::get('/edit', [profileController::class, 'edit']);
+        Route::post('/update', [profileController::class, 'store'])->name('profiles.store');
+    });
+    
 });
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
