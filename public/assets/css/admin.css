@@ -19,8 +19,6 @@ body {
 
 .wrapper {
     display: flex;
-    height: 100vh;
-
 }
 
 .main {
@@ -42,8 +40,8 @@ body {
 }
 
 #sidebar.expand {
-    width: 260px;
-    min-width: 260px;
+    width: 235px;
+    min-width: 235px;
 }
 
 .toggle-btn {

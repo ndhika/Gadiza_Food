@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('nama_customer');
             $table->string('pesanan');
             $table->integer('jumlah_pesanan');
-            $table->decimal('total_harga', 10, 2);
+            $table->decimal('total_harga', 10, 3);
             $table->string('alamat');
-            $table->string('metode_pembayaran');
+            $table->string('no_telp');
+            $table->date('tgl_pesan');
+            $table->string('metode_bayar');
             $table->enum('status', ['sedang dibuat', 'sedang diantar', 'pesanan sukses']);
             $table->timestamps();
         });

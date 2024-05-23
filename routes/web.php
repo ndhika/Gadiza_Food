@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -57,10 +58,6 @@ Route::middleware(['auth'])->group(function () {
         return view('/admin/userAdmin/user');
     });
 
-    Route::get('/orderan', function () {
-        return view('/admin/pemesananAdmin/Orderan');
-    });
-
     Route::get('/profile', function () {
         return view('/profile/profile');
         
@@ -79,6 +76,10 @@ Route::post('/register', [RegisterController::class, 'dataRegist']);
 
 Route::resource('users', UserAdminController::class);
 
-Route::delete('/keranjang/{id}', [CartController::class, 'removeItem']);
-Route::get('/keranjang/{userId}', [CartController::class, 'getCartItems']);
-
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/order', 'index')->name('orderAdmin.index');
+    Route::get('/create', 'create')->name('orderAdmin.create');
+    Route::post('/kirim',  'store')->name('orderAdmin.index');
+    Route::get('/editOrder', 'edit')->name('orderAdmin.edit');
+    Route::post('/update', 'update')->name('orderAdmin.update');
+});

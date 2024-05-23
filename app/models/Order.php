@@ -15,7 +15,9 @@ class Order extends Model
         'jumlah_pesanan',
         'total_harga',
         'alamat',
-        'metode_pembayaran',
-        'status'
+        'no_telp',
+        'tgl_pesan',
+        'metode_bayar',
+        'status',
     ];
 }
