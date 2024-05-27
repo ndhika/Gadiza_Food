@@ -8,15 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    
-    public function updateTotal()
+
+    public function destroy(Cart $cartItem)
     {
-        $this->subtotal = $this->items->sum(function ($item) {
-            return $item->price * $item->quantity;
-        });
+        $cartItem->delete();
 
-        $this->total = $this->subtotal + $this->shipping_cost;
-
-        $this->save();
+        return redirect()->back();
     }
+
 }

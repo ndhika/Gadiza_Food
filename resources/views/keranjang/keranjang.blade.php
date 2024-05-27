@@ -14,7 +14,6 @@
                                                 <h3 class=" mb-0 text-black">
                                                     <a href="/menu" class="back"><i class="bi bi-arrow-left-circle"></i></a> Checkout
                                                 </h3>
-                                                <h6 class="mb-0 text-muted">3 items</h6>
                                             </div>
 
                                             <hr class="my-4">
@@ -135,8 +134,6 @@
                                             </div>
                                             
                                             <select class="form-select form-select-xl mb-3" aria-label="Large select example" id="payment-method">
-                                                <option value="">Pilih Metode Pembayaran</option>
-                                                <option value="shopeepay">ShopeePay (0812345678)</option>
                                                 <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                                             </select>
 

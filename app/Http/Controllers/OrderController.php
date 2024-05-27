@@ -1,43 +1,65 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Order;
+use Illuminate\View\View;
 
-class Order extends Controller
+class OrderController extends Controller
 {
-    public function createOrder(Request $request)
+    public function index():view
     {
-        $request->validate([
+        $orders = Order::all();
+        return view('admin/orderAdmin/orderan', compact('orders'));
+    }
+
+    public function create():view
+    {
+        $order = Order::all();
+        return view('admin/orderAdmin/create', compact('order'));
+    }
+    public function store(Request $request)
+    {
+        $this->validate($request, [
             'nama_customer' => 'required|string|max:255',
             'pesanan' => 'required|string|max:255',
             'jumlah_pesanan' => 'required|integer',
             'total_harga' => 'required|numeric',
             'alamat' => 'required|string|max:255',
-            'metode_pembayaran' => 'required|string|max:255',
-            'status' => 'required|in:sedang dibuat,sedang diantar,pesanan sukses',
+            'no_telp' => 'required|numeric',
+            'tgl_pesan' => 'required|date',
+            'metode_bayar' => 'required|string|max:255',
+            'status' => 'required|in:sedang dibuat,sedang diantar,pesanan sukses'
         ]);
 
-        Order::create($request->all());
-
-        return response()->json(['message' => 'Order placed successfully!'], 200);
+        Order::create([
+            'nama_customer' => $request->nama_customer,
+            'pesanan' => $request->pesanan,
+            'jumlah_pesanan' => $request->jumlah_pesanan,
+            'total_harga' => $request->total_harga,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'tgl_pesan' => $request->tgl_pesan,
+            'metode_bayar' => $request->metode_bayar,
+            'status' => $request->status
+        ]);
+        return redirect()->route('orderAdmin.index')->with('success', 'Order created successfully.');
     }
 
-    public function updateOrderStatus(Request $request, $id)
+    public function edit(Order $orders):view
     {
-        $request->validate([
+        return view('admin/orderAdmin/edit', compact('orders'));
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
             'status' => 'required|in:sedang dibuat,sedang diantar,pesanan sukses',
         ]);
         
-        $order = Order::findOrFail($id);
-        $order->update($request->only('status'));
-
-        return response()->json(['message' => 'Order status updated successfully!'], 200);
-    }
-
-    public function getOrders()
-    {
-        $orders = Order::all();
-        return response()->json($orders, 200);
+        $order->update([
+            'status' => $request->status
+        ]);
+        return redirect()->route('orderAdmin.index')->with('success', 'Order updated successfully');
     }
 }
