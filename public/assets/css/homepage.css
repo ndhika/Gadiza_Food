@@ -1,11 +1,12 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     overflow-x: hidden;
-    font-family: Lusitana;
+    font-family: 'Lusitana', serif;
 }
 
 .navbar {
@@ -40,17 +41,78 @@ body {
 }
 
 .content {
-    top: 45%;
+    position: absolute;
+    top: 50%;
     left: 30%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
 }
 
-.nextpage {
+/* .nextpage {
     position: relative;
     background-color: #D9CFC1;
     z-index: 0;
-}
-
+} */
+/* 
 .nextpage .overlay {
     background-color: rgba(217, 207, 193, 0.8);
+    padding: 20px;
+} */
 
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .homepage .carousel {
+        margin-top: -90px;
+        height: 80vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .homepage .carousel {
+        margin-top: -70px;
+        height: 60vh;
+    }
+
+    .content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage .carousel {
+        margin-top: -60px;
+        height: 100vh;
+    }
+
+    .content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .homepage .carousel {
+        margin-top: -40px;
+        height: 40vh;
+    }
+
+    .content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 20px;
+    }
+
+    .nextpage .overlay {
+        padding: 15px;
+    }
 }

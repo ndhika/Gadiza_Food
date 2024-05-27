@@ -22,10 +22,10 @@
             <p class="fs-5 fw-normal text-white">Makan Siang Kantoran? Bosen? Cus Coba yang Ini, Dijamin <br> Kantor Jadi Rame! Mau Diet? Lupain Dulu Deh, Makanan Ini <br> Nggak Bisa Ditahan!</p>
             <a class="text-white btn btn-primary mt-5 rounded-pill py-2 px-4" href="/menu" role="button">Explore Menu <i class="bi bi-caret-right-fill"></i></a>
         </div>
-    </div>
+    {{-- </div>
     <div class="nextpage position-relative">
         <div class="overlay">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus blanditiis quasi, saepe et quia voluptates possimus placeat nisi aliquam impedit consequatur optio sint repellendus. Necessitatibus cumque quas sunt fugit porro.</h1>
+            <h1></h1>
         </div>
-    </div>
+    </div> --}}
 @endsection
