@@ -43,18 +43,6 @@ Route::middleware(['auth'])->group(function () {
         return view('/keranjang/keranjang');
     });
 
-    Route::get('/process', function () {
-        return view('/keranjang/process');
-    });
-    
-    Route::get('/ship', function () {
-        return view('/keranjang/ship');
-    });
-    
-    Route::get('/success', function () {
-        return view('/keranjang/success');
-    });
-
     Route::get('/userAdmin', function () {
         return view('/admin/userAdmin/user');
     });
@@ -87,7 +75,7 @@ Route::resource('users', UserAdminController::class);
 Route::controller(OrderController::class)->group(function () {
     Route::get('/order', 'index')->name('orderAdmin.index');
     Route::get('/create', 'create')->name('orderAdmin.create');
-    Route::post('/kirim',  'store')->name('orderAdmin.index');
-    Route::get('/editOrder', 'edit')->name('orderAdmin.edit');
-    Route::post('/update', 'update')->name('orderAdmin.update');
+    Route::post('/kirim',  'store')->name('orderAdmin.store');
+    Route::get('/editorder', 'edit')->name('orderAdmin.edit');
+    Route::put('/update', 'update')->name('orderAdmin.update');
 });

@@ -9,11 +9,15 @@ class Cart extends Model
 {
     use HasFactory;
 
-    public function destroy(Cart $cartItem)
-    {
-        $cartItem->delete();
+    protected $fillable = ['user_id', 'item_id', 'quantity'];
 
-        return redirect()->back();
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
     }
 
+    public function getSubtotalAttribute()
+    {
+        return $this->quantity * $this->item->price;
+    }
 }

@@ -4,7 +4,7 @@
 <h2>Buat Order</h2>
 
 <!-- validation -->
-<form action="{{ route('orders.store') }}" method="POST">
+<form action="{{ route('orderAdmin.store') }}" method="POST">
     @csrf
     @method('POST')
     <div class="form-group">

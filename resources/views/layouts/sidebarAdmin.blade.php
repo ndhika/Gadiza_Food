@@ -70,14 +70,15 @@
                             </li>
                         </ul>
                     </li>
+                    
+                </ul>
+                <div class="sidebar-footer">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                         <i class="bi bi-person"></i>
-                            <span>Profile</span>
+                            <span>{{ auth()->user()->nama }}</span>
                         </a>
                     </li>
-                </ul>
-                <div class="sidebar-footer">
                     <a href="#" class="sidebar-link mb-3">
                     <form action="/logout" method="post">
                         @csrf

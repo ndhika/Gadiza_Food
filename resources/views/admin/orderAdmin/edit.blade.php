@@ -3,7 +3,7 @@
 
 @section('content')
 <h2>Edit Order</h2>
-<form action="{{ route('orders.update') }}" method="POST">
+<form action="{{ route('orderAdmin.update') }}" method="POST">
     @csrf
     @method('PUT')
     <div class="form-group">

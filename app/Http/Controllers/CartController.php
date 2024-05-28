@@ -2,20 +2,32 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cart;
+use App\Models\Item;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function calculateTotal(Request $request)
+    public function index()
     {
-        $cartItems = $request->user()->cart->get();
-        $subtotal = $cartItems->sum(fn (CartItem $item) => $item->price * $item->quantity);
-        $shipping = 20000; // Assuming a fixed shipping cost
+        $items = all();
+        $cartItems = Cart::with('item')->where('user_id', auth()->id())->get();
+        
+        $subtotal = $cartItems->sum('subtotal');
+        $shipping = 20.000; //ongkir sementara
         $total = $subtotal + $shipping;
+        
+        return view('keranjang.keranjang', compact('items', 'cartItems', 'subtotal', 'shipping', 'total'));
+    }
 
-        return [
-            'subtotal' => $subtotal,
-            'shipping' => $shipping,
-            'total' => $total,
-        ];
+    public function removeFromCart($id)
+    {
+        $cartItem = Cart::where('user_id', auth()->id())->where('id', $id)->first();
+
+        if($cartItem) {
+            $cartItem->delete();
+            return response()->json(['message' => 'Item telah dihapus dari keranjang']);
+        }
+
+        return response()->json(['message' => 'Item tidak tersedia'], 404);
     }
 }

@@ -17,6 +17,7 @@
                 <th>Tanggal Pemesanan</th>
                 <th>Pembayaran</th>
                 <th>Status</th>
+                <th>aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +32,11 @@
                 <td>{{ $order->no_telp }}</td>
                 <td>{{ $order->tgl_pesan }}</td>
                 <td>{{ $order->metode_bayar }}</td>
-                <td>{{ $order->status }} <a href="/editOrder" class="btn btn-success"><i class="bi bi-pencil-square"></i></a></td>
+                <td>{{ $order->status }}</td>
+                <td>
+                    <a href="/editorder" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                </td>
             </tr>
             @endforeach
             </tbody>

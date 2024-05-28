@@ -15,8 +15,8 @@ class OrderController extends Controller
 
     public function create():view
     {
-        $order = Order::all();
-        return view('admin/orderAdmin/create', compact('order'));
+        $orders = Order::all();
+        return view('admin/orderAdmin/create', compact('orders'));
     }
     public function store(Request $request)
     {
@@ -57,7 +57,7 @@ class OrderController extends Controller
             'status' => 'required|in:sedang dibuat,sedang diantar,pesanan sukses',
         ]);
         
-        $order->update([
+        $orders->update([
             'status' => $request->status
         ]);
         return redirect()->route('orderAdmin.index')->with('success', 'Order updated successfully');
