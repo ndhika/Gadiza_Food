@@ -79,8 +79,10 @@
                 </ul>
                 <div class="sidebar-footer">
                     <a href="#" class="sidebar-link mb-3">
-                        <i class="bi bi-box-arrow-left"></i>
-                        <span>Logout</span>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item p-2"><i class="bi bi-box-arrow-in-left"></i> Log out</button>
+                    </form>
                     </a>
                 </div>
             </aside>
