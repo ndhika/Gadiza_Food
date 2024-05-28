@@ -20,6 +20,19 @@ use App\Http\Controllers\UserAdminController;
 |
 */
 
+
+// Other routes...
+
+// Route to display the cart page
+Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
+
+// Route to handle updating cart item quantities
+Route::post('/keranjang/update', [CartController::class, 'update'])->name('keranjang.update');
+
+// Route to handle removing cart items
+Route::delete('/keranjang/remove', [CartController::class, 'remove'])->name('keranjang.remove');
+
+
 Route::get('/', function () {
     return view('/beranda/homepage', [
         "title" => "Beranda"
