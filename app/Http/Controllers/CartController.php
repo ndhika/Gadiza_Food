@@ -1,21 +1,37 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Cart;
+
+use Illuminate\Http\Request;
+use App\Models\CartItem;
+use App\Models\Menu;
 
 class CartController extends Controller
 {
-    public function calculateTotal(Request $request)
+    public function index()
     {
-        $cartItems = $request->user()->cart->get();
-        $subtotal = $cartItems->sum(fn (CartItem $item) => $item->price * $item->quantity);
-        $shipping = 20000; // Assuming a fixed shipping cost
-        $total = $subtotal + $shipping;
+        $cartItems = CartItem::with('menu')->where('user_id', auth()->id())->get();
+        return view('cart.index', compact('cartItems'));
+    }
 
-        return [
-            'subtotal' => $subtotal,
-            'shipping' => $shipping,
-            'total' => $total,
-        ];
+    public function update(Request $request)
+    {
+        $cartItem = CartItem::find($request->id);
+        if ($cartItem) {
+            $cartItem->quantity = $request->quantity;
+            $cartItem->save();
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+    public function remove(Request $request)
+    {
+        $cartItem = CartItem::find($request->id);
+        if ($cartItem) {
+            $cartItem->delete();
+        }
+
+        return response()->json(['success' => true]);
     }
 }
