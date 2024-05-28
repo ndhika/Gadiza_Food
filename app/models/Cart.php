@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    
-    public function updateTotal()
+
+    protected $fillable = ['user_id', 'item_id', 'quantity'];
+
+    public function item()
     {
-        $this->subtotal = $this->items->sum(function ($item) {
-            return $item->price * $item->quantity;
-        });
+        return $this->belongsTo(Item::class);
+    }
 
-        $this->total = $this->subtotal + $this->shipping_cost;
-
-        $this->save();
+    public function getSubtotalAttribute()
+    {
+        return $this->quantity * $this->item->price;
     }
 }

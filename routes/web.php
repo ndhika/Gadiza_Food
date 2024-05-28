@@ -5,7 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\AboutController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserAdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,19 @@ use App\Http\Controllers\AboutController;
 | Buat sesuatu yang hebat!
 |
 */
+
+
+// Other routes...
+
+// Route to display the cart page
+Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
+
+// Route to handle updating cart item quantities
+Route::post('/keranjang/update', [CartController::class, 'update'])->name('keranjang.update');
+
+// Route to handle removing cart items
+Route::delete('/keranjang/remove', [CartController::class, 'remove'])->name('keranjang.remove');
+
 
 Route::get('/', function () {
     return view('/beranda/homepage', [
@@ -41,24 +56,8 @@ Route::middleware(['auth'])->group(function () {
         return view('/keranjang/keranjang');
     });
 
-    Route::get('/process', function () {
-        return view('/keranjang/process');
-    });
-    
-    Route::get('/ship', function () {
-        return view('/keranjang/ship');
-    });
-    
-    Route::get('/success', function () {
-        return view('/keranjang/success');
-    });
-
     Route::get('/userAdmin', function () {
         return view('/admin/userAdmin/user');
-    });
-
-    Route::get('/orderan', function () {
-        return view('/admin/pemesananAdmin/Orderan');
     });
 
     Route::get('/profile', function () {
@@ -68,6 +67,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit', function () {
         return view('/profile/edit');
     });
+    Route::middleware('auth')->group(function () {
+        Route::get('/profileAdmin', [profileController::class, 'index'])->name('profileAdmin.index');
+        Route::get('/profileAdmin', [profileController::class, 'edit'])->name('profileAdmin.index');
+        Route::get('/edit', [profileController::class, 'edit']);
+        Route::post('/update', [profileController::class, 'store'])->name('profiles.store');
+    });
+    
 });
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -79,13 +85,10 @@ Route::post('/register', [RegisterController::class, 'dataRegist']);
 
 Route::resource('users', UserAdminController::class);
 
-Route::delete('/keranjang/{id}', [CartController::class, 'removeItem']);
-Route::get('/keranjang/{userId}', [CartController::class, 'getCartItems']);
-
-Route::get('/about', [AboutController::class, 'index']);
-Route::get('/about/create', [AboutController::class, 'create']);
-Route::post('/about', [AboutController::class, 'store']);
-Route::get('/about/{admin}/edit', [AboutController::class, 'edit']);
-Route::put('/about/{admin}', [AboutController::class], 'update');
-Route::delete('/about/{admin}', [AboutController::class, 'destroy']);
-
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/order', 'index')->name('orderAdmin.index');
+    Route::get('/create', 'create')->name('orderAdmin.create');
+    Route::post('/kirim',  'store')->name('orderAdmin.store');
+    Route::get('/editorder', 'edit')->name('orderAdmin.edit');
+    Route::put('/update', 'update')->name('orderAdmin.update');
+});

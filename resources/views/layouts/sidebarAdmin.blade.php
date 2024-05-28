@@ -70,28 +70,30 @@
                             </li>
                         </ul>
                     </li>
+                    
+                </ul>
+                <div class="sidebar-footer">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                         <i class="bi bi-person"></i>
-                            <span>Profile</span>
+                            <span>{{ auth()->user()->nama }}</span>
                         </a>
                     </li>
-                </ul>
-                <div class="sidebar-footer">
                     <a href="#" class="sidebar-link mb-3">
-                        <i class="bi bi-box-arrow-left"></i>
-                        <span>Logout</span>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item p-2"><i class="bi bi-box-arrow-in-left"></i> Log out</button>
+                    </form>
                     </a>
                 </div>
             </aside>
             <div class="main p-3">
-                <div class="text-center">
+                <div>
                     @yield('content')
                 </div>
             </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset ('assets/js/admin.js') }}"></script>

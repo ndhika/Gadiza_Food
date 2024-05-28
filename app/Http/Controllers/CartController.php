@@ -2,28 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\CartItem;
+use App\Models\Menu;
+
 class CartController extends Controller
 {
-    public function removeItem(Request $request, $id)
+    public function index()
     {
-        // Validasi user ID jika diperlukan
-        // $request->validate(['user_id' => 'required|integer']);
-
-        $cartItem = CartItem::where('id', $id)->first();
-
-        if (!$cartItem) {
-            return response()->json(['message' => 'Item tidak tersedia'], 404);
-        }
-
-        $cartItem->delete();
-
-        return response()->json(['message' => 'Item telah dihapus dari keranjang'], 200);
+        $cartItems = CartItem::with('menu')->where('user_id', auth()->id())->get();
+        return view('cart.index', compact('cartItems'));
     }
 
-    public function getCartItems($userId)
+    public function update(Request $request)
     {
-        $cartItem = CartItem::where('user_id', $userId)->get();
+        $cartItem = CartItem::find($request->id);
+        if ($cartItem) {
+            $cartItem->quantity = $request->quantity;
+            $cartItem->save();
+        }
 
-        return response()->json($cartItems, 200);
+        return response()->json(['success' => true]);
+    }
+
+    public function remove(Request $request)
+    {
+        $cartItem = CartItem::find($request->id);
+        if ($cartItem) {
+            $cartItem->delete();
+        }
+
+        return response()->json(['success' => true]);
     }
 }
