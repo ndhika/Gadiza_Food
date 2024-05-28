@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +81,11 @@ Route::resource('users', UserAdminController::class);
 
 Route::delete('/keranjang/{id}', [CartController::class, 'removeItem']);
 Route::get('/keranjang/{userId}', [CartController::class, 'getCartItems']);
+
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/about/create', [AboutController::class, 'create']);
+Route::post('/about', [AboutController::class, 'store']);
+Route::get('/about/{admin}/edit', [AboutController::class, 'edit']);
+Route::put('/about/{admin}', [AboutController::class], 'update');
+Route::delete('/about/{admin}', [AboutController::class, 'destroy']);
 
