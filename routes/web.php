@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\UserAdminController;
 
 
@@ -75,6 +76,17 @@ Route::middleware(['auth'])->group(function () {
     });
     
 });
+
+
+Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::get('menus', [MenuController::class, 'index'])->name('admin.menus.index');
+    Route::get('menus/create', [MenuController::class, 'create'])->name('admin.menus.create');
+    Route::post('menus', [MenuController::class, 'store'])->name('admin.menus.store');
+    Route::get('menus/{menu}/edit', [MenuController::class, 'edit'])->name('admin.menus.edit');
+    Route::put('menus/{menu}', [MenuController::class, 'update'])->name('admin.menus.update');
+    Route::delete('menus/{menu}', [MenuController::class, 'destroy'])->name('admin.menus.destroy');
+});
+
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
