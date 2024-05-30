@@ -24,6 +24,9 @@ use App\Http\Controllers\UserAdminController;
 
 // Other routes...
 
+//route resource
+Route::resource('/menusAdmin', \App\Http\Controllers\MenuAdminController::class);
+
 // Route to display the cart page
 Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
 
@@ -75,16 +78,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update', [profileController::class, 'store'])->name('profiles.store');
     });
     
-});
-
-
-Route::prefix('admin')->middleware('auth')->group(function() {
-    Route::get('menus', [MenuController::class, 'index'])->name('admin.menus.index');
-    Route::get('menus/create', [MenuController::class, 'create'])->name('admin.menus.create');
-    Route::post('menus', [MenuController::class, 'store'])->name('admin.menus.store');
-    Route::get('menus/{menu}/edit', [MenuController::class, 'edit'])->name('admin.menus.edit');
-    Route::put('menus/{menu}', [MenuController::class, 'update'])->name('admin.menus.update');
-    Route::delete('menus/{menu}', [MenuController::class, 'destroy'])->name('admin.menus.destroy');
 });
 
 
