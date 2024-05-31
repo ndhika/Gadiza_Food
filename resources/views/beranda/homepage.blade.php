@@ -14,6 +14,12 @@
                 <div class="carousel-item">
                     <img src="{{ asset('assets/img/bolu-gulung.jpg') }}" class="d-block w-100" alt="Bolu Gulung">
                 </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/brownies-coklat.jpg') }}" class="d-block w-100" alt="Bolu Gulung">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('assets/img/ximilu.jpeg') }}" class="d-block w-100" alt="Bolu Gulung">
+                </div>
             </div>
         </div>
         <div class="content z-1 position-absolute translate-middle text-start">
