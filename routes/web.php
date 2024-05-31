@@ -71,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit', function () {
         return view('/profile/edit');
     });
+
+    Route::resource('/userAdmin', UserAdminController::class);
+
+
     Route::middleware('auth')->group(function () {
         Route::get('/profileAdmin', [profileController::class, 'index'])->name('profileAdmin.index');
         Route::get('/profileAdmin', [profileController::class, 'edit'])->name('profileAdmin.index');
@@ -88,7 +92,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
 
-Route::resource('users', UserAdminController::class);
 
 Route::controller(OrderController::class)->group(function () {
     Route::get('/order', 'index')->name('orderAdmin.index');
