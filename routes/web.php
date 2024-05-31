@@ -102,8 +102,8 @@ Route::controller(OrderController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('tambah', ('tambahData')->name('aboutAdmin.index'));
     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
+    Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
     Route::get('/edit', [AboutController::class, 'edit']);
     Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
 });
