@@ -92,3 +92,10 @@ Route::controller(OrderController::class)->group(function () {
     Route::get('/editorder', 'edit')->name('orderAdmin.edit');
     Route::put('/update', 'update')->name('orderAdmin.update');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('tambah', ('tambahData')->name('aboutAdmin.index'));
+    Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
+    Route::get('/edit', [AboutController::class, 'edit']);
+    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
+});
