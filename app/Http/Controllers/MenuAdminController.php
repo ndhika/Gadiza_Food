@@ -22,13 +22,9 @@ class MenuAdminController extends Controller
      */
     public function index(): View
     {
-        //get posts
-        $menus = MenuAdmin::latest()->paginate(5);
-
-        //render view with posts
-        return view('admin.menuAdmin.MenuAdmin', compact('menus'));
+        $menuAdmins = MenuAdmin::all();
+        return view('admin.menuAdmin.index', compact('menuAdmins'));
     }
-
     /**
      * create
      *
@@ -53,19 +49,21 @@ class MenuAdminController extends Controller
             'title'     => 'required|min:5',
             'content'   => 'required|min:10'
         ]);
-
+    
         //upload image
         $image = $request->file('image');
         $image->storeAs('public/posts', $image->hashName());
-
+    
         //create post
         MenuAdmin::create([
             'image'     => $image->hashName(),
             'title'     => $request->title,
             'content'   => $request->content
         ]);
-
+    
         //redirect to index
         return redirect()->route('admin.menuAdmin.MenuAdmin')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+    
+    
 }

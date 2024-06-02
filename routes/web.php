@@ -6,7 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\UserAdminController;
 
 
@@ -25,7 +25,7 @@ use App\Http\Controllers\UserAdminController;
 // Other routes...
 
 //route resource
-Route::resource('/menusAdmin', \App\Http\Controllers\MenuAdminController::class);
+Route::get('admin/menuAdmin', [MenuAdminController::class, 'index'])->name('admin.menuAdmin.MenuAdmin');
 
 // Route to display the cart page
 Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
