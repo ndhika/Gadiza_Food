@@ -60,19 +60,17 @@ Route::middleware(['auth'])->group(function () {
         return view('/admin/userAdmin/user');
     });
 
-    Route::get('/profile', function () {
-        return view('/profile/profile');
-        
-    }); 
-    Route::get('/edit', function () {
-        return view('/profile/edit');
-    });
     Route::middleware('auth')->group(function () {
-        Route::get('/profileAdmin', [profileController::class, 'index'])->name('profileAdmin.index');
-        Route::get('/profileAdmin', [profileController::class, 'edit'])->name('profileAdmin.index');
-        Route::get('/edit', [profileController::class, 'edit']);
-        Route::post('/update', [profileController::class, 'store'])->name('profiles.store');
+        Route::get('/profileAdmin', [ProfileController::class, 'index'])->name('profileAdmin.index');
+        Route::get('/profileAdmin/edit/{id}', [ProfileController::class, 'editAdmin'])->name('profileAdmin.edit');
+        Route::post('/profileAdmin/update/{id}', [ProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
+        Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('/ubahFoto', [ProfileController::class, 'ubahFoto'])->name('ubahFoto');
     });
+    
+
     
 });
 

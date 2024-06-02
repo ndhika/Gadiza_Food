@@ -44,7 +44,7 @@ body {
             background-color: #45a049;
         }
     </style>
-<a class="nav-link" href="http://127.0.0.1:8000/profile"><i class="bi bi-arrow-left-short"></i></a>
+    
     <h2>Edit Admin table</h2>
     <form>
         <label for="name">Username:</label>

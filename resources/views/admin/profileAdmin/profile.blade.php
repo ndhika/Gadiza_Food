@@ -12,7 +12,7 @@
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: orangered;
         }
         tr:hover {
             background-color: #f5f5f5;
@@ -22,9 +22,12 @@
 
 
 
-
-<h2>Admin Table</h2>
-
+<center><h1>Admin</h1></center>
+<div class="col-2">
+    <a href="" class="btn btn-primary"><i class="bi bi-file-earmark-plus"></i></a>
+    </a>
+</div>
+<p>
     <table>
         <thead>
             <tr>
@@ -34,6 +37,7 @@
                 <th>Email</th>
                 <th>Created at</th>
                 <th>Updated at</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +49,7 @@
                 <td>21/05/24 10.07</td>
                 <td>21/05/24 10.09</td>
                 <td>
-                <a href="" class="btn btn-info"><i class="bi bi-eyedropper"></i></a>
+                <a href="{{ route('profileAdmin.edit/') }}" class="btn btn-info"><i class="bi bi-eyedropper"></i></a>
                 <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
                 </td>
             </tr>

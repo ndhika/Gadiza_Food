@@ -1,70 +1,79 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 class ProfileController extends Controller
 {
-
-    public function store(request $request)
+    public function show($id)
     {
-        $this->validate($request,[
-    'photo'     => 'required|file|mimes:jpeg,png,jpg',
-    'username'  => 'required|string|max:225',
-    'no_telepon'=> 'required|integer',
-    'alamat_lengkap'   => 'required|string|max:225',
-    'email'     => 'required|string|max:225',
-]);
-    $photo = $request->file('photo');
-    profile::create([
-        'photo'         =>$photoName,
-        'username'      =>$request->username,
-        'no_telepon'         =>$request->no_telepon,
-        'alamat_lengkap'       =>$request->alamat_lengkap,
-        'email'         =>$request->email,
-        'created_at'    =>NOW(),
-        'updated_at'    =>NOW()
-    ]);
-    return redirect()->route('profileAdmin.index')->with(
-        ['success'=> 'Data Berhasil Ditambah!']
-    );
+        $user = User::findOrFail($id);
+        return view('profile.show', compact('user'));
     }
+
     public function edit($id)
     {
-        $data = Model::findOrFail($id);
-        return view('edit', compact('data'));
+        $user = User::findOrFail($id);
+        return view('profile.edit', compact('user'));
     }
+
     public function update(Request $request, $id)
     {
-        $data = Model::findOrFail($id);
-    
-        $data->update($request->all());
-        return redirect()->route('nama.route')->with('success', 'Data berhasil diperbarui');
+        $data = $request->validate([
+            'username' => 'required|max:255',
+            'no_telepon' => 'required|max:15',
+            'alamat_lengkap' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return back()->with('success', 'Data berhasil diperbarui!');
     }
+
     public function index()
     {
-        $user = Auth::user();
-        return view('admin.pemesananAdmin.profileAdmin.profile');
-
-        $user = Auth::user();
-        return view('admin.pemesananAdmin.profileAdmin.edit');
+        $users = User::all();
+        return view('profileAdmin.profile', compact('users'));
     }
 
-    public function changePhoto(Request $request)
+    public function editAdmin($id)
+    {
+        $user = User::findOrFail($id);
+        return view('profileAdmin.edit', compact('user'));
+    }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $data = $request->validate([
+            'username' => 'required|max:255',
+            'no_telepon' => 'required|max:15',
+            'alamat_lengkap' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($data);
+
+        return redirect()->route('profileAdmin.index')->with('success', 'Data berhasil diperbarui!');
+    }
+
+    public function ubahFoto(Request $request)
     {
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $fileName = time() . '_' . $photo->getClientOriginalName();
-            $photo->storeAs('photos', $fileName); // Simpan gambar di direktori 'photos'
-    
-            // Perbarui nama file gambar di database
-            auth()->user()->update(['photo' => $fileName]); // Misalnya, menyimpan nama file di kolom 'photo' pada tabel 'users'
-    
+            $photo->storeAs('photos', $fileName);
+
+            auth()->user()->update(['photo' => $fileName]);
+
             return redirect()->back()->with('success', 'Foto berhasil diubah.');
         }
-    
+
         return redirect()->back()->with('error', 'Gagal mengubah foto.');
     }
 }
-
-    
