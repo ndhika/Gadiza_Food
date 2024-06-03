@@ -2,7 +2,7 @@
 
 @section('content')
         <section class="h-100 h-custom" style="background-color: #d9cfc1;">
-            <div class="container py-4 h-100">
+            <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-12">
                         <div class="card card-registration card-registration-2">
@@ -109,14 +109,11 @@
 
                                                 <hr>
 
-                                            <label class="fw-bold" for="nama">Nama :</label>
-                                            <label for="kita">Ayudhya Naja Adinda</label>
-                                            <br>
-                                            <label class="fw-bold" for="nomer">No. Telepon :</label>
-                                            <label for="telepon">08123456789</label>
-                                            <br>
-                                            <label class="fw-bold" for="dikirim">Dikirim ke :</label>
-                                            <label for="alamat">Jalan Pandanaran II no. 12, Mugassari, Kec. Semarang Selatan, Kota Semarang, Jawa Tengah</label>
+                                                <label class="fw-bold" for="nama">Nama :</label> {{ auth()->user()->nama }}
+                                                <br>
+                                                <label class="fw-bold" for="nomer">No. Telepon :</label> {{ auth()->user()->no_telepon }}
+                                                <br>
+                                                <label class="fw-bold" for="dikirim">Dikirim ke :</label> {{ auth()->user()->alamat_lengkap }}
 
                                                 <hr class="my-4">
 
@@ -137,7 +134,7 @@
                                                     <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                                                 </select>
 
-                                            <a href="/process" class="btn btn-secondary w-100" id="order-btn">ORDER</a>
+                                            <a href="#" class="btn btn-secondary w-100" id="order-btn">ORDER</a>
                                             
                                         </div>
                                         </div>

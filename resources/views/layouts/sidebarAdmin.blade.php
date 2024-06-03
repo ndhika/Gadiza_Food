@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="/order" class="sidebar-link">
                             <i class="bi bi-card-checklist"></i>
                             <span>Orderan</span>
                         </a>
