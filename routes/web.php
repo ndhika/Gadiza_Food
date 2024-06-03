@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\AboutController;
 
 
 /*
@@ -102,6 +103,7 @@ Route::controller(OrderController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/tambah', [AboutController::class, 'store']) ->name('aboutAdmin.index');
     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
     Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
     Route::get('/edit', [AboutController::class, 'edit']);

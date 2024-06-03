@@ -78,13 +78,13 @@
                     </li>                    
                 </ul>
                 <div class="sidebar-footer">
-                    <li class="sidebar-item">
+                    <li class="sidebar-item ms-1">
                         <a class="sidebar-link">
                         <i class="bi bi-person"></i>
                             <span>{{ auth()->user()->nama }}</span>
                         </a>
                     </li>
-                    <a href="#" class="sidebar-link mb-3">
+                    <a class="sidebar-link mb-3">
                     <form action="/logout" method="post">
                         @csrf
                         <button type="submit" class="dropdown-item p-2"><i class="bi bi-box-arrow-in-left"></i> Log out</button>
