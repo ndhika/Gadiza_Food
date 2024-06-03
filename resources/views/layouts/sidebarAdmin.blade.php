@@ -46,7 +46,7 @@
             <aside id="sidebar">
                 <div class="d-flex">
                     <button class="toggle-btn" type="button">
-                        <i class="bi bi-briefcase"></i>
+                        <i class="bi bi-layout-wtf"></i>
                     </button>
                     <div class="sidebar-logo">
                         <p class="mt-3">Gadiza Food</p>
