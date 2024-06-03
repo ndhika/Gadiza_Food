@@ -134,7 +134,7 @@
                                                     <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                                                 </select>
 
-                                            <a href="#" class="btn btn-secondary w-100" id="order-btn">ORDER</a>
+                                            <a href="#" class="btn btn-secondary w-100" id="order-btn" method="POST">ORDER</a>
                                             
                                         </div>
                                         </div>
