@@ -46,13 +46,19 @@
             <aside id="sidebar">
                 <div class="d-flex">
                     <button class="toggle-btn" type="button">
-                        <i class="bi bi-database-check"></i>
+                        <i class="bi bi-briefcase"></i>
                     </button>
                     <div class="sidebar-logo">
                         <p class="mt-3">Gadiza Food</p>
                     </div>
                 </div>
                 <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-layout-text-window-reverse"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
                     <li class="sidebar-item">
                         <a href="/userAdmin" class="sidebar-link">
                             <i class="bi bi-file-person"></i>
