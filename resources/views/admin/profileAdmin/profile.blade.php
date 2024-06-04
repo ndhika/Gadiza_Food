@@ -36,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($profile as $l)
+            @foreach($users as $l)
             <tr>
                 <td>
                     {{$l->id}}
@@ -60,9 +60,9 @@
                         {{$l->deleted_by}}
                 </td>
                 <td>
-                <a href="{{ route('latihan.index', $l->slug_link) }}" class="btn btn-info"><i class="bi bi-table"></i></a>
-                <a href="{{ route('latihan.edit', $l->slug_link) }}"class="btn btn-success"><i class="bi bi-table"></i></a>
-                <a href="{{ route('latihan.hapus', $l->slug_link) }}" class="btn btn-danger"><i class="bi bi-table"></i></a>
+                <a href="{{ route('admin.profileAdmin.profile', $l->slug_link) }}" class="btn btn-info"><i class="bi bi-table"></i></a>
+                <a href="{{ route('admin.profileAdmin.edit', $l->slug_link) }}"class="btn btn-success"><i class="bi bi-table"></i></a>
+                <!-- <a href="{{ route('latihan.hapus', $l->slug_link) }}" class="btn btn-danger"><i class="bi bi-table"></i></a> -->
             
             </td>
             </tr>
