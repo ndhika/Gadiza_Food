@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\AdminProfile;
+use App\Models\adminProfile;
 
 class AdminProfileController extends Controller
 {
     public function index()
     {
-        $users = User::all([
+        $users = AdminProfile::all([
             'username'
         ]);
         return view('admin.AdminProfile.profile', compact('users'));
@@ -17,7 +17,7 @@ class AdminProfileController extends Controller
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = AdminProfile::findOrFail($id);
         return view('AdminProfile.edit', compact('user'));
     }
 
@@ -30,7 +30,7 @@ class AdminProfileController extends Controller
             'email' => 'required|email|max:255|unique:users,email,' . $id,
         ]);
 
-        $user = User::findOrFail($id);
+        $user = AdminProfile::findOrFail($id);
         $user->update($data);
 
         return redirect()->route('admin.AdminProfile.profile')->with('success', 'Data berhasil diperbarui!');

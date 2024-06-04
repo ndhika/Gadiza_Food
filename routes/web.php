@@ -28,7 +28,6 @@ use App\Http\Controllers\MenuController;
 
 // Other routes...
 
-Route::get('/admin/profileAdmin/profile/{slug_link}', 'AdminController@profile')->name('admin.profileAdmin.profile');
 
 // Route resource
 Route::get('/MenuAdmin', [MenuAdminController::class, 'index'])->name('MenuAdmin.index');
@@ -77,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.menuAdmin.profile');
+        Route::get('profile', [admin::class, 'profile'])->name('admin.profile.index');
         Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
         Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
         Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
