@@ -25,8 +25,15 @@ use App\Http\Controllers\AboutController;
 
 // Other routes...
 
-//route resource
-Route::get('admin/menuAdmin', [MenuAdminController::class, 'index'])->name('admin.menuAdmin.MenuAdmin');
+
+// Route resource
+Route::get('/MenuAdmin', [MenuAdminController::class, 'index'])->name('MenuAdmin.index');
+Route::get('/MenuAdmin/create', [MenuAdminController::class, 'create'])->name('MenuAdmin.create');
+Route::post('/MenuAdmin', [MenuAdminController::class, 'store'])->name('MenuAdmin.store');
+Route::get('/MenuAdmin/{id}/edit', [MenuAdminController::class, 'edit'])->name('MenuAdmin.edit');
+Route::put('/MenuAdmin/{id}', [MenuAdminController::class, 'update'])->name('MenuAdmin.update');
+Route::delete('/MenuAdmin/{id}', [MenuAdminController::class, 'destroy'])->name('MenuAdmin.destroy');
+
 
 // Route to display the cart page
 Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
@@ -88,10 +95,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
     Route::middleware('auth')->group(function () {
-        Route::get('/profileAdmin', [profileController::class, 'index'])->name('profileAdmin.index');
-        Route::get('/profileAdmin', [profileController::class, 'edit'])->name('profileAdmin.index');
-        Route::get('/edit', [profileController::class, 'edit']);
-        Route::post('/update', [profileController::class, 'store'])->name('profiles.store');
+        Route::get('/profileAdmin', [ProfileController::class, 'index'])->name('profileAdmin.index');
+        Route::get('/profileAdmin', [ProfileController::class, 'edit'])->name('profileAdmin.edit');
+        Route::get('/edit', [ProfileController::class, 'edit']);
+        Route::post('/update', [ProfileController::class, 'store'])->name('profiles.store');
     });
     
 });
@@ -111,3 +118,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit', [AboutController::class, 'edit']);
     Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
 });
+   
