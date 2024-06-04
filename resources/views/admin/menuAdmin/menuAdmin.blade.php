@@ -10,10 +10,10 @@
     @endif
 
     <div class="mb-2">
-            <form action="{{ route('MenuAdmin.create') }}" method="GET" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Menu</button>
-            </form>
+        <form action="{{ route('MenuAdmin.create') }}" method="GET" class="d-inline">
+            @csrf
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Menu</button>
+        </form>
     </div>
 
     <div class="mt-4">
@@ -34,7 +34,7 @@
                         <td class="text-center">{{ $menuAdmin->title }}</td>
                         <td class="text-center">{{ $menuAdmin->content }}</td>
                         <td class="text-center">{{ number_format($menuAdmin->price, 0, ',', '.') }}</td>
-                        <td>
+                        <td class="text-center">
                             <a href="{{ route('MenuAdmin.edit', $menuAdmin->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('MenuAdmin.destroy', $menuAdmin->id) }}" method="POST" style="display:inline-block;">
                                 @csrf

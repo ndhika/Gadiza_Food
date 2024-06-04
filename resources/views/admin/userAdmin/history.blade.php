@@ -1,41 +1,40 @@
 @extends('layouts.sidebarAdmin')
 
 @section('content')
-<div class="container mt-4">
-    <h2>Daftar Menu Admin</h2>
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    <table id="example" class="table table-striped table-responsive" style="width:100%" border="1px solid black">
+<div class="row mt-4">
+<table id="example" class="table table-striped table-responsive" style="width:100%" border="1px solid black">
+    @foreach ($users as $no => $user)
         <thead>
             <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th data-priority="1" class="text-center col-1">No</th>
+                <th data-priority="1" class="text-center col-2">Nama</th>
+                <th data-priority="1" class="text-center col-2">Username</th>
+                <th data-priority="1" class="text-center col-2">Email</th>
+                <th class="text-center col-2">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($menuAdmins as $menuAdmin)
-                <tr>
-                    <td><img src="{{ asset('storage/posts/' . $menuAdmin->image) }}" alt="{{ $menuAdmin->title }}" width="100" class="img-fluid"></td>
-                    <td>{{ $menuAdmin->title }}</td>
-                    <td>{{ $menuAdmin->content }}</td>
-                    <td>{{ number_format($menuAdmin->price, 0, ',', '.') }}</td>
-                    <td>
-                        <a href="{{ route('MenuAdmin.edit', $menuAdmin->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('MenuAdmin.destroy', $menuAdmin->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+            <tr>
+                <td class="text-center">{{ ++$no }}</td>
+                <td class="text-center">{{ $user->nama }}</td>
+                <td class="text-center">{{ $user->username }}</td>
+                <td class="text-center">{{ $user->email }}</td>
+                <td class="text-center">
+                    <form onsubmit="return confirm('Apakah Anda yakin ingin memulihkan user ini?');" action="{{ route('userAdmin.recover', $user->slug_link) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-trash-restore"></i> Restore</button>
+                    </form>
+                    <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus user ini secara permanen?');" action="{{ route('userAdmin.destroy', $user->slug_link) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash fa-lg"></i> Delete Permanently</button>
+                    </form>
+                </td>
+            </tr>
         </tbody>
-    </table>
+</table>
 </div>
+    @endforeach
+
 @endsection
