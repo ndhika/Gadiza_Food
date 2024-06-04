@@ -15,7 +15,7 @@ class AboutController extends Controller
     *@return view 
     */
     public function index(): View
-    {
+    { 
         $about = About::latest()->first();
         return view('abouts.index', compact('abouts'));
     }
