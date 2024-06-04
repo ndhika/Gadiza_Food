@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\Profile\ProfileController;
-use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MenuAdminController;
@@ -26,8 +26,6 @@ use App\Http\Controllers\AboutController;
 
 
 // Other routes...
-
-Route::get('/admin/profileAdmin/profile/{slug_link}', 'AdminController@profile')->name('admin.profileAdmin.profile');
 
 // Route resource
 Route::get('/MenuAdmin', [MenuAdminController::class, 'index'])->name('MenuAdmin.index');
@@ -76,28 +74,18 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware('auth')->group(function () {
-        Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.menuAdmin.profile');
-        Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
-        Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+        Route::get('/profileAdmin', [AdminProfileController::class, 'index'])->name('admin.profileAdmin.profile');
+        Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profileAdmin.edit');
+        Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profileAdmin.update');
         Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-        Route::post('/ubahFoto', [ProfileController::class, 'ubahFoto'])->name('ubahFoto');
-        Route::get('/ubahFoto', [ProfileController::class, 'editFoto'])->name('profile.editFoto');
-        Route::put('/ubahFoto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
     });
     
 
     
 });
 
-
-
-Route::prefix('admin')->name('admin.')->group(function() {
-    Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.profileAdmin.profile');
-    Route::get('profile/{id}/edit', [AdminProfileController::class, 'editAdmin'])->name('profileAdmin.edit');
-    Route::put('profile/{id}', [AdminProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
-});
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);

@@ -9,25 +9,26 @@
                         @if (session('success'))
                             <div>{{ session('success') }}</div>
                         @endif
-                        <a class="nav-link" href="{{ route('profile.show', ['id' => $user->id]) }}"><i class="bi bi-arrow-left-short"></i></a>
+                        <a class="nav-link" href="{{ route('profile.show', ['id' => $user->id]) }}"></a>
                         <div class="col-sm-4 bg-c-lite-green user-profile">
                             <div class="card-block text-center text-white">
                                 <div class="m-b-25">
                                     <form action="{{ route('profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <label for="photo">Profile Photo:</label>
-                                        <input type="file" class="form-control" name="photo" id="photo">
-                                        @error('photo')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                                 </div>
                                 <div class="form-group">
                                     @if(Auth::user()->photo)
                                         <img src="{{ Storage::url('public/photos/' . Auth::user()->photo) }}" alt="Profile Photo" width="100">
                                     @endif
                                 </div>
-                                <h6 class="f-w-600">{{ $user->username }}</h6>
+                                <h6 class="f-w-600">
+                                    <label for="nama">Nama:</label>
+                                    <input type="text" name="nama" value="{{ old('nama', $user->nama) }}" required>
+                                    @error('nama')
+                                        <div>{{ $message }}</div>
+                                    @enderror</h6>
                                 <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                             </div>
                         </div>

@@ -2,50 +2,69 @@
 
 @section('content')
 <style>
-body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], input[type="email"], select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-    
-    <h2>Edit Admin table</h2>
-<div class="col-sm-6">
-    <ol class=""
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+    .btn {
+        margin-top: 10px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <h2>Edit User</h2>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+
+        <form action="{{ route('admin.profileAdmin.update', $user->id) }}" method="POST">
+            @csrf
+
+            <div class="form-group">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" name="username" class="form-control" value="{{ $user->username }}">
+                @error('username')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="phone" class="form-label">Phone:</label>
+                <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
+                @error('phone')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="address" class="form-label">Address:</label>
+                <input type="text" name="address" class="form-control" value="{{ $user->address }}">
+                @error('address')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
 @endsection
