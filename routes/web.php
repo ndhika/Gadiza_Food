@@ -76,6 +76,9 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware('auth')->group(function () {
+        Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.menuAdmin.profile');
+        Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+        Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
         Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
