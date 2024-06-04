@@ -27,13 +27,7 @@ use App\Http\Controllers\AboutController;
 Route::get('/admin/profileAdmin/profile/{slug_link}', 'AdminController@profile')->name('admin.profileAdmin.profile');
 
 // Route resource
-Route::get('/MenuAdmin', [MenuAdminController::class, 'index'])->name('MenuAdmin.index');
-Route::get('/MenuAdmin/create', [MenuAdminController::class, 'create'])->name('MenuAdmin.create');
-Route::post('/MenuAdmin', [MenuAdminController::class, 'store'])->name('MenuAdmin.store');
-Route::get('/MenuAdmin/{id}/edit', [MenuAdminController::class, 'edit'])->name('MenuAdmin.edit');
-Route::put('/MenuAdmin/{id}', [MenuAdminController::class, 'update'])->name('MenuAdmin.update');
-Route::delete('/MenuAdmin/{id}', [MenuAdminController::class, 'destroy'])->name('MenuAdmin.destroy');
-
+Route::resource('MenuAdmin', MenuAdminController::class);
 // Route to display the cart page
 Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
 

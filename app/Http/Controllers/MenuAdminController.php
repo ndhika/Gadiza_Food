@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuAdmin;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class MenuAdminController extends Controller
 {
     public function index(): View
     {
         $menuAdmins = MenuAdmin::all();
-        return view('admin.menuAdmin.MenuAdmin', compact('menuAdmins'));
+        return view('admin.menuAdmin.index', compact('menuAdmins'));
     }
 
     public function create(): View
