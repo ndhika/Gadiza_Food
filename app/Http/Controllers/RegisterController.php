@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -42,6 +43,10 @@ class RegisterController extends Controller
         ], $message);
 
         $validateData['password'] = Hash::Make($validateData['password']);
+
+        $validateData['slug_link'] = Str::slug($validateData['username'], '-');
+
+        $validateData['status_aktif'] = 'Aktif';
 
         try {
         $user = User::create($validateData);

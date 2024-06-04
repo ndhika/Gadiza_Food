@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('alamat_lengkap');
+            $table->string('slug_link')->unique()->nullable();
+            $table->string('status_aktif')->default('Aktif');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
