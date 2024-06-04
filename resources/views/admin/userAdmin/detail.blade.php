@@ -1,29 +1,43 @@
 @extends('layouts.sidebarAdmin')
 
 @section('content')
-<div class="row mt-4">
-        <table class="table table-striped" style="width:100%" border="1px solid black">
-            <thead>
-                <tr>
-                    <th data-priority="1" class="text-center col-1">Nama</th>
-                    <th data-priority="1" class="text-center col-1">Username</th>
-                    <th data-priority="1" class="text-center col-1">No Telepon</th>
-                    <th data-priority="1" class="text-center col-1">Email</th>
-                    <th data-priority="1" class="text-center col-1">Alamat Lengkap</th>
-                    <th data-priority="1" class="text-center col-1">Dibuat Tanggal</th>
-                    <th data-priority="1" class="text-center col-1">Diupdate Tanggal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">{{ $user->nama }}</td>
-                    <td class="text-center">{{ $user->username }}</td>
-                    <td class="text-center">{{ $user->no_telepon }}</td>
-                    <td class="text-center">{{ $user->email }}</td>
-                    <td class="text-center">{{ $user->alamat_lengkap }}</td>
-                    <td class="text-center">{{ $user->created_at }}</td>
-                    <td class="text-center">{{ $user->updated_at }}</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>Detail Pengguna</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">Nama:</div>
+                    <div class="col-md-8">{{ $user->nama }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">Username:</div>
+                    <div class="col-md-8">{{ $user->username }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">No Telepon:</div>
+                    <div class="col-md-8">{{ $user->no_telepon }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">Email:</div>
+                    <div class="col-md-8">{{ $user->email }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">Alamat Lengkap:</div>
+                    <div class="col-md-8">{{ $user->alamat_lengkap }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">Dibuat Tanggal:</div>
+                    <div class="col-md-8">{{ $user->created_at }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4 text-right font-weight-bold">Diupdate Tanggal:</div>
+                    <div class="col-md-8">{{ $user->updated_at }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

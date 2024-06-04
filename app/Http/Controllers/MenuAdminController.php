@@ -57,8 +57,14 @@ class MenuAdminController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
+            // Delete old image
+            if ($menuAdmin->image) {
+                Storage::delete('public/posts/' . $menuAdmin->image);
+            }
+
             $image = $request->file('image');
             $image->storeAs('public/posts', $image->hashName());
+
             $menuAdmin->update([
                 'image' => $image->hashName(),
                 'title' => $request->title,
@@ -78,6 +84,11 @@ class MenuAdminController extends Controller
 
     public function destroy(MenuAdmin $menuAdmin): RedirectResponse
     {
+        // Delete image from storage
+        if ($menuAdmin->image) {
+            Storage::delete('public/posts/' . $menuAdmin->image);
+        }
+
         $menuAdmin->delete();
         return redirect()->route('MenuAdmin.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }

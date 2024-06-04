@@ -53,12 +53,12 @@
                     </div>
                 </div>
                 <ul class="sidebar-nav">
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             <i class="bi bi-layout-text-window-reverse"></i>
                             <span>Dashboard</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="sidebar-item">
                         <a href="/userAdmin" class="sidebar-link">
                             <i class="bi bi-file-person"></i>
