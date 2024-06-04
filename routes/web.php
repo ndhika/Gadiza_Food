@@ -81,6 +81,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('/userAdmin', UserAdminController::class);
+    Route::post('/userAdmin/{user}/softdelete', [UserAdminController::class, 'softdelete'])->name('userAdmin.softdelete');
+        Route::post('/userAdmin/{user}/restore', [UserAdminController::class, 'restore'])->name('userAdmin.restore');
+    Route::delete('/userAdmin/{user}/forceDelete', [UserAdminController::class, 'forceDelete'])->name('userAdmin.forceDelete');
+
 
     Route::controller(OrderController::class)->group(function () {
     Route::get('/order', 'index')->name('orderAdmin.index');
