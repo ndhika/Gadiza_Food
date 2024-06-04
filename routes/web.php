@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\MenuController;
 
 
 
@@ -111,8 +112,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
     Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
     Route::get('/edit', [AboutController::class, 'edit']);
-    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
-
-    
+    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store'); 
 });
-   
+
+Route::get('/menu', [MenuController::class, 'menu'])->name('menu.menu');
+
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
