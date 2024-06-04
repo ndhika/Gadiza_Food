@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('menu_admins', function (Blueprint $table) {
@@ -16,13 +13,11 @@ return new class extends Migration
             $table->string('image');
             $table->string('title');
             $table->text('content');
+            $table->decimal('price', 8, 2); // Add price field
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('menu_admins');

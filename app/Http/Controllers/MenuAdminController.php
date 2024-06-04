@@ -2,70 +2,83 @@
 
 namespace App\Http\Controllers;
 
-//import Model "Post
 use App\Models\MenuAdmin;
-
-//return type View
-use Illuminate\View\View;
-
-//return type redirectResponse
-use Illuminate\Http\RedirectResponse;
-
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class MenuAdminController extends Controller
 {
-    /**
-     * index
-     *
-     * @return View
-     */
     public function index(): View
     {
-        //get posts
-        $menus = MenuAdmin::latest()->paginate(5);
-
-        //render view with posts
-        return view('admin.menuAdmin.MenuAdmin', compact('menus'));
+        $menuAdmins = MenuAdmin::all();
+        return view('admin.menuAdmin.MenuAdmin', compact('menuAdmins'));
     }
 
-    /**
-     * create
-     *
-     * @return View
-     */
     public function create(): View
     {
         return view('admin.menuAdmin.create');
     }
 
-    /**
-     * store
-     *
-     * @param  mixed $request
-     * @return RedirectResponse
-     */
     public function store(Request $request): RedirectResponse
     {
-        //validate form
         $this->validate($request, [
-            'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'title' => 'required|min:5',
+            'content' => 'required|min:10',
+            'price' => 'required|numeric'
         ]);
 
-        //upload image
         $image = $request->file('image');
         $image->storeAs('public/posts', $image->hashName());
 
-        //create post
         MenuAdmin::create([
-            'image'     => $image->hashName(),
-            'title'     => $request->title,
-            'content'   => $request->content
+            'image' => $image->hashName(),
+            'title' => $request->title,
+            'content' => $request->content,
+            'price' => $request->price
         ]);
 
-        //redirect to index
-        return redirect()->route('admin.menuAdmin.MenuAdmin')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('MenuAdmin.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    public function edit(MenuAdmin $menuAdmin): View
+    {
+        return view('admin.menuAdmin.edit', compact('menuAdmin'));
+    }
+
+    public function update(Request $request, MenuAdmin $menuAdmin): RedirectResponse
+    {
+        $this->validate($request, [
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'title' => 'required|min:5',
+            'content' => 'required|min:10',
+            'price' => 'required|numeric'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image->storeAs('public/posts', $image->hashName());
+            $menuAdmin->update([
+                'image' => $image->hashName(),
+                'title' => $request->title,
+                'content' => $request->content,
+                'price' => $request->price
+            ]);
+        } else {
+            $menuAdmin->update([
+                'title' => $request->title,
+                'content' => $request->content,
+                'price' => $request->price
+            ]);
+        }
+
+        return redirect()->route('MenuAdmin.index')->with(['success' => 'Data Berhasil Diupdate!']);
+    }
+
+    public function destroy(MenuAdmin $menuAdmin): RedirectResponse
+    {
+        $menuAdmin->delete();
+        return redirect()->route('MenuAdmin.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

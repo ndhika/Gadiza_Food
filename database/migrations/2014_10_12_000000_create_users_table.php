@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('alamat_lengkap');
             $table->string('photo')->nullable(); // Corrected: Separate column definition
+            $table->string('slug_link')->unique()->nullable();
+            $table->string('status_aktif')->default('Aktif');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
