@@ -28,7 +28,7 @@
 
     // Other routes...
 
-    Route::get('/admin/profileAdmin/profile/{slug_link}', 'AdminController@profile')->name('admin.profileAdmin.profile');
+Route::get('/admin/profileAdmin/profile/{slug_link}', 'AdminController@profile')->name('admin.profileAdmin.profile');
 
     // Route resource
     Route::get('/MenuAdmin', [MenuAdminController::class, 'index'])->name('MenuAdmin.index');
@@ -76,34 +76,21 @@
             return view('/admin/userAdmin/user');
         });
 
-
-        Route::prefix('userAdmin')->group(function () {
-        Route::get('/', [UserAdminController::class, 'index'])->name('userAdmin.index');
-        Route::get('/history', [UserAdminController::class, 'indexHistory'])->name('userAdmin.history');
-        Route::get('/create', [UserAdminController::class, 'create'])->name('userAdmin.create');
-        Route::post('/', [UserAdminController::class, 'store'])->name('userAdmin.store');
-        Route::get('/{slug_link}', [UserAdminController::class, 'show'])->name('userAdmin.show');
-        Route::get('/{slug_link}/edit', [UserAdminController::class, 'edit'])->name('userAdmin.edit');
-        Route::put('/{slug_link}/update', [UserAdminController::class, 'update'])->name('userAdmin.update');
-        Route::delete('/{slug_link}', [UserAdminController::class, 'destroy'])->name('userAdmin.destroy');
-        Route::put('/{slug_link}/softdelete', [UserAdminController::class, 'softdelete'])->name('userAdmin.softdelete');
-        Route::put('/{slug_link}/recover', [UserAdminController::class, 'recover'])->name('userAdmin.recover');
+    Route::middleware('auth')->group(function () {
+        Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.menuAdmin.profile');
+        Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+        Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+        Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('/ubahFoto', [ProfileController::class, 'ubahFoto'])->name('ubahFoto');
+        Route::get('/ubahFoto', [ProfileController::class, 'editFoto'])->name('profile.editFoto');
+        Route::put('/ubahFoto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
     });
+    
 
-
-
-        Route::middleware('auth')->group(function () {
-            Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.menuAdmin.profile');
-            Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
-            Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
-            Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
-            Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-            Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-            Route::post('/ubahFoto', [ProfileController::class, 'ubahFoto'])->name('ubahFoto');
-            Route::get('/ubahFoto', [ProfileController::class, 'editFoto'])->name('profile.editFoto');
-            Route::put('/ubahFoto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
-        });
-    });
+    
+});
 
 
 
