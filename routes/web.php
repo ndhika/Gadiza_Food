@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\AboutController;
 
 
 /*
@@ -81,6 +82,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/userAdmin', UserAdminController::class);
 
+    Route::controller(OrderController::class)->group(function () {
+    Route::get('/order', 'index')->name('orderAdmin.index');
+    Route::get('/create', 'create')->name('orderAdmin.create');
+    Route::post('/kirim',  'store')->name('orderAdmin.store');
+    Route::get('/editorder', 'edit')->name('orderAdmin.edit');
+    Route::put('/update', 'update')->name('orderAdmin.update');
+});
 
     Route::middleware('auth')->group(function () {
         Route::get('/profileAdmin', [ProfileController::class, 'index'])->name('profileAdmin.index');
@@ -99,16 +107,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
 
-
-Route::controller(OrderController::class)->group(function () {
-    Route::get('/order', 'index')->name('orderAdmin.index');
-    Route::get('/create', 'create')->name('orderAdmin.create');
-    Route::post('/kirim',  'store')->name('orderAdmin.store');
-    Route::get('/editorder', 'edit')->name('orderAdmin.edit');
-    Route::put('/update', 'update')->name('orderAdmin.update');
-});
-
 Route::middleware('auth')->group(function () {
+    Route::get('/tambah', [AboutController::class, 'store']) ->name('aboutAdmin.index');
     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
     Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
     Route::get('/edit', [AboutController::class, 'edit']);

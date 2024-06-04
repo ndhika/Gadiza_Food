@@ -1,8 +1,9 @@
 @extends('layouts.sidebarAdmin')
 
 @section('content')
+<h2 class="ms-3">List User</h2>
     <div class="row mt-4">
-        <table class="table table-striped" style="width:100%" border="1px solid black">
+        <table id="example" class="table table-striped table-responsive" style="width:100%" border="1px solid black">
             <thead>
                 <tr>
                     <th data-priority="1" class="text-center col-1">No</th>

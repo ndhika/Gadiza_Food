@@ -1,5 +1,4 @@
 @extends('layouts.sidebarAdmin')
-@include('layouts.laporanAdmin')
 
 @section('content')
 <h2>List Order</h2>
