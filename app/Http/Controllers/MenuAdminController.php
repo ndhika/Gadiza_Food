@@ -50,7 +50,6 @@ class MenuAdminController extends Controller
             'content'   => 'required|min:10'
         ]);
     
-        //upload image
         $image = $request->file('image');
         $image->storeAs('public/posts', $image->hashName());
     
