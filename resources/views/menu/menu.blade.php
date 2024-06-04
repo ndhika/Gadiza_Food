@@ -177,7 +177,7 @@
       <div class="p-3 bg-light rounded-column" onclick="toggleHighlight(this)">
         <img src="assets/img/bowl-chicken-teriyaki.jpeg" alt="chicken bowl teriyaki" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
         <div class="text-center">
-          <h4>RICE BOWL CHICKEN TERIYAKI</h>
+          <h4>RICE BOWL CHICKEN TERIYAKI</h4>
           <p>Rp 20.000</p>
         </div>
         <i class="bi bi-check-circle-fill checkmark"></i>
@@ -225,7 +225,7 @@
       <div class="p-3 bg-light rounded-column" onclick="toggleHighlight(this)">
         <img src="assets/img/bowl-chicken-yakiniku.jpg" alt="chicken bowl yakiniku" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
         <div class="text-center">
-          <h4>RICE BOWL CHICKEN YAKINIKU</h>
+          <h4>RICE BOWL CHICKEN YAKINIKU</h4>
           <p>Rp 20.000</p>
         </div>
         <i class="bi bi-check-circle-fill checkmark"></i>
