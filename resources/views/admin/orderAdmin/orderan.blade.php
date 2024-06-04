@@ -2,7 +2,7 @@
 
 @section('content')
 <h2>List Order</h2>
-<a href="/create" class="btn btn-primary">Buat Orderan Baru</a>
+<a href="#" class="btn btn-primary">Buat Orderan Baru</a>
 <table id="example" class="table table-striped table-responsive" style="width:100%">
         <thead>
             <tr>

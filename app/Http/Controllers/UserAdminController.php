@@ -13,17 +13,12 @@ class UserAdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   
-        $users = User::all();
-        return view('admin.userAdmin.user', compact('users'));
-    }
 
-    public function indexUser(): View
+    public function index(): View
     {
         // Ambil data pelanggan yang statusnya aktif
         $users = User::where('status_aktif', '=', 'Aktif')->get();
-        return view('userAdmin.index', compact('users'));
+        return view('admin.userAdmin.User', compact('users'));
     }
 
     public function indexHistory(): View
@@ -45,7 +40,26 @@ class UserAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|max:255',
+            'username' => ['required', 'max:225', 'unique:users'],
+            'no_telepon' => 'required|numeric|digits_between:10,15',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:8|max:255',
+            'alamat_lengkap' => 'required|max:255',    
+        ]);
+
+        $slug = Str::slug($request->username, '-');
+
+        $user = User::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'no_telp' => $request->no_telp,
+            'status_aktif' => 'Aktif',
+            'slug_link' => $slug,
+        ]);
     }
 
     /**
@@ -94,7 +108,7 @@ class UserAdminController extends Controller
             'deleted_at' => now(),
         ]);
 
-        return redirect()->route('customerAdmin.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('userAdmin.index')->with('success', 'User deleted successfully.');
     }
 
     /**
