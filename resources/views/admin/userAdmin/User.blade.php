@@ -4,7 +4,7 @@
 
     <h2 class="ms-3">List User</h2>
     <div class="row mt-4">
-        
+
         <div class="mb-2">
             <form action="{{ route('userAdmin.create') }}" method="GET" class="d-inline">
                 @csrf

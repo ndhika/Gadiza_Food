@@ -113,15 +113,6 @@ class UserAdminController extends Controller
     }
 
     /**
-     * Soft delete show storage.
-     */
-    public function showSoftDeleted()
-    {
-        $softDeletedUsers = User::where('status_aktif', 'Hapus')->get();
-        return view('admin.userAdmin.softDeleted', compact('softDeletedUsers'));
-    }
-
-    /**
      * Soft delete the specified resource from storage.
      */
     public function softdelete(Request $request, string $slug_link)

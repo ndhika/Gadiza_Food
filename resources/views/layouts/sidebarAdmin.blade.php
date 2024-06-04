@@ -66,13 +66,13 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="/profileAdmin" class="sidebar-link">
                             <i class="bi bi-file-person-fill"></i>
                             <span>Profile User</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="/MenuAdmin" class="sidebar-link">
                             <i class="bi bi-shop"></i>
                             <span>Menu</span>
                         </a>

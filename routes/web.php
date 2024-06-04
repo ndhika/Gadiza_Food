@@ -3,13 +3,14 @@
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\LoginController;
     use App\Http\Controllers\RegisterController;
-    use App\Http\Controllers\Profile\ProfileController;
+    use App\Http\Controllers\ProfileController;
     use App\Http\Controllers\Admin\AdminProfileController;
     use App\Http\Controllers\CartController;
     use App\Http\Controllers\OrderController;
     use App\Http\Controllers\MenuAdminController;
     use App\Http\Controllers\UserAdminController;
     use App\Http\Controllers\AboutController;
+
 
 
 
@@ -126,5 +127,4 @@
         Route::get('/edit', [AboutController::class, 'edit']);
         Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
 
-        
     });
