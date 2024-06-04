@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Gadiza Food</title>
+        
+        <!-- icon web -->
+        <link rel="icon" href="assets/img/logo.png" type="image/png">
 
         <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

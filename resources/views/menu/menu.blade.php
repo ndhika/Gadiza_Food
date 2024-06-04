@@ -1,4 +1,5 @@
 @include('layouts.navbar')
+
 @extends('layouts.menu')
   <style>
     body {
@@ -73,12 +74,12 @@
         <img src="assets/img/mie-ayam.jpeg" alt="mie ayam" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
         <div class="text-center">
           <h3>MIE AYAM</h3>
-          <p>Rp 10.00</p>
+          <p>Rp 10.000</p>
         </div>
         <i class="bi bi-check-circle-fill checkmark"></i>
         <div class="description">
           <h3>MIE AYAM</h3>
-          <p>This is a delicious Mie Ayam priced at Rp 10.00.</p>
+          <p>This is a delicious Mie Ayam priced at Rp 10.000.</p>
         </div>
       </div>
     </div>

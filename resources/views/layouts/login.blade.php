@@ -7,6 +7,9 @@
 
     <title>Gadiza Food</title>
 
+    <!-- icon web -->
+    <link rel="icon" href="assets/img/logo.png" type="image/png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

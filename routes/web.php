@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\UserAdminController;
 
 
@@ -22,6 +23,9 @@ use App\Http\Controllers\UserAdminController;
 
 
 // Other routes...
+
+//route resource
+Route::resource('/menusAdmin', \App\Http\Controllers\MenuAdminController::class);
 
 // Route to display the cart page
 Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
@@ -74,6 +78,7 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
+
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -81,7 +86,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
 
-Route::resource('users', UserAdminController::class);
 
 Route::controller(OrderController::class)->group(function () {
     Route::get('/order', 'index')->name('orderAdmin.index');
@@ -89,4 +93,11 @@ Route::controller(OrderController::class)->group(function () {
     Route::post('/kirim',  'store')->name('orderAdmin.store');
     Route::get('/editorder', 'edit')->name('orderAdmin.edit');
     Route::put('/update', 'update')->name('orderAdmin.update');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
+    Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
+    Route::get('/edit', [AboutController::class, 'edit']);
+    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
 });

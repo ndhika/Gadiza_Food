@@ -1,6 +1,6 @@
 body{
     background-color: #E7DBDB;
-    background-image: url(../img/background.about.jpeg);
+    background-image: url(../img/bg.tentang2.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -9,14 +9,14 @@ h2{
     font-size: 40px;
     margin-left: 5%;
     margin-top: 5%;
-    color: #555555;
+    color: #475c66;
 }
 
 p{
     font-family: "Cardo", serif;
     font-size: 27px;
     margin-left: 5%;
-    color: #555555;
+    color: #0b0433;
 
 }
 
@@ -25,7 +25,13 @@ p.find{
 }
 
 .bi-instagram{
+    margin-bottom: 10%;
     margin-left: 5%;
     width: 64px;
     height: 64px;
+    color: #0b0433;
+}
+
+.bi-map{
+    color: #0b0433;
 }
