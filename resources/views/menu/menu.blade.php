@@ -271,6 +271,7 @@
 
 <!-- Beverages Section -->
 <div class="container mt-4">
+  <br>
   <h2 class="text-center">Beverages</h2>
   <div class="row">
     <div class="col-md-4">
