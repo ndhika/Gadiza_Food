@@ -15,4 +15,9 @@ class Menu extends Model
         'price',
         'image_path',
     ];
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }

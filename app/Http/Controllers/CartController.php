@@ -5,33 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CartItem;
 use App\Models\Menu;
+use Illuminate\View\View;
 
 class CartController extends Controller
 {
     public function index()
     {
-        $cartItems = CartItem::with('menu')->where('user_id', auth()->id())->get();
-        return view('cart.index', compact('cartItems'));
+        $cartItems = CartItem::with('menu')->get();
+        return view('keranjang.index', compact('cartItems'));
     }
 
-    public function update(Request $request)
+    public function removeFromCart($id)
     {
-        $cartItem = CartItem::find($request->id);
-        if ($cartItem) {
-            $cartItem->quantity = $request->quantity;
-            $cartItem->save();
-        }
-
-        return response()->json(['success' => true]);
-    }
-
-    public function remove(Request $request)
-    {
-        $cartItem = CartItem::find($request->id);
-        if ($cartItem) {
-            $cartItem->delete();
-        }
-
-        return response()->json(['success' => true]);
+        CartItem::destroy($id);
+        return redirect()->route('cart.index');
     }
 }

@@ -13,12 +13,30 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="assets/css/keranjang.css">
         <link rel="stylesheet" href="assets/js/keranjang.js">
+
     </head>
     <body>
         
     @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('order-btn').addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah link dari melakukan aksi default (navigasi)
 
+            // Menampilkan pesan SweetAlert
+            Swal.fire({
+                title: "Orderanmu sudah masuk!",
+                text: "Terimakasih telah memesan!",
+                icon: "success"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect ke halaman berikutnya setelah menutup SweetAlert
+                    window.location.href = "/dibuat"; // Ganti dengan URL halaman berikutnya
+                }
+            });
+        });
+    </script>
     </body>
 </html>

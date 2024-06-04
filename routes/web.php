@@ -71,6 +71,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/keranjang', function () {
         return view('/keranjang/keranjang');
     });
+    Route::get('/dibuat', function () {
+        return view('/keranjang/dibuat');
+    });
 
     Route::get('/userAdmin', function () {
         return view('/admin/userAdmin/user');
@@ -120,3 +123,7 @@ Route::get('/menu', [MenuController::class, 'menu'])->name('menu.menu');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+Route::get('/order', function () {
+    return view('admin/orderAdmin/orderan');
+});
