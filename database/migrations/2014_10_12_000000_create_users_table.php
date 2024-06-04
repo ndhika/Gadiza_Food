@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('alamat_lengkap');
+            $table->string('photo')->nullable(); // Corrected: Separate column definition
             $table->timestamps();
         });
     }

@@ -46,19 +46,6 @@ body {
     </style>
     
     <h2>Edit Admin table</h2>
-    <form>
-        <label for="name">Username:</label>
-        <input type="text" id="username" name="username" value="najwavania">
-
-        <label for="phone">No. Telepon:</label>
-        <input type="number" id="phone" name="phone" value="0834962347">
-
-        <label for="address">Alamat Lengkap:</label>
-        <input type="text" id="address" name="address" value="Jl. Pandanaran">
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="vaniap3najwa@gmail.com">
-
-        <button type="submit">Save Changes</button>
-    </form>
+<div class="col-sm-6">
+    <ol class=""
 @endsection

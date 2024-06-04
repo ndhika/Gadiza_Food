@@ -67,11 +67,13 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/profileAdmin', [ProfileController::class, 'index'])->name('profileAdmin.index');
         Route::get('/profileAdmin/edit/{id}', [ProfileController::class, 'editAdmin'])->name('profileAdmin.edit');
-        Route::post('/profileAdmin/update/{id}', [ProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
+        Route::put('/profileAdmin/update/{id}', [ProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
         Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+        Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('/ubahFoto', [ProfileController::class, 'ubahFoto'])->name('ubahFoto');
+        Route::get('/ubahFoto', [ProfileController::class, 'editFoto'])->name('profile.editFoto');
+        Route::put('/ubahFoto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
     });
     
 
