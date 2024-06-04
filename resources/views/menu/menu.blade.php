@@ -75,7 +75,7 @@
 </style>
 
 <!-- Food Section -->
-@foreach($menus as $menu)
+@foreach($menuAdmins as $menu)
 <div class="container mt-4">
   <h2 class="text-center">{{ $menu->category }}</h2>
   <div class="row">

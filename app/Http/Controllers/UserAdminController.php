@@ -20,6 +20,9 @@ class UserAdminController extends Controller
         return view('admin.userAdmin.user', compact('users'));
     }
 
+    /**
+     * Show the history softdalete.
+     */
     public function indexHistory()
     {
         $users = User::where('status_aktif', 'Hapus')->get();
