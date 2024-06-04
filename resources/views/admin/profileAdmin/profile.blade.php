@@ -62,7 +62,7 @@
                 <td>
                 <a href="{{ route('admin.profileAdmin.profile', $l->slug_link) }}" class="btn btn-info"><i class="bi bi-table"></i></a>
                 <a href="{{ route('admin.profileAdmin.edit', $l->slug_link) }}"class="btn btn-success"><i class="bi bi-table"></i></a>
-                <!-- <a href="{{ route('latihan.hapus', $l->slug_link) }}" class="btn btn-danger"><i class="bi bi-table"></i></a> -->
+                
             
             </td>
             </tr>
