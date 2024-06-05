@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-    <a href="/menu" class="back"><i class="bi bi-arrow-left-circle"></i>Back</a>
+    <a href="/" class="back"><i class="bi bi-arrow-left-circle"></i>Back</a>
     <div class="centered">
         <img src="{{ asset ('assets/img/sedang-dibuat.gif') }}" alt="">
     </div>
