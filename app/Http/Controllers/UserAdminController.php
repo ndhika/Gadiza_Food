@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class UserAdminController extends Controller
 {
@@ -14,25 +14,25 @@ class UserAdminController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index(): View
-    {
-        // Ambil data pelanggan yang statusnya aktif
+    public function index()
+    {   
         $users = User::where('status_aktif', '=', 'Aktif')->get();
-        return view('admin.userAdmin.User', compact('users'));
+        return view('admin.userAdmin.user', compact('users'));
     }
 
-    public function indexHistory(): View
+    public function indexHistory()
     {
-        $users = User::where('status_aktif', '=', 'Hapus')->get();
-        return view('customerAdmin.history', compact('users'));
+        $users = User::where('status_aktif', 'Hapus')->get();
+        return view('admin.userAdmin.history', compact('users'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('admin.userAdmin.addUser');
     }
 
     /**
@@ -56,10 +56,13 @@ class UserAdminController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'no_telp' => $request->no_telp,
+            'no_telepon' => $request->no_telepon,
+            'alamat_lengkap' => $request->alamat_lengkap,
             'status_aktif' => 'Aktif',
             'slug_link' => $slug,
         ]);
+        
+        return redirect()->route('userAdmin.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -86,7 +89,25 @@ class UserAdminController extends Controller
     public function update(Request $request, string $slug_link)
     {
         $user = User::where('slug_link', $slug_link)->firstOrFail();
-        $user->update($request->all());
+        
+        $request->validate([
+            'nama' => 'required|max:255',
+            'username' => ['required', 'max:225', 'unique:users,username,' . $user->id],
+            'no_telepon' => 'required|numeric|digits_between:10,15',
+            'email' => 'required|email:dns|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8|max:255',
+            'alamat_lengkap' => 'required|max:255',
+        ]);
+
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'no_telp' => $request->no_telepon,
+            'alamat_lengkap' => $request->alamat_lengkap,
+            'slug_link' => Str::slug($request->username, '-'),
+        ]);
 
         return redirect()->route('userAdmin.index')->with('success', 'User updated successfully.');
     }
@@ -96,19 +117,26 @@ class UserAdminController extends Controller
      */
     public function softdelete(Request $request, string $slug_link)
     {
-        $slug = Str::slug($request->username, '-');
         $user = User::where('slug_link', $slug_link)->firstOrFail();
         $user->update([
-            'email' => $request->email,
-            'password' => $request->password,
-            'username' => $request->username,
-            'no_telp' => $request->no_telp,
             'status_aktif' => 'Hapus',
-            'slug_link' => $slug,
-            'deleted_at' => now(),
         ]);
 
         return redirect()->route('userAdmin.index')->with('success', 'User deleted successfully.');
+    }
+
+    /**
+     * Recover the soft deleted user.
+     */
+    public function recover(string $slug_link)
+    {
+        $user = User::where('slug_link', $slug_link)->firstOrFail();
+        $user->update([
+            'status_aktif' => 'Aktif',
+            'deleted_at' => null,
+        ]);
+
+        return redirect()->route('userAdmin.index')->with('success', 'User recovered successfully.');
     }
 
     /**
@@ -119,6 +147,6 @@ class UserAdminController extends Controller
         $user = User::where('slug_link', $slug_link)->firstOrFail();
         $user->delete();
 
-        return redirect()->route('userAdmin.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('userAdmin.index')->with('success', 'User permanently deleted successfully.');
     }
 }
