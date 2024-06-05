@@ -1,7 +1,7 @@
 @extends('layouts.sidebarAdmin')
 
 @section('content')
-   <div class="row mt-4">
+<div class="row mt-4">
 <table id="example" class="table table-striped table-responsive" style="width:100%" border="1px solid black">
     @foreach ($users as $no => $user)
         <thead>
@@ -36,4 +36,5 @@
 </table>
 </div>
     @endforeach
+
 @endsection
