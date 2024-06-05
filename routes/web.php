@@ -65,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
         return view('/admin/userAdmin/user');
     });
 
+    
+
     Route::prefix('userAdmin')->group(function () {
         Route::get('/', [UserAdminController::class, 'index'])->name('userAdmin.index');
         Route::get('/history', [UserAdminController::class, 'indexHistory'])->name('userAdmin.history');
@@ -93,6 +95,17 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('profile/{id}/edit', [AdminProfileController::class, 'editAdmin'])->name('profileAdmin.edit');
     Route::put('profile/{id}', [AdminProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
 });
+
+Route::get('/order', function () {
+        return view('admin/orderAdmin/orderan');
+    });
+    Route::middleware('auth')->group(function () {
+        Route::get('/order', [OrderController::class, 'store'])->name('orderAdmin.index');
+        Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
+        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
+        Route::get('/edit', [OrderController::class, 'store'])->name('orderAdmin.edit');
+        Route::post('/update', [OrderController::class, 'store'])->name('orderAdmin.update');
+    });
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
