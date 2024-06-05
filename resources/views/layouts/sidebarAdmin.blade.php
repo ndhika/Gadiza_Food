@@ -53,12 +53,12 @@
                     </div>
                 </div>
                 <ul class="sidebar-nav">
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             <i class="bi bi-layout-text-window-reverse"></i>
                             <span>Dashboard</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="sidebar-item">
                         <a href="/userAdmin" class="sidebar-link">
                             <i class="bi bi-file-person"></i>
@@ -66,13 +66,13 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="/profileAdmin" class="sidebar-link">
                             <i class="bi bi-file-person-fill"></i>
                             <span>Profile User</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="/MenuAdmin" class="sidebar-link">
                             <i class="bi bi-shop"></i>
                             <span>Menu</span>
                         </a>
@@ -109,6 +109,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset ('assets/js/admin.js') }}"></script>
+    <script src="{{ asset('assets/js/register.js') }}"></script> 
 </body>
 
 </html>

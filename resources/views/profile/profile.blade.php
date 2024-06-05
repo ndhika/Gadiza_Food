@@ -48,7 +48,6 @@
                                                                         <label class="m-b-10 f-w-600" for="email">Email</label>
                                                                         <br>
                                                                         {{ auth()->user()->email }}
-    
                                                                     </div>
                                                                 </div>
                                                             </div>

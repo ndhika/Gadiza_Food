@@ -3,16 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\MenuController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -25,20 +22,10 @@ use App\Http\Controllers\MenuController;
 |
 */
 
-
 // Other routes...
 
-Route::get('/admin/profileAdmin/profile/{slug_link}', 'AdminController@profile')->name('admin.profileAdmin.profile');
-
 // Route resource
-Route::get('/MenuAdmin', [MenuAdminController::class, 'index'])->name('MenuAdmin.index');
-Route::get('/MenuAdmin/create', [MenuAdminController::class, 'create'])->name('MenuAdmin.create');
-Route::post('/MenuAdmin', [MenuAdminController::class, 'store'])->name('MenuAdmin.store');
-Route::get('/MenuAdmin/{id}/edit', [MenuAdminController::class, 'edit'])->name('MenuAdmin.edit');
-Route::put('/MenuAdmin/{id}', [MenuAdminController::class, 'update'])->name('MenuAdmin.update');
-Route::delete('/MenuAdmin/{id}', [MenuAdminController::class, 'destroy'])->name('MenuAdmin.destroy');
-
-
+Route::resource('MenuAdmin', MenuAdminController::class);
 // Route to display the cart page
 Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
 
@@ -47,7 +34,6 @@ Route::post('/keranjang/update', [CartController::class, 'update'])->name('keran
 
 // Route to handle removing cart items
 Route::delete('/keranjang/remove', [CartController::class, 'remove'])->name('keranjang.remove');
-
 
 Route::get('/', function () {
     return view('/beranda/homepage', [
@@ -79,31 +65,28 @@ Route::middleware(['auth'])->group(function () {
         return view('/admin/userAdmin/user');
     });
 
+    Route::prefix('userAdmin')->group(function () {
+        Route::get('/', [UserAdminController::class, 'index'])->name('userAdmin.index');
+        Route::get('/history', [UserAdminController::class, 'indexHistory'])->name('userAdmin.history');
+        Route::get('/create', [UserAdminController::class, 'create'])->name('userAdmin.create');
+        Route::post('/', [UserAdminController::class, 'store'])->name('userAdmin.store');
+        Route::get('/{slug_link}', [UserAdminController::class, 'show'])->name('userAdmin.show');
+        Route::get('/{slug_link}/edit', [UserAdminController::class, 'edit'])->name('userAdmin.edit');
+        Route::put('/{slug_link}/update', [UserAdminController::class, 'update'])->name('userAdmin.update');
+        Route::delete('/{slug_link}', [UserAdminController::class, 'destroy'])->name('userAdmin.destroy');
+        Route::put('/{slug_link}/softdelete', [UserAdminController::class, 'softdelete'])->name('userAdmin.softdelete');
+        Route::put('/{slug_link}/recover', [UserAdminController::class, 'recover'])->name('userAdmin.recover');
+    });
+
     Route::middleware('auth')->group(function () {
-        Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.menuAdmin.profile');
-        Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
-        Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+        Route::get('/profileAdmin', [AdminProfileController::class, 'index'])->name('admin.profileAdmin.profile');
+        Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profileAdmin.edit');
+        Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profileAdmin.update');
         Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-        Route::post('/ubahFoto', [ProfileController::class, 'ubahFoto'])->name('ubahFoto');
-        Route::get('/ubahFoto', [ProfileController::class, 'editFoto'])->name('profile.editFoto');
-        Route::put('/ubahFoto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
-    });
-    
-    Route::get('/order', function () {
-        return view('admin/orderAdmin/orderan');
-    });
-    Route::middleware('auth')->group(function () {
-        Route::get('/order', [OrderController::class, 'store'])->name('orderAdmin.index');
-        Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
-        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
-        Route::get('/edit', [OrderController::class, 'store'])->name('orderAdmin.edit');
-        Route::post('/update', [OrderController::class, 'store'])->name('orderAdmin.update');
     });
 });
-
-
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.profileAdmin.profile');
@@ -119,16 +102,9 @@ Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/tambah', [AboutController::class, 'store']) ->name('aboutAdmin.index');
+    Route::get('/tambah', [AboutController::class, 'store'])->name('aboutAdmin.index');
     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
     Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
     Route::get('/edit', [AboutController::class, 'edit']);
-    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store'); 
+    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
 });
-
-Route::get('/menu', [MenuController::class, 'menu'])->name('menu.menu');
-
-Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::delete('/cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-
