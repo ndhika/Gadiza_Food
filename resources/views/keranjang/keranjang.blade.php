@@ -18,6 +18,7 @@
 
                                                 <hr class="my-4">
 
+                                                
                                                 <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                     <div class="col-md-2 col-lg-2 col-xl-2">
                                                         <img src="{{ asset('assets/img/mie-ayam.jpeg') }}" alt="mie ayam" width="100%;" style="border-radius:2px;">
@@ -45,34 +46,6 @@
                                                 </div>
 
                                                 <hr class="my-4">
-
-                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img src="{{ asset('assets/img/makaroni-schotel.jpg') }}" alt="makaroni" width="100%;" style="border-radius:2px;">
-                                                </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                                    <h5 class="text-black mb-0">Macaroni Schotel</h5>
-                                                </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                    <button class="btn" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                        <i class="bi bi-dash-circle"></i>
-                                                    </button>
-
-                                                    <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm" style="width:70px;">
-
-                                                    <button class="btn" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                        <i class="bi bi-plus-circle"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                    <h6 class="mb-0">Rp. 30.000</h6>
-                                                </div>
-                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <a href="#" class="btn"><i class="bi bi-trash3"></i></a>
-                                                </div>
-                                            </div>
-
-                                            <hr class="my-4">
 
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">

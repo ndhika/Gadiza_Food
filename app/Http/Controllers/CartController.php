@@ -15,6 +15,22 @@ class CartController extends Controller
         return view('keranjang.index', compact('cartItems'));
     }
 
+    public function addToCart(Request $request)
+    {
+        $cartItem = CartItem::updateOrCreate(
+            ['menu_item_id' => $request->menu_item_id],
+            ['quantity' => $request->quantity]
+        );
+
+        return redirect()->route('cart.view');
+    }
+
+    public function viewCart()
+    {
+        $cartItems = CartItem::with('menuItem')->get();
+        return view('cart.view', compact('cartItems'));
+    }
+    
     public function removeFromCart($id)
     {
         CartItem::destroy($id);

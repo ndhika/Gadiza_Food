@@ -91,8 +91,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/ubahFoto', [ProfileController::class, 'updateFoto'])->name('profile.updateFoto');
     });
     
-
-    
+    Route::get('/order', function () {
+        return view('admin/orderAdmin/orderan');
+    });
+    Route::middleware('auth')->group(function () {
+        Route::get('/order', [OrderController::class, 'store'])->name('orderAdmin.index');
+        Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
+        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
+        Route::get('/edit', [OrderController::class, 'store'])->name('orderAdmin.edit');
+        Route::post('/update', [OrderController::class, 'store'])->name('orderAdmin.update');
+    });
 });
 
 
@@ -124,6 +132,3 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.ad
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::delete('/cart/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
-Route::get('/order', function () {
-    return view('admin/orderAdmin/orderan');
-});
