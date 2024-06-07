@@ -2,89 +2,87 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuAdmin;
+use App\Models\menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class MenuAdminController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $menuAdmins = MenuAdmin::all();
-        return view('admin.menuAdmin.menuAdmin', compact('menuAdmins'));
+        $menus = menu::all();
+        return view('admin.menuAdmin.menuAdmin', compact('menus'));
     }
 
-    public function create(): View
+    public function create()
     {
         return view('admin.menuAdmin.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,jpg,png',
-            'price' => 'numeric',
-            'content' => 'integer|min:10',
-            'title' => 'integer|min:5',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'title' => 'required|string|min:5',
+            'content' => 'required|string|min:10',
+            'price' => 'required|numeric',
         ]);
 
-        $imageName = time().'.'.$request->foto_product->extension();
-        $imagePath->image->move(public_path('storage/images/'), $imageName);
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/images/'), $imageName);
 
-        MenuAdmin::create([
+        menu::create([
             'image' => $imageName,
             'title' => $request->title,
             'content' => $request->content,
-            'price' => $request->price
+            'price' => $request->price,
         ]);
 
-        return redirect()->route('admin.menuAdmin.index')->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('menuAdmin.index')->with('success', 'Menu added successfully!');
     }
 
-    public function edit(MenuAdmin $menuAdmin): View
+    public function edit(Product $menu)
     {
-        return view('admin.menuAdmin.edit', compact('menuAdmin'));
+        return view('menu.edit', compact('menu'));
     }
 
-    public function update(Request $request, MenuAdmin $menuAdmin): RedirectResponse
+    public function update(Request $request, Product $menu)
     {
         $request->validate([
             'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
-            'title' => 'required|min:5',
-            'content' => 'required|min:10',
-            'price' => 'required|numeric'
+            'title' => 'required|string|min:5',
+            'content' => 'required|string|min:10',
+            'price' => 'required|numeric',
         ]);
 
         if ($request->hasFile('image')) {
-            if ($menuAdmin->image) {
-                Storage::delete('public/posts/' . $menuAdmin->image);
+            if ($menu->image) {
+                Storage::delete('public/images/' . $menu->image);
             }
 
-            $image = $request->file('image');
-            $imagePath = $image->storeAs('public/posts', $image->hashName());
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/images/'), $imageName);
 
-            $menuAdmin->update([
-                'image' => $image->hashName(),
+            $menu->update([
+                'image' => $imageName,
                 'title' => $request->title,
                 'content' => $request->content,
-                'price' => $request->price
+                'price' => $request->price,
             ]);
         } else {
-            $menuAdmin->update($request->only('title', 'content', 'price'));
+            $menu->update($request->only('title', 'content', 'price'));
         }
 
-        return redirect()->route('menuAdmin.index')->with('success', 'Data Berhasil Diupdate!');
+        return redirect()->route('menu.index')->with('success', 'Menu updated successfully!');
     }
 
-    public function destroy(MenuAdmin $menuAdmin): RedirectResponse
+    public function destroy(Product $menu)
     {
-        if ($menuAdmin->image) {
-            Storage::delete('public/posts/' . $menuAdmin->image);
+        if ($menu->image) {
+            Storage::delete('public/images/' . $menu->image);
         }
 
-        $menuAdmin->delete();
-        return redirect()->route('menuAdmin.index')->with('success', 'Data Berhasil Dihapus!');
+        $menu->delete();
+        return redirect()->route('menu.index')->with('success', 'Menu deleted successfully!');
     }
 }

@@ -5,6 +5,7 @@
 
 <!-- validation -->
 <form action="{{ route('orderAdmin.store') }}" method="POST">
+
     @csrf
     @method('POST')
     <div class="form-group">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+
 
 class OrderController extends Controller
 {
@@ -51,7 +53,7 @@ class OrderController extends Controller
         return view('admin/orderAdmin/edit', compact('orders'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Order $order): RedirectResponse
     {
         $this->validate($request, [
             'status' => 'required|in:sedang dibuat,sedang diantar,pesanan sukses',
@@ -60,6 +62,7 @@ class OrderController extends Controller
         $orders->update([
             'status' => $request->status
         ]);
+
         return redirect()->route('orderAdmin.index')->with('success', 'Order updated successfully');
     }
 }

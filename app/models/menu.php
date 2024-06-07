@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,15 +10,10 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'category',
-        'description',
+        'name', // Add 'name' field here
+        'image',
+        'title',
+        'content',
         'price',
-        'image_path',
     ];
-
-    public function cartItems()
-    {
-        return $this->hasMany(CartItem::class);
-    }
 }

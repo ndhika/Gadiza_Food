@@ -36,9 +36,12 @@
             <td>https://www.instagram.com/gadiza.homemadefood?igsh=MTI4Y2gyN3hzN3lpNA==</td>
             <td>https://maps.app.goo.gl/pzrkVyRxca2v7xFGA</td>
             <td>
-            <a href="" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i></a>
+            
+            <a href="" class="btn btn-success"><i class="bi bi-file-earmark-plus-fill"></i></a>
             <a href="" class="btn btn-primary"><i class="bi bi-eyedropper"></i></a>
             <a href="" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+            
+            
             </td>
         </tr>
     </tbody>

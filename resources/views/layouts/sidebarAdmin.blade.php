@@ -53,36 +53,41 @@
                     </div>
                 </div>
                 <ul class="sidebar-nav">
-                    {{-- <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                    <li class="sidebar-item">
+                        <a href="/berandaAdmin" class="sidebar-link">
                             <i class="bi bi-layout-text-window-reverse"></i>
                             <span>Dashboard</span>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="sidebar-item">
                         <a href="/userAdmin" class="sidebar-link">
                             <i class="bi bi-file-person"></i>
                             <span>User</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="/profileAdmin" class="sidebar-link">
                             <i class="bi bi-file-person-fill"></i>
                             <span>Profile User</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="sidebar-item">
                         <a href="/MenuAdmin" class="sidebar-link">
                             <i class="bi bi-shop"></i>
                             <span>Menu</span>
                         </a>
-                    </li>
                     <li class="sidebar-item">
-                        <a href="/order" class="sidebar-link">
+                        <a href="{{ route('orderAdmin.index') }}" class="sidebar-link">
                             <i class="bi bi-card-checklist"></i>
                             <span>Order</span>
                         </a>
-                    </li>                    
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/aboutAdmin" class="sidebar-link">
+                            <i class="bi bi-card-checklist"></i>
+                            <span>about admin</span>
+                        </a>
+                    </li>                     
                 </ul>
                 <div class="sidebar-footer">
                     <li class="sidebar-item ms-1">

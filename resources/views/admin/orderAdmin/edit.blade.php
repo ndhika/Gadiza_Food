@@ -3,7 +3,8 @@
 
 @section('content')
 <h2>Edit Order</h2>
-<form action="{{ route('orderAdmin.update') }}" method="POST">
+<form action="{{ route('orderAdmin.update', $order->id) }}" method="POST">
+
     @csrf
     @method('PUT')
     <div class="form-group">

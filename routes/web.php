@@ -65,7 +65,23 @@ Route::middleware(['auth'])->group(function () {
         return view('/admin/userAdmin/user');
     });
 
-    
+    Route::get('/berandaAdmin', function () {
+        return view('/admin/berandaAdmin/dashboardAdmin');
+    });
+
+    Route::get('/aboutAdmin', function () {
+        return view('/admin/aboutAdmin/about');
+    });
+
+
+    Route::prefix('admin')->name('menuAdmin.')->group(function () {
+        Route::get('/menus', [MenuAdminController::class, 'index'])->name('index');
+        Route::get('/menus/create', [MenuAdminController::class, 'create'])->name('create');
+        Route::post('/menus', [MenuAdminController::class, 'store'])->name('store');
+        Route::get('/menus/{menu}/edit', [MenuAdminController::class, 'edit'])->name('edit');
+        Route::put('/menus/{menu}', [MenuAdminController::class, 'update'])->name('update');
+        Route::delete('/menus/{menu}', [MenuAdminController::class, 'destroy'])->name('destroy');
+    });
 
     Route::prefix('userAdmin')->group(function () {
         Route::get('/', [UserAdminController::class, 'index'])->name('userAdmin.index');
@@ -80,6 +96,15 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{slug_link}/recover', [UserAdminController::class, 'recover'])->name('userAdmin.recover');
     });
 
+    Route::prefix('orderAdmin')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orderAdmin.index');
+        Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
+        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
+        Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('orderAdmin.edit'); // Corrected route for edit
+        Route::post('/update', [OrderController::class, 'update'])->name('orderAdmin.update'); // Corrected route for update
+    });
+
+
     Route::middleware('auth')->group(function () {
         Route::get('/profileAdmin', [AdminProfileController::class, 'index'])->name('admin.profileAdmin.profile');
         Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profileAdmin.edit');
@@ -88,24 +113,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     });
-});
 
-Route::prefix('admin')->name('admin.')->group(function() {
+    Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.profileAdmin.profile');
     Route::get('profile/{id}/edit', [AdminProfileController::class, 'editAdmin'])->name('profileAdmin.edit');
     Route::put('profile/{id}', [AdminProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
+    });
+
 });
 
-Route::get('/order', function () {
-        return view('admin/orderAdmin/orderan');
-    });
-    Route::middleware('auth')->group(function () {
-        Route::get('/order', [OrderController::class, 'store'])->name('orderAdmin.index');
-        Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
-        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
-        Route::get('/edit', [OrderController::class, 'store'])->name('orderAdmin.edit');
-        Route::post('/update', [OrderController::class, 'store'])->name('orderAdmin.update');
-    });
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -114,10 +130,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/tambah', [AboutController::class, 'store'])->name('aboutAdmin.index');
-    Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
-    Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
-    Route::get('/edit', [AboutController::class, 'edit']);
-    Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/tambah', [AboutController::class, 'store'])->name('aboutAdmin.index');
+//     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
+//     Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
+//     Route::get('/edit', [AboutController::class, 'edit']);
+//     Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
+// });

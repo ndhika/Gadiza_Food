@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('menu_admins', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('image');
             $table->string('title');
@@ -20,7 +20,7 @@ return new class extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('menu_admins');
+        Schema::dropIfExists('menus');
     }
     
 };
