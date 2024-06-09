@@ -22,10 +22,4 @@
             <p class="fs-5 fw-normal text-white">Makan Siang Kantoran? Bosen? Cus Coba yang Ini, Dijamin <br> Kantor Jadi Rame! Mau Diet? Lupain Dulu Deh, Makanan Ini <br> Nggak Bisa Ditahan!</p>
             <a class="text-white btn btn-primary mt-5 rounded-pill py-2 px-4" href="/menu" role="button">Explore Menu <i class="bi bi-caret-right-fill"></i></a>
         </div>
-    {{-- </div>
-    <div class="nextpage position-relative">
-        <div class="overlay">
-            <h1></h1>
-        </div>
-    </div> --}}
 @endsection
