@@ -32,11 +32,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     
-    Route::get('/menu', function () {
-        return view('/menu/menu', [
-            "title" => 'Menu'
-        ]);
-    });
+    Route::get('/menu', [MenuController::class, 'showMenu']);
+
 
     Route::get('/about', function () {
         return view('/about/about', [
@@ -68,7 +65,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     });
     
 
-    Route::prefix('menuAdmin')->name('menuAdmin.')->group(function () {
+    Route::prefix('menuAdmin')->group(function () {
         Route::get('/', [MenuController::class, 'index'])->name('menuAdmin.index');
         Route::get('/history', [MenuController::class, 'indexHistory'])->name('menuAdmin.history');
         Route::get('/create', [MenuController::class, 'create'])->name('menuAdmin.create');

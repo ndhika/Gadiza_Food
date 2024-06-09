@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class MenuController extends Controller
@@ -30,6 +29,15 @@ class MenuController extends Controller
     {
         $menus = Menu::where('status_aktif', 'Hapus')->get();
         return view('admin.menuAdmin.history', compact('menus'));
+    }
+
+    /**
+     * Show in frontend.
+     */
+    public function showMenu()
+    {
+        $menu = Menu::where('status_aktif', '=', 'Aktif')->get();
+        return view('/menu/menu', compact('menu')); // Pass the $menus variable to the view
     }
 
     /**

@@ -34,8 +34,8 @@
                             <td><img src="/img/{{ $menu->image }}" alt="{{ $menu->name }}" width="100"></td>
                             <td>{{ $menu->name }}</td>
                             <td>{{ $menu->category }}</td>
-                            <td>{{ $menu->description }}</td>
                             <td>{{ $menu->price }}</td>
+                            <td>{{ $menu->description }}</td>
                             <td>
                                 <a href="{{ route('menuAdmin.edit', $menu->slug_link) }}" class="btn btn-warning">Edit</a>
                                 <form action="{{ route('menuAdmin.softdelete', $menu->slug_link) }}" method="POST" style="display:inline-block;">
