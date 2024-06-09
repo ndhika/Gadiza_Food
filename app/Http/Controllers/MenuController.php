@@ -49,6 +49,7 @@ class MenuController extends Controller
         'name' => 'required',
         'price' => 'required|numeric',
         'category' => 'required',
+        'image' => 'required|file|mimes:jpeg,png,jpg',
     ]);
 
     // Format the price to match Indonesian format before saving
@@ -56,11 +57,16 @@ class MenuController extends Controller
     $price = str_replace('.', '', $price);
     $price = str_replace(',', '.', $price);
 
+    // Simpan file yang diunggah ke storage dengan nama yang unik
+    $image = $request->file('image');
+    $imageName = $image->getClientOriginalName(); // Ambil nama file asli
+    $image->move(public_path('img'), $imageName); // Simpan file di dalam direktori public/img
+
     $menu = menu::create([
         'name' => $request->name,
         'description' => $request->description,
         'price' => $price,
-        'image' => $request->image,
+        'image' => $imageName,
         'category' => $request->category,
         'status_aktif' => 'Aktif',
         'slug_link' => Str::slug($request->name) // Generate slug from name
@@ -88,14 +94,26 @@ class MenuController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'category' => 'required',
+            'image' => 'required|file|mimes:jpeg,png,jpg',
         ]);
+
+        // Format the price to match Indonesian format before saving
+        $price = str_replace(',', '', $request->price);
+        $price = str_replace('.', '', $price);
+        $price = str_replace(',', '.', $price);
+        
+        // Format image
+        $image = $request->file('image');
+        $imageName = $image->getClientOriginalName(); 
+        $image->move(public_path('img'), $imageName);
+        
 
         $menu = Menu::where('slug_link', $slug_link)->firstOrFail();
 
         $menu->update([
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price,
+            'price' => $price,
             'image' => $request->image,
             'category' => $request->category,
             'slug_link' => Str::slug($request->name, '-'), 

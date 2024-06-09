@@ -31,7 +31,7 @@
                     @foreach ($menus as $menu)
                     @if ($menu->status_aktif == 'Aktif') 
                         <tr>
-                            <td><img src="{{ $menu->image }}" alt="{{ $menu->name }}" width="100"></td>
+                            <td><img src="/img/{{ $menu->image }}" alt="{{ $menu->name }}" width="100"></td>
                             <td>{{ $menu->name }}</td>
                             <td>{{ $menu->category }}</td>
                             <td>{{ $menu->description }}</td>
