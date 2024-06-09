@@ -7,7 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\MenuAdminController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\AboutController;
 
@@ -24,17 +24,6 @@ use App\Http\Controllers\AboutController;
 
 // Other routes...
 
-// Route resource
-Route::resource('MenuAdmin', MenuAdminController::class);
-// Route to display the cart page
-Route::get('/keranjang', [CartController::class, 'index'])->name('keranjang.index');
-
-// Route to handle updating cart item quantities
-Route::post('/keranjang/update', [CartController::class, 'update'])->name('keranjang.update');
-
-// Route to handle removing cart items
-Route::delete('/keranjang/remove', [CartController::class, 'remove'])->name('keranjang.remove');
-
 Route::get('/', function () {
     return view('/beranda/homepage', [
         "title" => "Beranda"
@@ -42,6 +31,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    
     Route::get('/menu', function () {
         return view('/menu/menu', [
             "title" => 'Menu'
@@ -60,28 +50,36 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dibuat', function () {
         return view('/keranjang/dibuat');
     });
+});
 
+// section Admin
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    
     Route::get('/userAdmin', function () {
         return view('/admin/userAdmin/user');
     });
 
-    Route::get('/berandaAdmin', function () {
-        return view('/admin/berandaAdmin/dashboardAdmin');
+    Route::get('/menuAdmin', function () {
+        return view('/admin/menuAdmin/menuAdmin');
     });
 
     Route::get('/aboutAdmin', function () {
         return view('/admin/aboutAdmin/about');
     });
+    
 
-
-    Route::prefix('admin')->name('menuAdmin.')->group(function () {
-        Route::get('/menus', [MenuAdminController::class, 'index'])->name('index');
-        Route::get('/menus/create', [MenuAdminController::class, 'create'])->name('create');
-        Route::post('/menus', [MenuAdminController::class, 'store'])->name('store');
-        Route::get('/menus/{menu}/edit', [MenuAdminController::class, 'edit'])->name('edit');
-        Route::put('/menus/{menu}', [MenuAdminController::class, 'update'])->name('update');
-        Route::delete('/menus/{menu}', [MenuAdminController::class, 'destroy'])->name('destroy');
+    Route::prefix('menuAdmin')->name('menuAdmin.')->group(function () {
+        Route::get('/', [MenuController::class, 'index'])->name('index');
+        Route::get('/history', [MenuController::class, 'indexHistory'])->name('history');
+        Route::get('/create', [MenuController::class, 'create'])->name('create');
+        Route::post('/store', [MenuController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [MenuController::class, 'edit'])->name('edit'); // Tambahkan parameter id
+        Route::put('/{id}/update', [MenuController::class, 'update'])->name('update'); // Tambahkan parameter id
+        Route::put('/{id}/softdelete', [MenuController::class, 'softdelete'])->name('softdelete'); // Tambahkan parameter id
+        Route::put('/{id}/recover', [MenuController::class, 'recover'])->name('recover'); // Tambahkan parameter id
+        Route::delete('/{id}/destroy', [MenuController::class, 'destroy'])->name('destroy'); // Tambahkan parameter id
     });
+
 
     Route::prefix('userAdmin')->group(function () {
         Route::get('/', [UserAdminController::class, 'index'])->name('userAdmin.index');
@@ -105,21 +103,13 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-    Route::middleware('auth')->group(function () {
         Route::get('/profileAdmin', [AdminProfileController::class, 'index'])->name('admin.profileAdmin.profile');
         Route::get('profile/{id}/edit', [AdminProfileController::class, 'edit'])->name('admin.profileAdmin.edit');
         Route::put('profile/{id}/update', [AdminProfileController::class, 'update'])->name('admin.profileAdmin.update');
         Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-    });
-
-    Route::prefix('admin')->name('admin.')->group(function() {
-    Route::get('profile', [AdminProfileController::class, 'profile'])->name('admin.profileAdmin.profile');
-    Route::get('profile/{id}/edit', [AdminProfileController::class, 'editAdmin'])->name('profileAdmin.edit');
-    Route::put('profile/{id}', [AdminProfileController::class, 'updateAdmin'])->name('profileAdmin.update');
-    });
-
+    
 });
 
 
@@ -129,11 +119,3 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'dataRegist']);
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/tambah', [AboutController::class, 'store'])->name('aboutAdmin.index');
-//     Route::get('/aboutAdmin', [AboutController::class, 'index'])->name('aboutAdmin.index');
-//     Route::get('tambah', [AboutController::class, 'create'])->name('aboutAdmin.create');
-//     Route::get('/edit', [AboutController::class, 'edit']);
-//     Route::post('/kirim', [AboutController::class, 'store'])->name('abouts.store');
-// });

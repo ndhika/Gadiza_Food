@@ -69,7 +69,9 @@
                             <i class="bi bi-person-circle"></i> {{ auth()->user()->nama }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item p-2" href="/berandaAdmin"><i class="bi bi-layout-text-window-reverse"></i> Dashboard</a></li>
+                        @can('isAdmin')
+                        <li><a class="dropdown-item p-2" href="/userAdmin"><i class="bi bi-bar-chart-fill"></i> Admin</a></li>
+                        @endcan
                             <li><a class="dropdown-item p-2" href="Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('view.profile.show'"><i class="bi bi-person-circle"></i> Lihat Akun</a></li>
                             <li>
                                 <form action="/logout" method="post">

@@ -28,6 +28,10 @@ class LoginController extends Controller
 
         if(Auth::attempt($userlogin)){
             $request->Session()->regenerate();
+
+            if (Auth::user()->role == 'admin') {
+                return redirect()->intended('/userAdmin');
+            }
             
             return redirect()->intended('/');
         };

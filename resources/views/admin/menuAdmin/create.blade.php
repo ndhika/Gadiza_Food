@@ -1,27 +1,31 @@
-    @extends('layouts.sidebarAdmin')
+@extends('layouts.sidebarAdmin')
 
 @section('content')
-    <div class="container">
-        <h1>Add New Menu</h1>
-        <form action="{{ route('menuAdmin.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control" id="image" name="image" required>
-            </div>
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-            <div class="form-group">
-                <label for="content">Description</label>
-                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    <h1>Create Menu</h1>
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('menuAdmin.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ old('name') }}"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description">{{ old('description') }}</textarea><br>
+        <label for="price">Price:</label><br>
+        <input type="text" id="price" name="price" value="{{ old('price') }}"><br>
+        <label for="category">Category:</label><br>
+        <select id="category" name="category">
+            <option value="Food">Food</option>
+            <option value="Beverages">Beverages</option>
+        </select><br>
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image"><br><br>
+        <button type="submit">Submit</button>
+    </form>
 @endsection

@@ -1,10 +1,11 @@
-<!-- resources/views/admin/menuAdmin/index.blade.php -->
 @extends('layouts.sidebarAdmin')
 
 @section('content')
     <div class="container">
         <h1>Menu List</h1>
+
         <a href="{{ route('menuAdmin.create') }}" class="btn btn-primary">Add New Menu</a>
+        <a href="{{ route('menuAdmin.history') }}" class="btn btn-secondary">View History</a>
 
         @if (session('success'))
             <div class="alert alert-success mt-2">

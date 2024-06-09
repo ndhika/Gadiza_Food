@@ -20,6 +20,7 @@
             <thead>
                 <tr>
                     <th data-priority="1" class="text-center col-1">No</th>
+                    <th data-priority="1" class="text-center col-2">Role</th>
                     <th data-priority="1" class="text-center col-2">Nama</th>
                     <th data-priority="1" class="text-center col-2">Username</th>
                     <th data-priority="1" class="text-center col-2">Email</th>
@@ -31,6 +32,7 @@
                 @if ($user->status_aktif == 'Aktif')   
                 <tr>
                     <td class="text-center">{{ ++$no }}</td>
+                    <td class="text-center">{{ $user->role }}</td>
                     <td class="text-center">{{ $user->nama }}</td>
                     <td class="text-center">{{ $user->username }}</td>
                     <td class="text-center">{{ $user->email }}</td>

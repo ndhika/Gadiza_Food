@@ -3,27 +3,42 @@
 @section('content')
     <div class="container">
         <h1>Edit Menu</h1>
-        <form action="{{ route('MenuAdmin.update', $menuAdmin->id) }}" method="POST" enctype="multipart/form-data">
+
+        @if (session('success'))
+            <div class="alert alert-success mt-2">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form action="{{ route('menuAdmin.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
             <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control" id="image" name="image">
-                <img src="{{ asset('storage/posts/' . $menuAdmin->image) }}" alt="{{ $menuAdmin->title }}" width="100">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{ $menu->name }}">
             </div>
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ $menuAdmin->title }}" required>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" class="form-control">{{ $menu->description }}</textarea>
             </div>
             <div class="form-group">
-                <label for="content">Description</label>
-                <textarea class="form-control" id="content" name="content" rows="3" required>{{ $menuAdmin->content }}</textarea>
+                <label for="price">Price:</label>
+                <input type="text" name="price" id="price" class="form-control" value="{{ $menu->price }}">
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{ $menuAdmin->price }}" required>
+                <label for="category">Category:</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="Food" {{ $menu->category === 'Food' ? 'selected' : '' }}>Food</option>
+                    <option value="Beverages" {{ $menu->category === 'Beverages' ? 'selected' : '' }}>Beverages</option>
+                </select>
             </div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Menu</button>
         </form>
     </div>
 @endsection

@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Menu extends Model
+class menu extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = [
-        'name', // Add 'name' field here
-        'image',
-        'title',
-        'content',
-        'price',
+    protected $fillable = ['name', 'description', 'price', 'image', 'category', 'status_aktif'];
+
+    
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at',
     ];
 }
