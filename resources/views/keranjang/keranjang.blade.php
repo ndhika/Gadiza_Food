@@ -17,38 +17,54 @@
                   </div>
                   <hr class="my-4">
 
-                  @foreach(session('cart', []) as $id => $details)
-                  <div class="row mb-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                      @if(isset($details['image']))
-                      <img src="/img/{{ $details['image'] }}" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
-                      @else
-                      <img src="/img/default.png" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
-                      @endif
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h5 class="text-black mb-0">{{ $details['name'] }}</h5>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button class="btn" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="bi bi-dash-circle"></i>
-                      </button>
+                  @php
+                    $cart = session('cart', []);
+                  @endphp
 
-                      <input id="form1" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number" class="form-control form-control-sm" style="width:70px;">
+                  @if(count($cart) > 0)
+                    @foreach($cart as $id => $details)
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        @if(isset($details['image']))
+                        <img src="/img/{{ $details['image'] }}" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
+                        @else
+                        <img src="/img/default.png" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
+                        @endif
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h5 class="text-black mb-0">{{ $details['name'] }}</h5>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <form action="{{ route('cart.update', $id) }}" method="post">
+                          @csrf
+                          @method('PUT')
+                            <button class="btn" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                              <i class="bi bi-dash-circle"></i>
+                            </button>
 
-                      <button class="btn" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="bi bi-plus-circle"></i>
-                      </button>
+                            <input id="form1" min="0" name="quantity" value="{{ $details['quantity'] }}" type="number" class="form-control form-control-sm" style="width:70px;">
+
+                            <button class="btn" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                              <i class="bi bi-plus-circle"></i>
+                            </button>
+                        </form>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">Rp. {{ number_format($details['price'], 0, ',', '.') }}</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <form action="{{ route('cart.destroy', $id) }}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn"><i class="bi bi-trash3"></i></button>
+                        </form>
+                      </div>
                     </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">Rp. {{ number_format($details['price'], 0, ',', '.') }}</h6>
-                    </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#" class="btn"><i class="bi bi-trash3"></i></a>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  @endforeach
+                    <hr class="my-4">
+                    @endforeach
+                  @else
+                    <p>Keranjang Anda kosong.</p>
+                  @endif
 
                   <a href="/menu" class="tambah">Mau tambah pesanan?</a>
                 </div>
@@ -66,24 +82,32 @@
 
                   <hr class="my-4">
 
+                  @php
+                    $subtotal = array_sum(array_map(function($item) { 
+                      return $item['price'] * $item['quantity']; 
+                    }, $cart));
+                    $shipping = 20000;
+                    $total = $subtotal + $shipping;
+                  @endphp
+
                   <div class="d-flex justify-content-between mb-4">
-                    <h5>Subtotal ({{ count(session('cart')) }} items)</h5>
-                    <h5 class="text-end">Rp. {{ number_format(array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, session('cart'))), 0, ',', '.') }}</h5>
+                    <h5>Subtotal ({{ count($cart) }} items)</h5>
+                    <h5 class="text-end">Rp. {{ number_format($subtotal, 0, ',', '.') }}</h5>
                   </div>
                   <div class="d-flex justify-content-between mb-4">
                     <h5>Shipping</h5>
-                    <h5 class="text-end">Rp. 20.000</h5>
+                    <h5 class="text-end">Rp. {{ number_format($shipping, 0, ',', '.') }}</h5>
                   </div>
                   <div class="d-flex justify-content-between mb-4">
                     <h4>Total</h4>
-                    <h4 class="text-end">Rp. {{ number_format(array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, session('cart'))) + 20000, 0, ',', '.') }}</h4>
+                    <h4 class="text-end">Rp. {{ number_format($total, 0, ',', '.') }}</h4>
                   </div>
 
                   <select class="form-select form-select-xl mb-3" aria-label="Large select example" id="payment-method">
                     <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                   </select>
 
-                  <a href="#" class="btn btn-secondary w-100" id="order-btn" method="POST">ORDER</a>
+                  <button class="btn btn-secondary w-100" id="order-btn">ORDER</button>
                 </div>
               </div>
             </div>
@@ -93,4 +117,32 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.getElementById('order-btn').addEventListener('click', function(event) {
+    const cartItems = {{ count($cart) }};
+    if (cartItems === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Keranjang Anda kosong!"
+      });
+      event.preventDefault(); // Prevent the default form submission
+    } else {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Menampilkan pesan SweetAlert
+      Swal.fire({
+        title: "Orderanmu sudah masuk!",
+        text: "Terimakasih telah memesan!",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirect ke halaman berikutnya setelah menutup SweetAlert
+          window.location.href = "/dibuat"; // Ganti dengan URL halaman berikutnya
+        }
+      });
+    }
+  });
+</script>
 @endsection

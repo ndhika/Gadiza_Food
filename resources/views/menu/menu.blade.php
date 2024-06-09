@@ -6,11 +6,13 @@
 </style>
 
 <!-- Food Section -->
-@foreach ($menu as $menuitem)
 <div class="container mt-4">
-  <h2 class="text-center">{{ $menuitem->name  }}</h2>
-  <div class="row">
-    <div class="col-md-4">
+  @foreach ($menu as $menuitem)
+  <h2 class="text-center">{{ $menuitem->category }}</h2>
+    @if ($loop->first || $loop->iteration % 3 == 1)
+      <div class="row mb-4"> {{-- Start a new row every 3 items --}}
+    @endif
+    <div class="col-md-4 mb-4">
       <div class="p-3 bg-light rounded-column" onclick="toggleHighlight(this)">
         <img src="/img/{{ $menuitem->image }}" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
         <div class="text-center">
@@ -19,13 +21,16 @@
         </div>
         <i class="bi bi-check-circle-fill checkmark"></i>
         <div class="description">
-          <h3>{{ $menuitem->name }}</h3>
-          <p>{{ $menuitem->description }} Rp. {{ number_format($menuitem->price, 0, ',', '.') }}</p>
+          <p>{{ $menuitem->description }}</p>
         </div>
-        <button class="btn btn-primary mt-2 add-to-cart" data-id="{{ $menuitem->id }}">Add to Cart</button>
+        <center><button class="btn btn-primary mt-2 add-to-cart" data-id="{{ $menuitem->id }}">Add to Cart</button></center>
       </div>
     </div>
   </div>
+
+    @if ($loop->iteration % 3 == 0 || $loop->last)
+      </div> {{-- End the row every 3 items or at the last item --}}
+    @endif
 </div>
 @endforeach
 
