@@ -69,15 +69,15 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     
 
     Route::prefix('menuAdmin')->name('menuAdmin.')->group(function () {
-        Route::get('/', [MenuController::class, 'index'])->name('index');
-        Route::get('/history', [MenuController::class, 'indexHistory'])->name('history');
-        Route::get('/create', [MenuController::class, 'create'])->name('create');
-        Route::post('/store', [MenuController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [MenuController::class, 'edit'])->name('edit'); // Tambahkan parameter id
-        Route::put('/{id}/update', [MenuController::class, 'update'])->name('update'); // Tambahkan parameter id
-        Route::put('/{id}/softdelete', [MenuController::class, 'softdelete'])->name('softdelete'); // Tambahkan parameter id
-        Route::put('/{id}/recover', [MenuController::class, 'recover'])->name('recover'); // Tambahkan parameter id
-        Route::delete('/{id}/destroy', [MenuController::class, 'destroy'])->name('destroy'); // Tambahkan parameter id
+        Route::get('/', [MenuController::class, 'index'])->name('menuAdmin.index');
+        Route::get('/history', [MenuController::class, 'indexHistory'])->name('menuAdmin.history');
+        Route::get('/create', [MenuController::class, 'create'])->name('menuAdmin.create');
+        Route::post('/store', [MenuController::class, 'store'])->name('menuAdmin.store');
+        Route::get('/{slug_link}/edit', [MenuController::class, 'edit'])->name('menuAdmin.edit'); 
+        Route::put('/{slug_link}/update', [MenuController::class, 'update'])->name('menuAdmin.update'); 
+        Route::put('/{slug_link}/softdelete', [MenuController::class, 'softdelete'])->name('menuAdmin.softdelete'); 
+        Route::put('/{slug_link}/recover', [MenuController::class, 'recover'])->name('menuAdmin.recover'); 
+        Route::delete('/{slug_link}/destroy', [MenuController::class, 'destroy'])->name('menuAdmin.destroy'); 
     });
 
 

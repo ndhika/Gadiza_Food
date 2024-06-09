@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <form action="{{ route('menuAdmin.update', $menu->id) }}" method="POST" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('menuAdmin.update', $menu->slug_link) }}" >
             @csrf
             @method('PUT')
 
