@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; 
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -15,48 +16,85 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user()->role === 'admin') {
-            $users = Users::all();
-            return view('admin.profileAdmin.profile', compact('users'));
-        } else {
-            $users = Users::where('status_aktif', '=', 'Aktif')->get();
-            return view('profile.profile', compact('users'));
-        }
+        $profile = user::where('status_aktif', '=', 'Aktif')->get();
+        return view('admin.profileAdmin.profile', compact('profile'));
     }
 
     /**
-     * Show the history softdalete.
+     * Display the specified resource.
      */
-    public function indexHistory()
+    public function show(string $slug_link)
     {
-        $users = User::where('status_aktif', 'Hapus')->get();
-        return view('admin.userAdmin.history', compact('users'));
+        $profile = user::where('slug_link', $slug_link)->firstOrFail();
+        return view('profile.profile', compact('profile'));
     }
 
-    
-    public function show($id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $slug_link)
     {
-        $user = User::findOrFail($id);
-        return view('profile.profile', compact('user'));
+        $profile = User::where('slug_link', $slug_link)->firstOrFail();
+        return view('admin.profileAdmin.edit', compact('profile'));
     }
 
-    public function edit($id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $slug_link)
     {
-        $user = User::findOrFail($id);
-        return view('profile.edit', compact('user'));
+        $profile = User::where('slug_link', $slug_link)->firstOrFail();
+
+        $request->validate([
+            'nama' => 'required|max:255',
+            'username' => ['required', 'max:225', 'unique:users,username,' . $profile->id],
+            'no_telepon' => 'required|numeric|digits_between:10,15',
+            'email' => 'required|email:dns|unique:users,email,' . $profile->id,
+            'password' => 'nullable|min:8|max:255',
+            'alamat_lengkap' => 'required|max:255',
+        ]);
+        
+                // Handle image upload
+        if ($request->hasFile('photo')) {
+            // Delete previous image if exists
+            if ($profile->photo) {
+                Storage::delete('img/' . $profile->photo);
+            }
+
+            // Get file name without directory path
+            $filename = $request->file('photo')->getClientOriginalName();
+            // Store new image with only the file name
+            $imagePath = $request->file('photo')->storeAs('', $filename);
+        } else {
+            // Use the existing image path
+            $imagePath = $profile->photo;
+        }
+
+        $profile->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : $profile->password,
+            'no_telepon' => $request->no_telepon,
+            'alamat_lengkap' => $request->alamat_lengkap,
+            'slug_link' => Str::slug($request->username, '-'),
+            'photo' => $imagePath,
+        ]);
+
+        return redirect()->route('profileAdmin.index')->with('success', 'User updated successfully.');
     }
 
-    public function update(Request $request, $id)
+
+    /**
+     * Soft delete the specified resource from storage.
+     */
+    public function softdelete(Request $request, string $slug_link)
     {
-        $user = User::findOrFail($id);
-        $user->nama = $request->input('nama');
-        $user->username = $request->input('username');
-        $user->no_telepon = $request->input('no_telepon');
-        $user->alamat_lengkap = $request->input('alamat_lengkap');
-        $user->email = $request->input('email');
-        $user->save();
+        $profile = User::where('slug_link', $slug_link)->firstOrFail();
+        $profile->update([
+            'status_aktif' => 'Hapus',
+        ]);
 
-        return redirect()->route('profile.show', $user->id)->with('success', 'Profile updated successfully');
+        return redirect()->route('profileAdmin.index')->with('success', 'User deleted successfully.');
     }
-
 }
