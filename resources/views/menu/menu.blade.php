@@ -2,76 +2,7 @@
 
 @extends('layouts.menu')
 <style>
-  body {
-    background-color: #d9cfc1; /* Change the background color here */
-  }
-
-  .rounded-column {
-    border-radius: 50px;
-    border: 1px solid #ddd;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden; /* Ensures child elements are contained within the card */
-  }
-
-  .rounded-column:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .highlighted {
-    background-color: #e0ffe0;
-    border-color: #00ff00;
-  }
-
-  .checkmark {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    color: #00ff00;
-  }
-
-  .highlighted .checkmark {
-    display: block;
-  }
-
-  .description {
-    display: none;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  .description.visible {
-    display: flex;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .img-1 {
-    height: 181px;
-    width: 322.4px;
-  }
+  /* Your existing styles */
 </style>
 
 <!-- Food Section -->
@@ -91,22 +22,69 @@
           <h3>{{ $menuitem->name }}</h3>
           <p>{{ $menuitem->description }} Rp. {{ number_format($menuitem->price, 0, ',', '.') }}</p>
         </div>
+        <button class="btn btn-primary mt-2 add-to-cart" data-id="{{ $menuitem->id }}">Add to Cart</button>
       </div>
     </div>
   </div>
 </div>
 @endforeach
 
-{{-- <!-- Checkout Button -->
-<form action="{{ route('cart.add') }}" method="POST">
-  @csrf
-  <button type="submit" class="btn btn-primary btn-lg mt-4 center mb-5"><i class="bi bi-cart-fill"></i> Checkout</button>
-</form> --}}
-
 <script>
+    document.getElementById('addToCartButton').addEventListener('click', function() {
+    const menuId = document.getElementById('menuId').value; // Get the menu ID
+    const quantity = 1; // Set the quantity (you can adjust this as needed)
+    
+    // Send an AJAX request to add the item to the cart
+    fetch('/menu/add-to-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Use Laravel's CSRF token
+        },
+        body: JSON.stringify({
+            menu_id: menuId,
+            quantity: quantity
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            // Reload the page to update the cart view
+            window.location.reload();
+        } else {
+            // Handle the error
+            console.error('Error adding item to cart');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
   function toggleHighlight(element) {
     element.classList.toggle('highlighted');
     const description = element.querySelector('.description');
     description.classList.toggle('visible');
   }
+
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function(event) {
+      event.stopPropagation();
+      const menuItemId = this.getAttribute('data-id');
+      
+      fetch('/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ id: menuItemId })
+      }).then(response => response.json()).then(data => {
+        if (data.success) {
+          alert('Item added to cart');
+        } else {
+          alert('Failed to add item to cart');
+        }
+      });
+    });
+  });
 </script>

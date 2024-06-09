@@ -5,35 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CartItem;
 use App\Models\Menu;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
-    public function index()
-    {
-        $cartItems = CartItem::with('menu')->get();
-        return view('keranjang.index', compact('cartItems'));
-    }
-
     public function addToCart(Request $request)
     {
-        $cartItem = CartItem::updateOrCreate(
-            ['menu_item_id' => $request->menu_item_id],
-            ['quantity' => $request->quantity]
-        );
+        // Validate the request
+        $request->validate([
+            'menu_id' => 'required|exists:menus,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
 
-        return redirect()->route('cart.view');
-    }
+        // Retrieve the menu item
+        $menu = Menu::findOrFail($request->menu_id);
 
-    public function viewCart()
-    {
-        $cartItems = CartItem::with('menuItem')->get();
-        return view('cart.view', compact('cartItems'));
-    }
-    
-    public function removeFromCart($id)
-    {
-        CartItem::destroy($id);
-        return redirect()->route('cart.index');
+        // Add the item to the cart
+        CartItem::create([
+            'menu_id' => $menu->id,
+            'user_id' => Auth::id(),
+            'quantity' => $request->quantity,
+            'price' => $menu->price * $request->quantity,
+        ]);
+
+        // Redirect back with a success message (optional)
+        return Redirect::back()->with('success', 'Item added to cart successfully.');
     }
 }
