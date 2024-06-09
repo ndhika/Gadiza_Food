@@ -47,9 +47,4 @@ class User extends Authenticatable
     protected $dates = [
         'deleted_at',
     ];
-
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
 }

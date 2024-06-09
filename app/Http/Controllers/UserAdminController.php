@@ -107,7 +107,7 @@ class UserAdminController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
-            'no_telp' => $request->no_telepon,
+            'no_telepon' => $request->no_telepon,
             'alamat_lengkap' => $request->alamat_lengkap,
             'slug_link' => Str::slug($request->username, '-'),
         ]);

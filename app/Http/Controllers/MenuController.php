@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class MenuController extends Controller
 {
@@ -102,27 +104,38 @@ class MenuController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'category' => 'required',
-            'image' => 'required|file|mimes:jpeg,png,jpg',
         ]);
+
+        // Retrieve the menu item from the database
+        $menu = Menu::where('slug_link', $slug_link)->firstOrFail();
 
         // Format the price to match Indonesian format before saving
         $price = str_replace(',', '', $request->price);
         $price = str_replace('.', '', $price);
         $price = str_replace(',', '.', $price);
-        
-        // Format image
-        $image = $request->file('image');
-        $imageName = $image->getClientOriginalName(); 
-        $image->move(public_path('img'), $imageName);
-        
 
-        $menu = Menu::where('slug_link', $slug_link)->firstOrFail();
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete previous image if it exists
+            if ($menu->image) {
+                // Fix the path for the image deletion
+                Storage::delete('img/' . $menu->image);
+            }
+
+            // Get file name without directory path
+            $filename = $request->file('image')->getClientOriginalName();
+            // Store new image with only the file name
+            $imagePath = $request->file('image')->storeAs('', $filename);
+        } else {
+            // Use the existing image path
+            $imagePath = $menu->image;
+        }
 
         $menu->update([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $price,
-            'image' => $request->image,
+            'image' => $imagePath,
             'category' => $request->category,
             'slug_link' => Str::slug($request->name, '-'), 
         ]);
