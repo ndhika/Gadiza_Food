@@ -125,7 +125,7 @@
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Keranjang Anda kosong!"
+        text: "Keranjang Anda masih kosong!"
       });
       event.preventDefault(); // Prevent the default form submission
     } else {
