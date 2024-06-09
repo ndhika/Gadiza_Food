@@ -21,6 +21,8 @@ use App\Http\Controllers\AboutController;
 | Buat sesuatu yang hebat!
 |
 */
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/menu/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 
 // Other routes...
 
