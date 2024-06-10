@@ -44,7 +44,7 @@
                 <label for="image">Image:</label>
                 <input type="file" name="image" id="image" class="form-control" required>
             </div>
-
+<br>
             <button type="submit" class="btn btn-primary">Create Menu</button>
         </form>
     </div>

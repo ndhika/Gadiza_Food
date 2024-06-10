@@ -78,7 +78,7 @@
                         </a>
                     <li class="sidebar-item">
                         <a href="{{ route('orderAdmin.index') }}" class="sidebar-link">
-                            <i class="bi bi-card-checklist"></i>
+                            <i class="bi bi-receipt"></i>
                             <span>Order</span>
                         </a>
                     </li>                    

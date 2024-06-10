@@ -10,26 +10,44 @@ use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request)
+    public function add(Request $request)
     {
-        // Validate the request
-        $request->validate([
-            'menu_id' => 'required|exists:menus,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
+        $cart = session()->get('cart', []);
+        $id = $request->id;
+        
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $menu = Menu::find($id);
+            $cart[$id] = [
+                "name" => $menu->name,
+                "quantity" => 1,
+                "price" => $menu->price,
+                "image" => $menu->image
+            ];
+        }
 
-        // Retrieve the menu item
-        $menu = Menu::findOrFail($request->menu_id);
+        session()->put('cart', $cart);
+        return response()->json(['success' => true]);
+    }
 
-        // Add the item to the cart
-        CartItem::create([
-            'menu_id' => $menu->id,
-            'user_id' => Auth::id(),
-            'quantity' => $request->quantity,
-            'price' => $menu->price * $request->quantity,
-        ]);
+    public function update(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = $request->quantity;
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('keranjang');
+    }
 
-        // Redirect back with a success message (optional)
-        return Redirect::back()->with('success', 'Item added to cart successfully.');
+    public function destroy($id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('keranjang');
     }
 }
