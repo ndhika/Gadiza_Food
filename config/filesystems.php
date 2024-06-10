@@ -39,9 +39,17 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
+        ],
+        
+        // Define custom disk for public images
+        'public_img' => [
+            'driver' => 'local',
+            'root' => public_path('storage/img'),
+            'url' => env('APP_URL') . '/storage/img',
+            'visibility' => 'public',
         ],
 
         's3' => [

@@ -39,7 +39,7 @@ class MenuController extends Controller
     public function showMenu()
     {
         $menu = Menu::where('status_aktif', '=', 'Aktif')->get();
-        return view('/menu/menu', compact('menu')); // Pass the $menus variable to the view
+        return view('/menu/menu', compact('menu')); 
     }
 
     /**
@@ -54,33 +54,29 @@ class MenuController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'price' => 'required|numeric',
-        'category' => 'required',
-        'image' => 'required|file|mimes:jpeg,png,jpg',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'category' => 'required',
+            'image' => 'required|file|mimes:jpeg,png,jpg',
+        ]);
 
-    // Format the price to match Indonesian format before saving
-    $price = str_replace(',', '', $request->price);
-    $price = str_replace('.', '', $price);
-    $price = str_replace(',', '.', $price);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = $image->getClientOriginalName();
+            $image->storeAs('', $filename, 'public_img');
+        }
 
-    // Simpan file yang diunggah ke storage dengan nama yang unik
-    $image = $request->file('image');
-    $imageName = $image->getClientOriginalName(); // Ambil nama file asli
-    $image->move(public_path('img'), $imageName); // Simpan file di dalam direktori public/img
-
-    $menu = menu::create([
-        'name' => $request->name,
-        'description' => $request->description,
-        'price' => $price,
-        'image' => $imageName,
-        'category' => $request->category,
-        'status_aktif' => 'Aktif',
-        'slug_link' => Str::slug($request->name) // Generate slug from name
-    ]);
+        $menu = Menu::create([  
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $filename, 
+            'category' => $request->category,
+            'status_aktif' => 'Aktif',
+            'slug_link' => Str::slug($request->name)
+        ]);
 
         return redirect()->route('menuAdmin.index')->with('success', 'Menu created successfully.');
     }
@@ -100,42 +96,31 @@ class MenuController extends Controller
      */
     public function update(Request $request, $slug_link)
     {
+        $menu = Menu::where('slug_link', $slug_link)->firstOrFail();
+
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
             'category' => 'required',
         ]);
 
-        // Retrieve the menu item from the database
-        $menu = Menu::where('slug_link', $slug_link)->firstOrFail();
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        
+        $filename = $image->getClientOriginalExtension();
+        Storage::disk('public_img')->put($filename, file_get_contents($image));
 
-        // Format the price to match Indonesian format before saving
-        $price = str_replace(',', '', $request->price);
-        $price = str_replace('.', '', $price);
-        $price = str_replace(',', '.', $price);
-
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            // Delete previous image if it exists
-            if ($menu->image) {
-                // Fix the path for the image deletion
-                Storage::delete('img/' . $menu->image);
-            }
-
-            // Get file name without directory path
-            $filename = $request->file('image')->getClientOriginalName();
-            // Store new image with only the file name
-            $imagePath = $request->file('image')->storeAs('', $filename);
-        } else {
-            // Use the existing image path
-            $imagePath = $menu->image;
+        if ($menu->image) {
+            Storage::disk('public_img')->delete($menu->image);
         }
+
+        $menu->update(['image' => $filename]);
+    }
 
         $menu->update([
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $price,
-            'image' => $imagePath,
+            'price' => $request->price,
             'category' => $request->category,
             'slug_link' => Str::slug($request->name, '-'), 
         ]);

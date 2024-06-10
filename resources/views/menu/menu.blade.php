@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="p-3 bg-light rounded-column" onclick="toggleHighlight(this)">
-        <img src="/img/{{ $menuitem->image }}" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
+        <img src="/storage/img/{{ $menuitem->image }}" class="rounded mx-auto d-block" width="350px" height="290px" style="border-radius:2px;">
         <div class="text-center">
           <h3>{{ $menuitem->name }}</h3>
           <p>Rp. {{ number_format($menuitem->price, 0, ',', '.') }}</p>

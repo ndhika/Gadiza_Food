@@ -38,9 +38,6 @@
                             <div class="form-group">
                                 <label for="photo">Photo</label>
                                 <input type="file" name="photo" class="form-control-file">
-                                @if ($profile->photo)
-                                    <img src="{{ asset($profile->photo) }}" alt="Profile Image" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
-                                @endif
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update User</button>

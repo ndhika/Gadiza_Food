@@ -24,7 +24,7 @@
                 <tbody>
                     @foreach ($menus as $menu)
                         <tr>
-                            <td><img src="/img/{{ $menu->image }}" alt="{{ $menu->name }}" width="100"></td>
+                            <td><img src="/storage/img/{{ $menu->image }}" alt="{{ $menu->name }}" width="100"></td>
                             <td>{{ $menu->name }}</td>
                             <td>{{ $menu->category }}</td>
                             <td>{{ $menu->price }}</td>

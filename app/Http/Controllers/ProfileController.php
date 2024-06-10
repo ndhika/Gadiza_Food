@@ -54,20 +54,24 @@ class ProfileController extends Controller
             'alamat_lengkap' => 'required|max:255',
         ]);
         
-                // Handle image upload
+        // Handle image upload
         if ($request->hasFile('photo')) {
             // Delete previous image if exists
             if ($profile->photo) {
-                Storage::delete('img/' . $profile->photo);
+                Storage::disk('public_img')->delete($profile->photo);
             }
 
-            // Get file name without directory path
-            $filename = $request->file('photo')->getClientOriginalName();
-            // Store new image with only the file name
-            $imagePath = $request->file('photo')->storeAs('', $filename);
-        } else {
-            // Use the existing image path
-            $imagePath = $profile->photo;
+            // Get the uploaded file
+            $image = $request->file('photo');
+            // Get the original file name
+            $filename = $image->getClientOriginalName();
+            // Generate a unique file name to prevent conflicts
+            $uniqueFilename = $filename;
+            // Store the new image in the 'public/storage/img' directory
+            $image->storeAs('', $uniqueFilename, 'public_img');
+
+            // Assign the new image path to the profile
+            $profile->photo = $uniqueFilename;
         }
 
         $profile->update([
@@ -78,7 +82,6 @@ class ProfileController extends Controller
             'no_telepon' => $request->no_telepon,
             'alamat_lengkap' => $request->alamat_lengkap,
             'slug_link' => Str::slug($request->username, '-'),
-            'photo' => $imagePath,
         ]);
 
         return redirect()->route('profileAdmin.index')->with('success', 'User updated successfully.');

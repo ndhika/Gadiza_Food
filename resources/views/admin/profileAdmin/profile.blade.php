@@ -21,7 +21,7 @@
             @foreach ($profile as $no => $user)
             <tr>
                 <td class="text-center">{{ ++$no }}</td>
-                <td><img src="/img/{{ $user->photo }}" alt="{{ $user->username }}" width="100"></td>
+                <td><img src="storage/img/{{ $user->photo }}" alt="{{ $user->username }}" width="100"></td>
                 <td class="text-center">{{ $user->nama }}</td>
                 <td class="text-center">{{ $user->username }}</td>
                 <td class="text-center">{{ $user->no_telepon }}</td>
