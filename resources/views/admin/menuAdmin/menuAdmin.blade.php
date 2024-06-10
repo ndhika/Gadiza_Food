@@ -16,7 +16,7 @@
         @endif
 
         @if (count($menus) > 0)
-            <table class="table mt-3">
+            <table id="example" class="table mt-3">
                 <thead>
                     <tr>
                         <th>Image</th>
