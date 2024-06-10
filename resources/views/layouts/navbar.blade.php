@@ -72,7 +72,7 @@
                         @can('isAdmin')
                         <li><a class="dropdown-item p-2" href="/userAdmin"><i class="bi bi-bar-chart-fill"></i> Admin</a></li>
                         @endcan
-                            <li><a class="dropdown-item p-2" href="Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('view.profile.show'"><i class="bi bi-person-circle"></i> Lihat Akun</a></li>
+                            <li><a class="dropdown-item p-2" href="{{ route('profile.show', ['slug_link' => Auth::user()->slug_link]) }}"><i class="bi bi-person-circle"></i> Lihat Akun</a></li>
                             <li>
                                 <form action="/logout" method="post">
                                     @csrf

@@ -1,62 +1,34 @@
 @extends('layouts.profile')
 
 @section('content')
-
-<div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
-<div class="col-xl-8 col-md-12">
-                                                <div class="card user-card-full">
-                                                    <div class="row m-l-0 m-r-0">
-                                                        <a class="nav-link" href="{{ route('profile.show',['id'=>$user->id]) }}"
-                                                            <i class="bi bi-arrow-left-short"></i></a>
-                                                        <div class="col-sm-4 bg-c-lite-green user-profile">
-                                                            <div class="card-block text-center text-white">
-                                                                <div class="m-b-25">
-                                                                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
-                                                                </div>
-                                                                {{ auth()->user()->nama }}
-                                                                <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-8">
-                                                            <div class="card-block">
-                                                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <label class="m-b-10 f-w-600" for="username">Username</label>
-                                                                        <br>
-                                                                    {{ auth()->user()->username }}
-
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <label class="m-b-10 f-w-600" for="no_telepon">No. Telepon</label>
-                                                                        <br>
-                                                                        {{ auth()->user()->no_telepon }}
-    
-                                                                    </div>
-                                                                </div>
-                                                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <label class="m-b-10 f-w-600" for="alamat_lengkap">Alamat Lengkap</label>
-                                                                        <br>
-                                                                        {{ auth()->user()->alamat_lengkap }}
-    
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <label class="m-b-10 f-w-600" for="email">Email</label>
-                                                                        <br>
-                                                                        {{ auth()->user()->email }}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <a href="{{ route('profile.edit',['id'=>$user->id]) }}" class="btn btn-light">Edit</a>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             </div>
-                                                </div>
-                                            </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-4">
+                <div class="card-header bg-danger text-white">
+                    <h4>{{ $profile->nama }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="/storage/img/{{ $profile->photo }}" alt="User Avatar" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                    </div>
+                    <div class="mt-3">
+                        <p><strong>Username:</strong> {{ $profile->username }}</p>
+                        <p><strong>Email:</strong> {{ $profile->email }}</p>
+                        <p><strong>Nomer Telepon:</strong> {{ $profile->no_telepon }}</p>
+                        <p><strong>Alamat:</strong> {{ $profile->alamat_lengkap }}</p>
+                        <div class="text-center mt-4">
+                            <a href="{{ route('profile.edit', $profile->slug_link) }}" class="btn btn-primary mr-2 w-50">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <a href="/" class="btn btn-secondary bg-danger">Back to Home</a>
+        </div>
+    </div>
+</div>
+@endsection

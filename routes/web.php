@@ -37,6 +37,12 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/menu', [MenuController::class, 'showMenu']);
 
+
+    Route::get('profile/{slug_link}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('profile/{slug_link}/edit', [ProfileController::class, 'editFe'])->name('profile.edit');
+    Route::put('profile/{slug_link}/update', [ProfileController::class, 'update'])->name('profile.update');
+
+
     Route::get('/about', function () {
         return view('/about/about', [
             "title" => "Tentang"
@@ -97,7 +103,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('/', [ProfileController::class, 'index'])->name('profileAdmin.index');
         Route::get('/create', [ProfileController::class, 'create'])->name('profileAdmin.create');
         Route::post('/', [ProfileController::class, 'store'])->name('profileAdmin.store');
-        Route::get('/{slug_link}', [ProfileController::class, 'show'])->name('profileAdmin.show');
         Route::get('/{slug_link}/edit', [ProfileController::class, 'edit'])->name('profileAdmin.edit');
         Route::put('/{slug_link}/update', [ProfileController::class, 'update'])->name('profileAdmin.update');
         Route::put('/{slug_link}/softdelete', [ProfileController::class, 'softdelete'])->name('profileAdmin.softdelete');

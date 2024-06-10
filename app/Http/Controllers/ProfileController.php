@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -39,6 +40,15 @@ class ProfileController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function editFe(string $slug_link)
+    {
+        $profile = User::where('slug_link', $slug_link)->firstOrFail();
+        return view('profile.edit', compact('profile'));
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $slug_link)
@@ -56,16 +66,13 @@ class ProfileController extends Controller
         
         // Handle image upload
         if ($request->hasFile('photo')) {
-            // Delete previous image if exists
             if ($profile->photo) {
                 Storage::disk('public_img')->delete($profile->photo);
             }
 
             // Get the uploaded file
             $image = $request->file('photo');
-            // Get the original file name
             $filename = $image->getClientOriginalName();
-            // Generate a unique file name to prevent conflicts
             $uniqueFilename = $filename;
             // Store the new image in the 'public/storage/img' directory
             $image->storeAs('', $uniqueFilename, 'public_img');
@@ -84,7 +91,12 @@ class ProfileController extends Controller
             'slug_link' => Str::slug($request->username, '-'),
         ]);
 
-        return redirect()->route('profileAdmin.index')->with('success', 'User updated successfully.');
+            // Check if user is admin or not
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('profileAdmin.index')->with('success', 'Profile updated successfully.');
+        } else {
+            return redirect()->route('profile.show', ['slug_link' => $profile->slug_link])->with('success', 'Profile updated successfully.');
+        }
     }
 
 
