@@ -19,11 +19,12 @@ use App\Http\Controllers\UserAdminController;
 | Buat sesuatu yang hebat!
 |
 */
-Route::post('/cart/add', 'CartController@add')->name('cart.add');
-Route::put('/cart/update/{id}', 'CartController@update')->name('cart.update');
-Route::delete('/cart/destroy/{id}', 'CartController@destroy')->name('cart.destroy');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::post('/menu/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/menu/add-to-cart', [CartController::class, 'add'])->name('menu.addToCart');
+Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
+Route::post('/keranjang/update/{id}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
 
 // Other routes...
 
