@@ -1,6 +1,8 @@
 @extends('layouts.keranjang')
 
 @section('content')
+@include('layouts.navbar')
+
 <section class="h-100 h-custom" style="background-color: #d9cfc1;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center">
@@ -11,7 +13,7 @@
               <div class="col-lg-7">
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h3 class=" mb-0 text-black">
+                    <h3 class="mb-0 text-black">
                       <a href="/menu" class="back"><i class="bi bi-arrow-left-circle"></i></a> Checkout
                     </h3>
                   </div>
@@ -22,17 +24,17 @@
                   @endphp
 
                   @if(count($cart) > 0)
-                    @foreach($cart as $cartitem)
+                    @foreach($cart as $id => $details)
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
-                        @if(isset($cartitem->$menuitem->image))
-                        <img src="/img/{{ $cartitem->$menuitem->image }}" alt="{{ $cartitem->$menuitem->name }}" width="100%;" style="border-radius:2px;">
+                        @if(isset($details['image']))
+                        <img src="/img/{{ $details['image'] }}" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
                         @else
-                        <img src="/img/default.png" alt="{{ $cartitem->$menuitem->name }}" width="100%;" style="border-radius:2px;">
+                        <img src="/img/default.png" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
                         @endif
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h5 class="text-black mb-0">{{ $cartitem->$menuitem->name }}</h5>
+                        <h5 class="text-black mb-0">{{ $details['name'] }}</h5>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                         <form action="{{ route('cart.update', $id) }}" method="post">
@@ -50,7 +52,7 @@
                         </form>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0">Rp. {{ number_format($cartitem->$menuitem->price, 0, ',', '.') }}</h6>
+                        <h6 class="mb-0">Rp. {{ number_format($details['price'], 0, ',', '.') }}</h6>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                         <form action="{{ route('cart.destroy', $id) }}" method="post">
@@ -136,13 +138,13 @@
         title: "Orderanmu sudah masuk!",
         text: "Terimakasih telah memesan!",
         icon: "success"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Redirect ke halaman berikutnya setelah menutup SweetAlert
-          window.location.href = "/dibuat"; // Ganti dengan URL halaman berikutnya
-        }
-      });
+    }).then((result) => {
+    if (result.isConfirmed) {
+    // Redirect ke halaman berikutnya setelah menutup SweetAlert
+    window.location.href = "/dibuat"; // Ganti dengan URL halaman berikutnya
     }
-  });
-</script>
+    });
+    }
+    });
+    </script>
 @endsection

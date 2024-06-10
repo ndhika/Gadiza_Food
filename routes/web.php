@@ -19,6 +19,9 @@ use App\Http\Controllers\UserAdminController;
 | Buat sesuatu yang hebat!
 |
 */
+Route::post('/cart/add', 'CartController@add')->name('cart.add');
+Route::put('/cart/update/{id}', 'CartController@update')->name('cart.update');
+Route::delete('/cart/destroy/{id}', 'CartController@destroy')->name('cart.destroy');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::post('/menu/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 
@@ -103,7 +106,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::prefix('orderAdmin')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('orderAdmin.index');
         Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
-        Route::post('/submit-order', [OrderController::class, 'store'])->name('orderAdmin.submit');
+        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
         Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('orderAdmin.edit'); // Corrected route for edit
         Route::post('/update', [OrderController::class, 'update'])->name('orderAdmin.update'); // Corrected route for update
     });
