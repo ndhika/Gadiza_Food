@@ -22,17 +22,17 @@
                   @endphp
 
                   @if(count($cart) > 0)
-                    @foreach($cart as $id => $details)
+                    @foreach($cart as $cartitem)
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
-                        @if(isset($details['image']))
-                        <img src="/img/{{ $details['image'] }}" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
+                        @if(isset($cartitem->$menuitem->image))
+                        <img src="/img/{{ $cartitem->$menuitem->image }}" alt="{{ $cartitem->$menuitem->name }}" width="100%;" style="border-radius:2px;">
                         @else
-                        <img src="/img/default.png" alt="{{ $details['name'] }}" width="100%;" style="border-radius:2px;">
+                        <img src="/img/default.png" alt="{{ $cartitem->$menuitem->name }}" width="100%;" style="border-radius:2px;">
                         @endif
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h5 class="text-black mb-0">{{ $details['name'] }}</h5>
+                        <h5 class="text-black mb-0">{{ $cartitem->$menuitem->name }}</h5>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                         <form action="{{ route('cart.update', $id) }}" method="post">
@@ -50,7 +50,7 @@
                         </form>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0">Rp. {{ number_format($details['price'], 0, ',', '.') }}</h6>
+                        <h6 class="mb-0">Rp. {{ number_format($cartitem->$menuitem->price, 0, ',', '.') }}</h6>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                         <form action="{{ route('cart.destroy', $id) }}" method="post">

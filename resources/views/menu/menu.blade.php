@@ -21,7 +21,7 @@
         <div class="description">
           <p>{{ $menuitem->description }}</p>
         </div>
-        <center><button class="btn btn-primary mt-2 add-to-cart" data-id="{{ $menuitem->id }}">Add to Cart</button></center>
+        <center><button type="submit" class="btn btn-primary mt-2 add-to-cart" data-id="{{ $menuitem->id }}">Add to Cart</button></center>
       </div>
     </div>
   </div>
