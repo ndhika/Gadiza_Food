@@ -48,6 +48,12 @@ body {
     text-align: center;
     z-index: 1;
 }
+.laper{
+    font-size: 25px;
+}
+.makan{
+    font-size: 15px;
+}
 
 /* .nextpage {
     position: relative;
@@ -110,6 +116,15 @@ body {
         transform: translate(-50%, -50%);
         text-align: center;
         padding: 20px;
+        width: 100%;
+    }
+
+    .laper{
+        font-size: 15px;
+        margin-top: 50%;
+    }
+    .makan{
+        font-size: 10px;
     }
 
     .nextpage .overlay {

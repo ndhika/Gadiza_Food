@@ -1,70 +1,106 @@
-body{
+body {
     background-image: url("../img/background.jpg");
     background-size: cover;
     overflow-y: hidden;
     font-family: Lusitana;
 }
+
 .form-control:focus {
     outline: none !important;
     border-color: blue !important;
     box-shadow: none !important;
 }
-.tombol button{
+
+.tombol button {
     background-color: #A77E58;
     color: white;
 }
-.tombol button:hover{
+
+.tombol button:hover {
     background-color: #FF4428;
     color: white;
 }
-a{
+
+a {
     color: #A77E58;
 }
-.border_awal{
+
+.border_awal {
     border-color: #FF4428 !important;
 }
+
 .notification {
     position: fixed;
-    top: -100px; 
+    top: -100px;
     left: 0;
     width: 100%;
-    transition: top 0.5s ease; 
+    transition: top 0.5s ease;
 }
 
 /* HP kecil */
 @media (max-width: 575.98px) { 
-    .main{
-        width: 65%;
+    .main {
+        width: 90%;
+        padding: 1rem;
+    }
+    .second {
+        width: 90%;
+    }
+    .tombol button {
+        font-size: 14px;
+    }
+    p.fs-4 {
+        font-size: 1.25rem;
     }
 }
 
 /* hp */
 @media (max-width: 767.98px) { 
-    .main{
-        width: 55%;
+    .main {
+        width: 80%;
+        padding: 1.5rem;
     }
-    .second{
-        width: 35%;
+    .second {
+        width: 80%;
     }
+    .tombol button {
+        font-size: 16px;
+    }
+    p.fs-4 {
+        font-size: 1.5rem;
+    }
+}
 
+/* tablet */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .main {
+        width: 70%;
+        padding: 2rem;
+    }
+    .second {
+        width: 70%;
+    }
+    .tombol button {
+        font-size: 18px;
+    }
+    p.fs-4 {
+        font-size: 1.75rem;
+    }
 }
 
 /* laptop -> tablet */
-@media (min-width: 992px) {  
-    .main{
-        width: 40%;
+@media (min-width: 992px) and (max-width: 1199.98px) {  
+    .main {
+        width: 60%;
+        padding: 2.5rem;
     }
-    .second{
-        width: 40%;
+    .second {
+        width: 60%;
     }
-}
-
-/* laptop L */
-@media (min-width: 1200px) { 
-    .main{
-        width: 35%;
+    .tombol button {
+        font-size: 20px;
     }
-    .second{
-        width: 45%;
+    p.fs-4 {
+        font-size: 2rem;
     }
 }
