@@ -39,6 +39,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
     /**
      * The attributes that should be mutated to dates.
      *
