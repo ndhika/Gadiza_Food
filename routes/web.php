@@ -115,6 +115,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('/order', [OrderController::class, 'store'])->name('orderAdmin.store');
         Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('orderAdmin.edit'); // Corrected route for edit
         Route::post('/update', [OrderController::class, 'update'])->name('orderAdmin.update'); // Corrected route for update
+        Route::post('/show', [OrderController::class, 'show'])->name('orderAdmin.show');
     });
 
 });

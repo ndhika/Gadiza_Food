@@ -21,7 +21,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $cart = session('cart', []);
-        
+
         if (count($cart) == 0) {
             return redirect()->back()->with('error', 'Keranjang Anda masih kosong!');
         }
@@ -32,7 +32,7 @@ class OrderController extends Controller
         $order->alamat = Auth::user()->alamat_lengkap;
         $order->total_harga = array_sum(array_map(function($item) {
             return $item['price'] * $item['quantity'];
-        }, $cart)) + 20000; // Misal, shipping cost adalah 20000
+        }, $cart)) + 20000; // Misal, biaya pengiriman adalah 20000
         $order->status = 'sedang dibuat';
         $order->tanggal_pemesanan = now();
         $order->pembayaran = 'cash_on_delivery';
@@ -49,8 +49,9 @@ class OrderController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('order.success')->with('success', 'Orderanmu sudah masuk!');
+        return redirect()->route('orderAdmin.store')->with('success', 'Orderanmu sudah masuk!');
     }
+
 
     public function edit(Order $orders):view
     {
