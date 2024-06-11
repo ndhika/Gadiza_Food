@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('nama_customer');
-            $table->string('pesanan');
-            $table->integer('jumlah_pesanan');
-            $table->decimal('total_harga', 10, 3);
+            $table->string('no_telepon');
             $table->string('alamat');
-            $table->string('no_telp');
-            $table->date('tgl_pesan');
-            $table->string('metode_bayar');
+            $table->decimal('total_harga', 15, 2);
             $table->enum('status', ['sedang dibuat', 'sedang diantar', 'pesanan sukses']);
+            $table->string('pembayaran');
+            $table->timestamp('tanggal_pemesanan');
             $table->timestamps();
         });
     }

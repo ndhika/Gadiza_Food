@@ -111,8 +111,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::prefix('orderAdmin')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('orderAdmin.index');
-        Route::get('/create', [OrderController::class, 'create'])->name('orderAdmin.create');
-        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
+        Route::get('/history', [OrderController::class, 'create'])->name('orderAdmin.history');
+        Route::post('/order', [OrderController::class, 'store'])->name('orderAdmin.store');
         Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('orderAdmin.edit'); // Corrected route for edit
         Route::post('/update', [OrderController::class, 'update'])->name('orderAdmin.update'); // Corrected route for update
     });

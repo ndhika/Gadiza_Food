@@ -101,7 +101,11 @@
                     <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                   </select>
 
-                  <button class="btn btn-secondary w-100" id="order-btn">ORDER</button>
+                  <form action="{{ route('orderAdmin.store') }}" method="POST">
+                    @csrf
+            <button type="submit" class="btn btn-outline-warning">Checkout</button>
+        </form>
+
                 </div>
               </div>
             </div>
@@ -125,63 +129,41 @@
     } else {
       event.preventDefault(); // Prevent the default form submission
 
-      // Menampilkan pesan SweetAlert
-      Swal.fire({
-        title: "Orderanmu sudah masuk!",
-        text: "Terimakasih telah memesan!",
-        icon: "success"
-    }).then((result) => {
-    if (result.isConfirmed) {
-    // Redirect ke halaman berikutnya setelah menutup SweetAlert
-    window.location.href = "/dibuat"; // Ganti dengan URL halaman berikutnya
-    }
-    });
-    }
-    });
-    
-  document.querySelectorAll('.change-quantity').forEach(button => {
-    button.addEventListener('click', function(event) {
-      event.preventDefault();
-      const action = this.getAttribute('data-action');
-      const form = this.closest('.update-cart-form');
-      const quantityInput = form.querySelector('.quantity');
-      let quantity = parseInt(quantityInput.value);
+      // Mengambil data user dari blade
+      const userData = {
+        cart: @json($cart),
+        total: {{ $total }},
+        payment_method: document.getElementById('payment-method').value
+      };
 
-      if (action === 'increase') {
-        quantity += 1;
-      } else if (action === 'decrease' && quantity > 0) {
-        quantity -= 1;
-      }
-
-      quantityInput.value = quantity;
-      updateCart(form.closest('.cart-item'), quantity);
-    });
+      fetch("{{ route('orderAdmin.store') }}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(userData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Pesanan berhasil dibuat!",
+            text: data.message
+          }).then(() => {
+            window.location.href = "/orderAdmin/order";
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: data.message
+          });
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
   });
-
-  function updateCart(cartItem, quantity) {
-    const id = cartItem.getAttribute('data-id');
-    const price = parseFloat(cartItem.getAttribute('data-price'));
-
-    fetch(`/keranjang/update/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-      },
-      body: JSON.stringify({ quantity: quantity })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        console.error(data.error);
-        return;
-      }
-
-      document.getElementById('subtotal').textContent = data.subtotal.toLocaleString();
-      document.getElementById('total').textContent = data.total.toLocaleString();
-      document.getElementById('item-count').textContent = data.itemCount;
-    })
-    .catch(error => console.error('Error:', error));
-  }
 </script>
 @endsection

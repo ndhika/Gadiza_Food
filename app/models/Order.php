@@ -10,14 +10,11 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_customer',
-        'pesanan',
-        'jumlah_pesanan',
-        'total_harga',
-        'alamat',
-        'no_telp',
-        'tgl_pesan',
-        'metode_bayar',
-        'status',
+        'nama_customer', 'no_telepon', 'alamat', 'total_harga', 'status', 'pembayaran', 'tanggal_pemesanan'
     ];
+
+    public function order_items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }
