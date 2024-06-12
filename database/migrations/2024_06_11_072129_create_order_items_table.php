@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_pesanan');
             $table->integer('jumlah_pesanan');
             $table->decimal('harga', 15, 2);
+            $table->softDeletes(); // Add soft deletes
             $table->timestamps();
         });
         

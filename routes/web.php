@@ -19,11 +19,6 @@ use App\Http\Controllers\UserAdminController;
 | Buat sesuatu yang hebat!
 |
 */
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::post('/menu/add-to-cart', [CartController::class, 'add'])->name('menu.addToCart');
-Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
-Route::post('/keranjang/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::delete('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
 
 // Other routes...
@@ -37,8 +32,18 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     
     Route::get('/menu', [MenuController::class, 'showMenu']);
-
-
+    
+    Route::get('/order', [OrderController::class, 'indexFe'])->name('order.indexFe'); // User order index
+    Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+    Route::get('/order/{order}/edit', [OrderController::class, 'edit'])->name('order.edit');
+    Route::post('/order/{order}/update', [OrderController::class, 'update'])->name('order.update');
+    
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/menu/add-to-cart', [CartController::class, 'add'])->name('menu.addToCart');
+    Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/keranjang/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/destroy/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    
     Route::get('profile/{slug_link}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/{slug_link}/edit', [ProfileController::class, 'editFe'])->name('profile.edit');
     Route::put('profile/{slug_link}/update', [ProfileController::class, 'update'])->name('profile.update');
@@ -111,12 +116,15 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::prefix('orderAdmin')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('orderAdmin.index');
-        Route::get('/history', [OrderController::class, 'create'])->name('orderAdmin.history');
-        Route::post('/order', [OrderController::class, 'store'])->name('orderAdmin.store');
-        Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('orderAdmin.edit'); // Corrected route for edit
-        Route::post('/update', [OrderController::class, 'update'])->name('orderAdmin.update'); // Corrected route for update
-        Route::post('/show', [OrderController::class, 'show'])->name('orderAdmin.show');
+        Route::get('/history', [OrderController::class, 'history'])->name('orderAdmin.history'); // Corrected method to show history
+        Route::post('/store', [OrderController::class, 'store'])->name('orderAdmin.store');
+        Route::get('/edit/{order}', [OrderController::class, 'edit'])->name('orderAdmin.edit'); 
+        Route::post('/update/{order}', [OrderController::class, 'update'])->name('orderAdmin.update');
+        Route::put('/softdelete/{id}', [OrderController::class, 'softdelete'])->name('orderAdmin.softdelete');
+        Route::put('/recover/{id}', [OrderController::class, 'recover'])->name('orderAdmin.recover');
+        Route::delete('/destroy/{order}', [OrderController::class, 'destroy'])->name('orderAdmin.destroy'); // Added delete route
     });
+
 
 });
 

@@ -14,13 +14,15 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('nama_customer');
-            $table->string('no_telepon');
-            $table->string('alamat');
+            $table->string('no_telepon')->nullable();
+            $table->string('alamat_lengkap')->nullable();
             $table->decimal('total_harga', 15, 2);
             $table->enum('status', ['sedang dibuat', 'sedang diantar', 'pesanan sukses']);
+            $table->enum('status_aktif', ['Aktif', 'Hapus']);
             $table->string('pembayaran');
             $table->timestamp('tanggal_pemesanan');
             $table->timestamps();
+            $table->softDeletes(); // Add soft deletes
         });
     }
 

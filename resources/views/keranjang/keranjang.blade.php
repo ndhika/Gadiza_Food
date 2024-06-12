@@ -13,7 +13,7 @@
                   <div class="d-flex justify-content-between align-items-center mb-5">
                     <h3 class="mb-0 text-black">
                       <a href="/menu" class="back"><i class="bi bi-arrow-left-circle"></i></a> Checkout
-                    </h3>
+                    </h3> 
                   </div>
                   <hr class="my-4">
 
@@ -101,11 +101,10 @@
                     <option value="cash_on_delivery">Cash On Delivery (Bayar di Tempat)</option>
                   </select>
 
-                  <form id="order-form" action="{{ route('orderAdmin.store') }}" method="POST">
+                  <form id="order-form" action="{{ route('order.store') }}" method="POST">
                       @csrf
                       <button class="btn btn-secondary w-100" id="order-btn" form="order-form">ORDER</button>
                   </form>
-
                 </div>
               </div>
             </div>
@@ -134,15 +133,15 @@
         title: "Orderanmu sudah masuk!",
         text: "Terimakasih telah memesan!",
         icon: "success"
-    }).then((result) => {
-    if (result.isConfirmed) {
-    // Redirect ke halaman berikutnya setelah menutup SweetAlert
-    window.location.href = "/dibuat"; // Ganti dengan URL halaman berikutnya
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Submit the form
+          document.getElementById('order-form').submit();
+        }
+      });
     }
-    });
-    }
-    });
-    
+  });
+  
   document.querySelectorAll('.change-quantity').forEach(button => {
     button.addEventListener('click', function(event) {
       event.preventDefault();
@@ -166,7 +165,7 @@
     const id = cartItem.getAttribute('data-id');
     const price = parseFloat(cartItem.getAttribute('data-price'));
 
-    fetch(/keranjang/update/${id}, {
+    fetch(`/keranjang/update/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

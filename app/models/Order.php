@@ -2,19 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Order extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'nama_customer', 'no_telepon', 'alamat', 'total_harga', 'status', 'pembayaran', 'tanggal_pemesanan'
+        'nama_customer', 'alamat', 'no_telepon', 'tgl_pesan', 'metode_bayar', 'status', 'total_harga'
     ];
 
-    public function order_items()
+    
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+
+
+
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
 }
+

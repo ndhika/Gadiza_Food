@@ -19,29 +19,36 @@
                 <th>Tanggal Pemesanan</th>
                 <th>Pembayaran</th>
                 <th>Status</th>
-                <th>aksi</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($orders as $order) <!-- Use $orders instead of $order -->
-                <tr>
-                    <td>{{ $order->id }}</td>
-                    <td>{{ $order->nama_customer }}</td>
-                    <td>{{ $order->order_items->pluck('nama_pesanan')->join(', ') }}</td>
-                    <td class="text-center">{{ $order->order_items->pluck('jumlah_pesanan') }}</td>
-                    <td class="text-center">{{ number_format($order->total_harga, 0, ',', '.') }}</td>
-                    <td>{{ $order->alamat }}</td>
-                    <td>{{ $order->no_telepon }}</td>
-                    <td>{{ $order->tgl_pesan }}</td>
-                    <td>{{ $order->metode_bayar }}</td>
-                    <td>{{ $order->status }}</td>
-                    <td>
-                        <a href="{{ route('orderAdmin.edit', $order->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
+            @foreach($orders as $order)
+                @if ($order->status_aktif == 'Aktif')
+                    <tr>
+                        <td>{{ $order->id }}</td>
+                        <td>{{ $order->nama_customer }}</td>
+                        <td>{{ $order->orderItems->pluck('nama_pesanan')->join(', ') }}</td>
+                        <td class="text-center">{{ $order->orderItems->sum('jumlah_pesanan') }}</td>
+                        <td class="text-center">Rp. {{ number_format($order->total_harga, 0, ',', '.') }}</td>
+                        <td>{{ $order->alamat_lengkap }}</td>
+                        <td>{{ $order->no_telepon }}</td>
+                        <td>{{ $order->tanggal_pemesanan }}</td>
+                        <td>{{ $order->pembayaran }}</td>
+                        <td>{{ $order->status }}</td>
+                        <td>
+                            <a href="{{ route('orderAdmin.edit', $order->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                <form action="{{ route('orderAdmin.softdelete', $order->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
         </tbody>
-        <tfoot></tfoot>
     </table>
 @endsection
